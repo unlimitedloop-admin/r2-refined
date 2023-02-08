@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update*    : 
+//      Last update     : 2023/02/08
 //
-//      File version*   : 
+//      File version    : 1
 //
 //
 /**************************************************************/
@@ -28,7 +28,7 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * <Enter a description of some file here.>
+ * Contains the entry point of the application.
 **/
 
 
@@ -36,6 +36,8 @@
 /* INCLUDES */
 // GENERAL USING HEADER
 #include <Windows.h>
+// PROJECT USING HEADER
+#include "kernel.h"
 
 
 
@@ -50,7 +52,7 @@
 /// <returns>Argument values for exit</returns>
 INT APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpszCmdLine, _In_ int nCmdShow) {
 
-
+    if (!boot::Systems(lpszCmdLine)) { return EXIT_FAILURE; }
 
 
     return EXIT_SUCCESS;
