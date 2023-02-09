@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/08
+//      Last update     : 2023/02/09
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -34,10 +34,13 @@
 
 
 /* INCLUDES */
+// C++ SYSTEM HEADER
+#include <string>
 // GENERAL USING HEADER
 #include <Windows.h>
 // PROJECT USING HEADER
 #include "src/protocol/evaluation.h"
+#include "src/protocol/env_params.h"
 #include "src/traceable/spdlogs_inc.h"
 
 
@@ -50,7 +53,7 @@ namespace {
 
 
 
-    auto executiveMandate(LPSTR command) {
+    auto internalExecutionSelect(LPSTR command) {
         auto mode = RunMode::GENERAL_MODE;
         if (!lstrcmp(command, "debug")) {
             mode = RunMode::DEBUG_MODE;
@@ -61,10 +64,14 @@ namespace {
 
     bool sysInit(LPSTR szcmdline) {
         // A 'mode' set GENERAL or DEBUG that application execute a mode.
-        RunMode mode = executiveMandate(szcmdline);
-
-        if (RunMode::DEBUG_MODE == mode) {
-            MessageBox(NULL, "Start in debug mode.", "R2 Refined", MB_OK);
+        RunMode mode = internalExecutionSelect(szcmdline);
+        // Load enviroment any parameters.
+        auto env = loadParameterFromEnv();
+        std::string str;
+        if (0 == env) {
+            if (RunMode::DEBUG_MODE == mode && getParameter("$MESSAGE_BOX_LABELS", &str)) {
+                MessageBox(NULL, "Start in debug mode.", str.c_str(), MB_OK);
+            }
         }
         traceable::doOutputSpdlog("storages/traceability/str/default.log", "trace-log", "sysInit was finish.", traceable::LogClass::LOG_LEVEL_TRACE);
         return true;
