@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/09
+//      Last update     : 2023/02/11
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -41,7 +41,8 @@
 // PROJECT USING HEADER
 #include "src/protocol/evaluation.h"
 #include "src/protocol/env_params.h"
-#include "src/traceable/spdlogs_inc.h"
+#include "src/traceable/output_logs.h"
+#include "src/traceable/log_filepath.h"
 
 
 
@@ -69,11 +70,15 @@ namespace {
         auto env = loadParameterFromEnv();
         std::string str;
         if (0 == env) {
+            if (RunMode::DEBUG_MODE == mode && getParameter("$STREAM_OUTPUT_LOG_PATH", &str)) {
+                traceable::setStreamLogFilePath(str);
+            }
             if (RunMode::DEBUG_MODE == mode && getParameter("$MESSAGE_BOX_LABELS", &str)) {
-                MessageBox(NULL, "Start in debug mode.", str.c_str(), MB_OK);
+                MessageBox(NULL, "Start in debug mode.", str.c_str(), MB_OK);   // TODO : Make function.
+                (void)traceable::writeStatusLog("デバッグモードでシステムを開始します。");
             }
         }
-        traceable::doOutputSpdlog("storages/traceability/str/default.log", "trace-log", "sysInit was finish.", traceable::LogClass::LOG_LEVEL_TRACE);
+        (void)traceable::writeStatusLog("システムを起動します。");
         return true;
     }
 
@@ -83,6 +88,7 @@ namespace {
 
 
     bool sysFin(void) {
+        (void)traceable::writeStatusLog("システムを終了します。\n");
         return true;
     }
 

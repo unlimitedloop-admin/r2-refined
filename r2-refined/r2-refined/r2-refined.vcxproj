@@ -90,6 +90,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);C:\C++\DxLib;C:\C++\spdlog</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -109,6 +110,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);C:\C++\DxLib;C:\C++\spdlog</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -128,6 +130,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);C:\C++\DxLib;C:\C++\spdlog</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -147,6 +150,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);C:\C++\DxLib;C:\C++\spdlog</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -160,7 +164,10 @@
     <ClCompile Include="src\forms\boot\api_entry.cc" />
     <ClCompile Include="src\forms\boot\kernel.cc" />
     <ClCompile Include="src\protocol\env_params.cc" />
+    <ClCompile Include="src\traceable\log_filepath.cc" />
+    <ClCompile Include="src\traceable\output_logs.cc" />
     <ClCompile Include="src\traceable\spdlogs_inc.cc" />
+    <ClCompile Include="src\util\time\systime.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -168,7 +175,10 @@
     <ClInclude Include="src\protocol\env_params.h" />
     <ClInclude Include="src\protocol\evaluation.h" />
     <ClInclude Include="src\traceable\logclass.h" />
+    <ClInclude Include="src\traceable\log_filepath.h" />
+    <ClInclude Include="src\traceable\output_logs.h" />
     <ClInclude Include="src\traceable\spdlogs_inc.h" />
+    <ClInclude Include="src\util\time\systime.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />
