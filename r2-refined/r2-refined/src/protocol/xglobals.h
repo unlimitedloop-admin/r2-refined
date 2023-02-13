@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/12
+//      Last update     : 2023/02/13
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -42,3 +42,4 @@
 /* SOURCES */
 // Global window handler.
 extern HWND xg_hWnd;
+extern HINSTANCE xg_hInstance;

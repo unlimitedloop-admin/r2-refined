@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/12
+//      Last update     : 2023/02/13
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -83,7 +83,7 @@ namespace boot {
         MEMORYSTATUSEX mem_status{};
         mem_status.dwLength = sizeof(mem_status);
         GlobalMemoryStatusEx(&mem_status);
-        if ((DWORDLONG)0xFFFFFFF >= mem_status.ullTotalPhys) {
+        if ((DWORDLONG)0xFF72D80 >= mem_status.ullTotalPhys) {  // More than 256MB of RAM?
             return false;
         }
 

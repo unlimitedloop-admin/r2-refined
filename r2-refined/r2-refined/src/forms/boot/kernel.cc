@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/12
+//      Last update     : 2023/02/13
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -41,6 +41,7 @@
 // PROJECT USING HEADER
 #include "src/protocol/evaluation.h"
 #include "src/protocol/env_params.h"
+#include "src/protocol/process_code_hard.h"
 #include "src/protocol/message_box.h"
 #include "src/traceable/output_logs.h"
 #include "src/traceable/log_filepath.h"
@@ -53,6 +54,7 @@ namespace {
 
     /* Using namespace */
     using namespace protocol;
+    using namespace traceable;
 
 
 
@@ -77,36 +79,32 @@ namespace {
         auto env = loadParameterFromEnv();
         if (0 == env) {
             if (RunMode::DEBUG_MODE == mode && getParameter("$STREAM_OUTPUT_LOG_PATH", &str)) {
-                traceable::setStreamLogFilePath(str);
+                setStreamLogFilePath(str);
             }
             if (RunMode::DEBUG_MODE == mode) {
                 MSG_BOX("Start in debug mode.");
-                (void)traceable::writeStatusLog("デバッグモードでシステムを開始します。");
+                (void)writeStatusLog("デバッグモードでシステムを開始します。");
             }
         }
         else if (1 == env) {
-            MessageBox(NULL, "It doesn't find any environment variables, so it boots in economy mode.\r\nSee README.txt.", "r2refined", MB_OK);
+            MSG_BOX("It doesn't find any environment variables, so it boots in economy mode.\r\nSee README.txt.");
         }
         else {
             // TODO : Error exception.
             return false;
         }
 
-        (void)traceable::writeStatusLog("システムを起動します。");
+        (void)writeStatusLog("システムを起動します。");
         return true;
     }
 
 
     void sysIgnition(LPSTR szcmdline) {
-        // promotions. >>>
-        //auto a = 100;
-        //auto b = 50;
-        //PF_MSG_BOX("%d + %d = %dです。", a, b, a + b);
     }
 
 
     bool sysFin(void) {
-        (void)traceable::writeStatusLog("システムを終了します。\n");
+        (void)writeStatusLog("システムを終了します。\n");
         return true;
     }
 

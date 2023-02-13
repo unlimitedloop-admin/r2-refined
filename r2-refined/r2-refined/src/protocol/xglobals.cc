@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/12
+//      Last update     : 2023/02/13
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -28,7 +28,7 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * Implement getters and setters with global scope processing tracking code.
+ * A group of data that declares complete neutrality, the name is x-globals.
 **/
 
 
@@ -51,4 +51,5 @@
 
 
 /* SOURCES */
-HWND xg_hWnd = NULL;
+HWND            xg_hWnd = NULL;
+HINSTANCE       xg_hInstance = NULL;

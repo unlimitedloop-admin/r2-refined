@@ -166,6 +166,7 @@
     <ClCompile Include="src\forms\boot\kernel.cc" />
     <ClCompile Include="src\protocol\env_params.cc" />
     <ClCompile Include="src\protocol\message_box.cc" />
+    <ClCompile Include="src\protocol\process_code_hard.cc" />
     <ClCompile Include="src\protocol\xglobals.cc" />
     <ClCompile Include="src\traceable\log_filepath.cc" />
     <ClCompile Include="src\traceable\output_logs.cc" />
@@ -180,6 +181,7 @@
     <ClInclude Include="src\protocol\env_params.h" />
     <ClInclude Include="src\protocol\evaluation.h" />
     <ClInclude Include="src\protocol\message_box.h" />
+    <ClInclude Include="src\protocol\process_code_hard.h" />
     <ClInclude Include="src\protocol\xglobals.h" />
     <ClInclude Include="src\traceable\logclass.h" />
     <ClInclude Include="src\traceable\log_filepath.h" />

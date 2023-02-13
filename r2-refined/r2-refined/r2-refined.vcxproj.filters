@@ -12,6 +12,7 @@
     <ClCompile Include="src\protocol\xglobals.cc" />
     <ClCompile Include="src\util\conv\converting.cc" />
     <ClCompile Include="src\forms\boot\hardware_check.cc" />
+    <ClCompile Include="src\protocol\process_code_hard.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -27,6 +28,7 @@
     <ClInclude Include="src\protocol\xglobals.h" />
     <ClInclude Include="src\util\conv\converting.h" />
     <ClInclude Include="src\forms\boot\hardware_check.h" />
+    <ClInclude Include="src\protocol\process_code_hard.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />
