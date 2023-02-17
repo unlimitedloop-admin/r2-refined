@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/13
+//      Last update     : 2023/02/17
 //
-//      File version    : 5
+//      File version    : 6
 //
 //
 /**************************************************************/
@@ -39,13 +39,14 @@
 // GENERAL USING HEADER
 #include <Windows.h>
 // PROJECT USING HEADER
-#include "src/protocol/evaluation.h"
+#include "src/forms/boot/hardware_check.h"
+#include "src/exceptions/exception_handler.h"
 #include "src/protocol/env_params.h"
+#include "src/protocol/evaluation.h"
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/message_box.h"
 #include "src/traceable/output_logs.h"
 #include "src/traceable/log_filepath.h"
-#include "src/forms/boot/hardware_check.h"
 
 
 
@@ -83,6 +84,7 @@ namespace {
             }
             if (RunMode::DEBUG_MODE == mode) {
                 MSG_BOX("Start in debug mode.");
+                _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);  // Enable the debug heap manager to manage allocated memory regions.
                 (void)writeStatusLog("デバッグモードでシステムを開始します。");
             }
         }
@@ -90,7 +92,6 @@ namespace {
             MSG_BOX("It doesn't find any environment variables, so it boots in economy mode.\r\nSee README.txt.");
         }
         else {
-            // TODO : Error exception.
             return false;
         }
 
@@ -100,10 +101,21 @@ namespace {
 
 
     void sysIgnition(LPSTR szcmdline) {
+        // Error exception procedures test.
+        xg_exChar = "This is application crash test.";
+        NATIVE_MSG("#Exception_desc: %s", xg_exChar.c_str());
+        setStaticProcessCode(0x00FEF1ULL, STATIC_ERR_DOMINATOR);
     }
 
 
     bool sysFin(void) {
+        if (0x000000ULL != (getStaticProcessCode() & 0x00000FULL)) {
+            exceptions::ExceptionHandler ex;
+            ex.throwException(getStaticProcessCode());
+            (void)writeErrorLog("エミュレーションでエラーログが出力されています。\n", LogClass::LOG_LEVEL_OFF);
+            (void)writeStatusLog("システムが強制中断されました。\n", LogClass::LOG_LEVEL_OFF);
+            return false;
+        }
         (void)writeStatusLog("システムを終了します。\n");
         return true;
     }
@@ -115,6 +127,7 @@ namespace {
 namespace boot {
 
     bool Systems(LPSTR cmdline) {
+        setStaticProcessCode(0x00ULL, STATIC_PROC_CD);
         if (sysInit(cmdline)) {
             sysIgnition(cmdline);
         }

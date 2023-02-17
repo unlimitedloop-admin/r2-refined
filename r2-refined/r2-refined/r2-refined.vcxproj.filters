@@ -13,6 +13,8 @@
     <ClCompile Include="src\util\conv\converting.cc" />
     <ClCompile Include="src\forms\boot\hardware_check.cc" />
     <ClCompile Include="src\protocol\process_code_hard.cc" />
+    <ClCompile Include="src\exceptions\exception_handler.cc" />
+    <ClCompile Include="src\exceptions\error\errorlist_0x00x.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -29,6 +31,10 @@
     <ClInclude Include="src\util\conv\converting.h" />
     <ClInclude Include="src\forms\boot\hardware_check.h" />
     <ClInclude Include="src\protocol\process_code_hard.h" />
+    <ClInclude Include="src\exceptions\throws.h" />
+    <ClInclude Include="src\exceptions\exception_handler.h" />
+    <ClInclude Include="src\util\logic\reference.h" />
+    <ClInclude Include="src\exceptions\error\errorlist_0x00x.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />

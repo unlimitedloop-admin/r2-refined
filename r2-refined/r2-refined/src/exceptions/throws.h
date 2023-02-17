@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : xglobals.h
+//      File name       : throws.h
 //
 //      Author          : u7
 //
 //      Last update     : 2023/02/17
 //
-//      File version    : 3
+//      File version    : 1
 //
 //
 /**************************************************************/
@@ -28,37 +28,39 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * xglobals.header
+ * throws.header
 **/
 
 
 
+#ifndef _R2R_EXCEPTIONS_THROWS_H_
+#define _R2R_EXCEPTIONS_THROWS_H_
+
 /* INCLUDES */
 // C++ SYSTEM HEADER
 #include <string>
-// GENERAL USING HEADER
-#include <Windows.h>
+// PROJECT USING HEADER
+#include "src/traceable/logclass.h"
 
 
 
 /* SOURCES */
-/// <summary>
-/// <para>A window handle that can be used equally throughout the system.</para>
-/// <para>The screen displayed in the main is set to this.</para>
-/// </summary>
-extern HWND xg_hWnd;
+namespace exceptions {
 
-/// <summary>
-/// <para>Main instance of the system. The instance is WINAPI-specific.</para>
-/// </summary>
-extern HINSTANCE xg_hInstance;
+    /* using namespace */
+    using namespace traceable;
 
-/// <summary>
-/// Global exception message storages.
-/// </summary>
-extern std::string xg_exChar;
 
-/// <summary>
-/// Native error descriptions. (Supplemental Information)
-/// </summary>
-extern std::string xg_nMsg;
+
+    /// <summary>
+    /// Abstract classes.
+    /// </summary>
+    class Throws {
+    public:
+        virtual ~Throws() {}
+        virtual std::string What(unsigned __int64, LogClass) = 0;
+    };
+
+}  // namespace exceptions
+
+#endif // !_R2R_EXCEPTIONS_THROWS_H_

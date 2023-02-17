@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/09
+//      Last update     : 2023/02/17
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -39,6 +39,10 @@
 #include <sstream>
 #include <string>
 #include <map>
+// PROJECT USING HEADER
+#include "src/exceptions/exception_handler.h"
+#include "src/protocol/process_code_hard.h"
+#include "src/protocol/xglobals.h"
 
 
 
@@ -72,6 +76,9 @@ namespace protocol {
             return 0;
         }
         catch (const std::exception& e) {
+            xg_exChar = e.what();
+            NATIVE_MSG("#Exception_desc: %s", xg_exChar.c_str());
+            setStaticProcessCode(0x0001C1ULL, STATIC_ERR_DOMINATOR);
             return -1;
         }
     }

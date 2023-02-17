@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/13
+//      Last update     : 2023/02/17
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -42,6 +42,7 @@
 /* SOURCES */
 static bool g_static_binding_failure_flag = false;
 static unsigned __int64 g_static_process_code_hard = R2R_PROCESS_CODE_HARD_OK;
+
 
 
 unsigned __int64 getStaticProcessCode(void) {
@@ -75,7 +76,7 @@ void setStaticProcessCode(unsigned __int64 value, StaticProcessSetStyle binaries
     }
     // Increments the error count counter when the value of the 4th bit of the binary number is 1.
     if ((convInt(binaries) & convInt(StaticProcessSetStyle::LOG_OUTPUT_TIMES_INCREASE)) == convInt(StaticProcessSetStyle::LOG_OUTPUT_TIMES_INCREASE)) {
-        if (0xF != (g_static_process_code_hard & 0x00000FLL)) { g_static_process_code_hard++; }
+        if (0xF != (g_static_process_code_hard & 0x00000FULL)) { g_static_process_code_hard++; }
     }
 }
 

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/13
+//      Last update     : 2023/02/17
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -45,6 +45,8 @@
 
 
 /* INCLUDES */
+// C++ SYSTEM HEADER
+#include <string>
 // GENERAL USING HEADER
 #include <Windows.h>
 
@@ -53,3 +55,7 @@
 /* SOURCES */
 HWND            xg_hWnd = NULL;
 HINSTANCE       xg_hInstance = NULL;
+
+
+std::string     xg_exChar = "";
+std::string     xg_nMsg = "";

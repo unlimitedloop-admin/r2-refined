@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/13
+//      Last update     : 2023/02/17
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -37,6 +37,8 @@
 // GENERAL USING HEADER
 #include <Windows.h>
 #include <VersionHelpers.h>
+// PROJECT USING HEADER
+#include "src/protocol/process_code_hard.h"
 
 
 
@@ -47,6 +49,7 @@ namespace {
     constexpr __int32 ARCHITECTURE_CHECK_NG = -1;
 
 }  // plain namespace
+
 
 
 namespace boot {
@@ -71,11 +74,13 @@ namespace boot {
             break;
         }
         if (checker) {
+            setStaticProcessCode(0x0002B1ULL, STATIC_ERR_DOMINATOR);
             return false;
         }
 
         // This application is only supported on Windows 7 or later OS.
         if (!IsWindows7OrGreater()) {
+            setStaticProcessCode(0x0003B1ULL, STATIC_ERR_DOMINATOR);
             return false;
         }
 
@@ -83,7 +88,8 @@ namespace boot {
         MEMORYSTATUSEX mem_status{};
         mem_status.dwLength = sizeof(mem_status);
         GlobalMemoryStatusEx(&mem_status);
-        if ((DWORDLONG)0xFF72D80 >= mem_status.ullTotalPhys) {  // More than 256MB of RAM?
+        if ((DWORDLONG)0xFF72D80 >= mem_status.ullTotalPhys) {
+            setStaticProcessCode(0x0004B1ULL, STATIC_ERR_DOMINATOR);
             return false;
         }
 
