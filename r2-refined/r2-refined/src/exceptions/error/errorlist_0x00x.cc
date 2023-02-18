@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/17
+//      Last update     : 2023/02/18
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -75,8 +75,64 @@ namespace exceptions {
         case 0x0004ULL:
             message << "メモリ領域に十分な空き領域がないためアプリケーションは開始されません。";
             break;
+        case 0x0005ULL:
+            message << "SetDrawScreen(DX_SCREEN_BACK)関数が失敗しました。";
+            break;
+        case 0x0006ULL:
+            message << "SetDrawScreen(DX_SCREEN_FRONT)関数が失敗しました。";
+            break;
+        case 0x0007ULL:
+            message << "SetOutApplicationLogValidFlag(FALSE)関数が失敗しました。";
+            break;
+        case 0x0008ULL:
+            message << "SetApplicationLogSaveDirectory関数が失敗しました。";
+            break;
+        case 0x0009ULL:
+            message << "SetAlwaysRunFlag(TRUE)関数が失敗しました。";
+            break;
+        case 0x000AULL:
+            message << "SetAlwaysRunFlag(FALSE)関数が失敗しました。";
+            break;
+        case 0x000BULL:
+            message << "ChangeWindowMode(FALSE)関数が失敗しました。";
+            break;
+        case 0x000CULL:
+            message << "SetUseMenuFlag(FALSE)関数が失敗しました。";
+            break;
+        case 0x000DULL:
+            message << "ChangeWindowMode(TRUE)関数が失敗しました。";
+            break;
+        case 0x000EULL:
+            message << "SetWindowPosition(X, Y)関数が失敗しました。";
+            break;
+        case 0x000FULL:
+            message << "SetWindowSizeExtendRate(N)関数が失敗しました。";
+            break;
+        case 0x0011ULL:
+            message << "不明なアクティベータキーです。";
+            break;
+        case 0x0012ULL:
+            message << "SetGraphMode関数が失敗しました。";
+            break;
+        case 0x0013ULL:
+            message << "SetWindowText関数が失敗しました。";
+            break;
+        case 0x0014ULL:
+            message << "SetDoubleStartValidFlag(FALSE)関数が失敗しました。";
+            break;
+        case 0x0015ULL:
+            message << "DxLib_Init関数が失敗しました。";
+            break;
+        case 0x0016ULL:
+            message << "プログラム終了時にDxLib_Endをコールする登録処理ができませんでした。";
+            break;
+        case 0x0017ULL:
+            message << "DxLib_End関数が失敗しました。";
+            break;
         case 0x00FEULL:
             message << "エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";
+            // UNRESOLVED : It seems that character arrays that are only accepted in UTF-8 codepages can no longer be sent to ostringstream. (C++20)
+            //message << u8"エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";  // damn :(
             break;
         default:
             message << "未定義エラー。";

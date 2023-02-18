@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/12
+//      Last update     : 2023/02/18
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -37,7 +37,8 @@
 
 /* INCLUDES */
 // C++ SYSTEM HEADER
-#include <Windows.h>
+#include <string>
+#include <stdexcept>
 
 
 
@@ -46,6 +47,32 @@ namespace util_conv {
 
     const char* charToConstChar(char* expression) {
         return const_cast<char*>(expression);
+    }
+
+
+    bool tryParseStrToInt(int* byref, std::string num_str) {
+        try {
+            int num;
+            num = std::stoi(num_str, nullptr);
+            *byref = num;
+            return true;
+        }
+        catch (std::logic_error& e) {
+            return false;
+        }
+    }
+
+
+    bool tryParseStrToDouble(double* byref, std::string num_str) {
+        try {
+            double d_num;
+            d_num = std::stod(num_str, nullptr);
+            *byref = d_num;
+            return true;
+        }
+        catch (std::logic_error& e) {
+            return false;
+        }
     }
 
 }  // namespace util_conv

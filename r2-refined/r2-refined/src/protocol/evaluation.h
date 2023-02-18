@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/08
+//      Last update     : 2023/02/18
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -65,6 +65,17 @@ namespace protocol {
         PROC_FAILED = -1
         , PROC_SUCCEED
         , PROC_QUIT
+    };
+
+
+    /// <summary>
+    /// Application activator.
+    /// </summary>
+    enum class Activator {
+        DISABLED = -1
+        , NOT_ACTIVATION
+        , CHANGE_MAINPROC
+        , CHANGE_DEVELOPPROC
     };
 
 }  // namespace protocol

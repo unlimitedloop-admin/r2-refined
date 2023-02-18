@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/17
+//      Last update     : 2023/02/18
 //
-//      File version    : 6
+//      File version    : 7
 //
 //
 /**************************************************************/
@@ -47,6 +47,7 @@
 #include "src/protocol/message_box.h"
 #include "src/traceable/output_logs.h"
 #include "src/traceable/log_filepath.h"
+#include "src/forms/terminal/app_engine.h"
 
 
 
@@ -79,13 +80,14 @@ namespace {
         // Load enviroment any parameters. env = 0 is get env params successful, 1 is ".env" was not found, or else bad read processing.
         auto env = loadParameterFromEnv();
         if (0 == env) {
+            // Sets some system properties if starting the system in debug mode is selected.
             if (RunMode::DEBUG_MODE == mode && getParameter("$STREAM_OUTPUT_LOG_PATH", &str)) {
                 setStreamLogFilePath(str);
             }
             if (RunMode::DEBUG_MODE == mode) {
                 MSG_BOX("Start in debug mode.");
                 _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);  // Enable the debug heap manager to manage allocated memory regions.
-                (void)writeStatusLog("デバッグモードでシステムを開始します。");
+                (void)writeStatusLog("デバッグモードでシステムを開始します。", LogClass::LOG_LEVEL_OFF);
             }
         }
         else if (1 == env) {
@@ -101,14 +103,18 @@ namespace {
 
 
     void sysIgnition(LPSTR szcmdline) {
-        // Error exception procedures test.
-        xg_exChar = "This is application crash test.";
-        NATIVE_MSG("#Exception_desc: %s", xg_exChar.c_str());
-        setStaticProcessCode(0x00FEF1ULL, STATIC_ERR_DOMINATOR);
+        RunMode mode = internalExecutionSelect(szcmdline);
+        terminal::AppEngine apps;
+        if (apps.Initialize(mode)) {
+            // begin event loop of this system.
+            apps.eventLoop(mode);
+        }
+        apps.Finalize();
     }
 
 
     bool sysFin(void) {
+        // If there is an error output, check for the least hexadecimal digit is not zero in the global processing code.
         if (0x000000ULL != (getStaticProcessCode() & 0x00000FULL)) {
             exceptions::ExceptionHandler ex;
             ex.throwException(getStaticProcessCode());

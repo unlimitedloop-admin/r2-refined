@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/12
+//      Last update     : 2023/02/18
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -38,7 +38,7 @@
 
 /* INCLUDES */
 // C++ SYSTEM HEADER
-#include <Windows.h>
+#include <string>
 
 
 
@@ -51,6 +51,22 @@ namespace util_conv {
     /// <param name="expression">Expression for char type string</param>
     /// <returns>Converted LPCSTR for expression</returns>
     const char* charToConstChar(char* expression);
+
+    /// <summary>
+    /// Try converting a string to a number of integer type.
+    /// </summary>
+    /// <param name="byref">A Integer-type reference address</param>
+    /// <param name="num_str">Target of converting</param>
+    /// <returns>Returns true if successful</returns>
+    bool tryParseStrToInt(int* byref, std::string num_str);
+
+    /// <summary>
+    /// Try converting a string to a number of double type.
+    /// </summary>
+    /// <param name="byref">A Double-type reference address</param>
+    /// <param name="num_str">Target of converting</param>
+    /// <returns>Returns true if successful</returns>
+    bool tryParseStrToDouble(double* byref, std::string num_str);
 
 }  // namespace util_conv
 

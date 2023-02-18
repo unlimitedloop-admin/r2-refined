@@ -166,6 +166,7 @@
     <ClCompile Include="src\forms\boot\api_entry.cc" />
     <ClCompile Include="src\forms\boot\hardware_check.cc" />
     <ClCompile Include="src\forms\boot\kernel.cc" />
+    <ClCompile Include="src\forms\terminal\app_engine.cc" />
     <ClCompile Include="src\protocol\env_params.cc" />
     <ClCompile Include="src\protocol\message_box.cc" />
     <ClCompile Include="src\protocol\process_code_hard.cc" />
@@ -182,6 +183,7 @@
     <ClInclude Include="src\exceptions\exception_handler.h" />
     <ClInclude Include="src\forms\boot\hardware_check.h" />
     <ClInclude Include="src\forms\boot\kernel.h" />
+    <ClInclude Include="src\forms\terminal\app_engine.h" />
     <ClInclude Include="src\protocol\env_params.h" />
     <ClInclude Include="src\protocol\evaluation.h" />
     <ClInclude Include="src\protocol\message_box.h" />
