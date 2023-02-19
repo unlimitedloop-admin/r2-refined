@@ -16,6 +16,9 @@
     <ClCompile Include="src\exceptions\exception_handler.cc" />
     <ClCompile Include="src\exceptions\error\errorlist_0x00x.cc" />
     <ClCompile Include="src\forms\terminal\app_engine.cc" />
+    <ClCompile Include="src\forms\device\keyboards_in.cc" />
+    <ClCompile Include="src\exceptions\error\errorlist_overlapped.cc" />
+    <ClCompile Include="src\exceptions\error\errorlist_0x01x.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -37,6 +40,10 @@
     <ClInclude Include="src\util\logic\reference.h" />
     <ClInclude Include="src\exceptions\error\errorlist_0x00x.h" />
     <ClInclude Include="src\forms\terminal\app_engine.h" />
+    <ClInclude Include="src\forms\device\keyboards_in.h" />
+    <ClInclude Include="src\util\fmt\format_printer.h" />
+    <ClInclude Include="src\exceptions\error\errorlist_overlapped.h" />
+    <ClInclude Include="src\exceptions\error\errorlist_0x01x.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />

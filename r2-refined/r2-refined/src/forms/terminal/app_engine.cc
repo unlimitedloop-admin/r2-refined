@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/18
+//      Last update     : 2023/02/19
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -43,13 +43,14 @@
 #include <DxLib.h>
 #include <stdlib.h>
 // PROJECT USING HEADER
+#include "src/forms/device/keyboards_in.h"
 #include "src/exceptions/exception_handler.h"
 #include "src/protocol/evaluation.h"
 #include "src/protocol/env_params.h"
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/xglobals.h"
 #include "src/traceable/output_logs.h"
-#include "src/util/conv/converting.h"
+#include "src/util/conv/converting.h"               /* UTILITY MODULES */
 
 
 
@@ -61,7 +62,7 @@ namespace {
     using namespace traceable;
 
 
-    /* USING ALIAS */
+    /* using alias */
     using GAMEPROC = bool;
 
 
@@ -138,7 +139,10 @@ namespace terminal {
         // Check for development mode flag. (For development, normally 0)
         str.clear();
         if (getParameter("$DEV_MODE", &str)) {
-            if ("1" == str) { dev_mode = ResultSet::ENABLED; }
+            if ("1" == str) {
+                dev_mode = ResultSet::ENABLED;
+                (void)writeStatusLog("システムはデヴェロップメントモードで開始されます。", LogClass::LOG_LEVEL_OFF);
+            }
         }
         // Output DxLib log. Specify the output destination of the DxLib exclusive log before calling the DxLib function. 
         if (RunMode::GENERAL_MODE == indicator) {
@@ -170,7 +174,7 @@ namespace terminal {
             if (0 != SetUseMenuFlag(FALSE)) { setStaticProcessCode(0x000C90ULL, STATIC_ERR_DOMINATOR); }
         }
         else {
-            // Default.
+            // Default route.
             if (DX_CHANGESCREEN_OK != ChangeWindowMode(TRUE)) {
                 setStaticProcessCode(0x000DF0ULL, STATIC_ERR_DOMINATOR);
                 return false;
@@ -259,11 +263,12 @@ namespace terminal {
             if (0 != ProcessMessage()) { break; }
             if (0 != ClearDrawScreen()) { break; }
             if (getStaticBindingFailureFlag()) { break; }
+            if (!device::updateAllStateKey()) { break; }
             if (!this->Receptions(indicator)) { break; }
             // TODO : Please describe the sequencer controlling from here. >>>
-            if (DxLib::CheckHitKey(KEY_INPUT_ESCAPE)) { break; }
-
             
+            // begin test code, when press a some key.
+            if (device::getHoldKeyValue(KEY_INPUT_ESCAPE)) { break; }            
 
 
         }

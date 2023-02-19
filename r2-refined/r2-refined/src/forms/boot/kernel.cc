@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/18
+//      Last update     : 2023/02/19
 //
-//      File version    : 7
+//      File version    : 8
 //
 //
 /**************************************************************/
@@ -117,7 +117,7 @@ namespace {
         // If there is an error output, check for the least hexadecimal digit is not zero in the global processing code.
         if (0x000000ULL != (getStaticProcessCode() & 0x00000FULL)) {
             exceptions::ExceptionHandler ex;
-            ex.throwException(getStaticProcessCode());
+            ex.throwException(false);
             (void)writeErrorLog("エミュレーションでエラーログが出力されています。\n", LogClass::LOG_LEVEL_OFF);
             (void)writeStatusLog("システムが強制中断されました。\n", LogClass::LOG_LEVEL_OFF);
             return false;

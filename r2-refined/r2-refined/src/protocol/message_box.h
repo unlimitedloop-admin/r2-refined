@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/12
+//      Last update     : 2023/02/19
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -43,8 +43,9 @@
 // GENERAL USING HEADER
 #include <Windows.h>
 // PROJECT USING HEADER
+#include "src/protocol/env_params.h"
 #include "src/protocol/xglobals.h"
-#include "src/util/conv/converting.h"
+#include "src/util/conv/converting.h"       /* UTILITY MODULES */
 
 
 

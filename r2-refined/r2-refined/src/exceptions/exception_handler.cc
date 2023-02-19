@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/17
+//      Last update     : 2023/02/19
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -41,8 +41,10 @@
 #include "src/protocol/process_code_hard.h"
 #include "src/traceable/logclass.h"
 #include "src/traceable/output_logs.h"
-#include "src/util/logic/reference.h"
-#include "error/errorlist_0x00x.h"          /* ErrorLists */
+#include "src/util/logic/reference.h"       /* UTILITY MODULES */
+/* ErrorLists */
+#include "error/errorlist_0x00x.h"
+#include "error/errorlist_0x01x.h"
 
 
 
@@ -116,11 +118,14 @@ namespace exceptions {
         }
         if (util_logic::Between(error_code / 0x000100ULL, 0x0001ULL, 0x00FFULL)) {
             creature_ = new ErrorList0x00x;
-            msg_ = creature_->What(error_code, level);
+            msg_ = creature_->Major(error_code, level);
         }
-        if (!msg_.empty()) {
-            MessageBox(xg_hWnd, msg_.c_str(), "エラー通知", MB_OK);
+        else if (util_logic::Between(error_code / 0x000100ULL, 0x0101ULL, 0x01FFULL)) {
+            creature_ = new ErrorList0x01x;
+            msg_ = creature_->Major(error_code, level);
         }
+        if (!msg_.empty()) { MessageBox(xg_hWnd, msg_.c_str(), "エラー通知", MB_OK); }
+
         if (!xg_nMsg.empty()) {
             (void)writeErrorLog(xg_nMsg, "NATIVE MSG", level);     // Go output error log.
             xg_nMsg.clear();

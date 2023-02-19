@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/18
+//      Last update     : 2023/02/19
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -39,11 +39,8 @@
 // C++ SYSTEM HEADER
 #include <string>
 #include <sstream>
-#include <iomanip>
-// GENERAL USING HEADER
-#include <Windows.h>
 // PROJECT USING HEADER
-#include "src/traceable/output_logs.h"
+#include "src/traceable/logclass.h"
 
 
 
@@ -55,12 +52,9 @@ namespace exceptions {
 
 
 
-    std::string ErrorList0x00x::What(unsigned __int64 error_code, LogClass level) {
+    std::string ErrorList0x00x::Minor(unsigned __int64 error_code, LogClass level) {
         std::ostringstream message;
         const std::string str_crlf = "\r\n";
-        message << "発生したエラーコードは：[" << "0x" << std::setw(6) << std::hex << std::uppercase << std::setfill('0') << error_code << "] です。";
-        (void)writeErrorLog(message.str(), "エラーコード");
-        message.str(""); message.clear();
 
         switch (error_code / 0x000100ULL) {
         case 0x0001ULL:
@@ -129,18 +123,11 @@ namespace exceptions {
         case 0x0017ULL:
             message << "DxLib_End関数が失敗しました。";
             break;
-        case 0x00FEULL:
-            message << "エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";
-            // UNRESOLVED : It seems that character arrays that are only accepted in UTF-8 codepages can no longer be sent to ostringstream. (C++20)
-            //message << u8"エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";  // damn :(
-            break;
         default:
             message << "未定義エラー。";
             break;
         }
 
-        (void)writeErrorLog(message.str(), "エラーログ", level);     // Go output error log.
-        message << str_crlf << "ご迷惑をお掛けし申し訳ございません。";
         return message.str();
     }
 

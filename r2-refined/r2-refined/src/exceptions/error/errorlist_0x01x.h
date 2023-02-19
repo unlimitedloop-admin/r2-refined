@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : errorlist_0x00x.h
+//      File name       : errorlist_0x01x.h
 //
 //      Author          : u7
 //
 //      Last update     : 2023/02/19
 //
-//      File version    : 2
+//      File version    : 1
 //
 //
 /**************************************************************/
@@ -28,13 +28,13 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * errorlist 0x00x.header
+ * errorlist 0x01x.header
 **/
 
 
 
-#ifndef _R2R_EXCEPTIONS_ERROR_ERRORLIST_0X00X_H_
-#define _R2R_EXCEPTIONS_ERROR_ERRORLIST_0X00X_H_
+#ifndef _R2R_EXCEPTIONS_ERROR_ERRORLIST_0X01X_H_
+#define _R2R_EXCEPTIONS_ERROR_ERRORLIST_0X01X_H_
 
 /* INCLUDES */
 // PRIMARY HEADER
@@ -55,12 +55,12 @@ namespace exceptions {
 
 
     /// <summary>
-    /// Error list corresponding to error code 0x0000 to 0x00FF.
+    /// Error list corresponding to error code 0x0100 to 0x01FF.
     /// </summary>
-    class ErrorList0x00x final : public ErrorListOverlapped {
+    class ErrorList0x01x final : public ErrorListOverlapped {
     public:
-        ErrorList0x00x() {}
-        ~ErrorList0x00x() {}
+        ErrorList0x01x() {}
+        ~ErrorList0x01x() {}
 
         /// <summary>
         /// Outputs an error message to the log based on the error code.
@@ -73,4 +73,4 @@ namespace exceptions {
 
 }  // namespace exceptions
 
-#endif // !_R2R_EXCEPTIONS_ERROR_ERRORLIST_0X00X_H_
+#endif // !_R2R_EXCEPTIONS_ERROR_ERRORLIST_0X01X_H_
