@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/02/20
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -122,6 +122,21 @@ namespace exceptions {
             break;
         case 0x0017ULL:
             message << "DxLib_End関数が失敗しました。";
+            break;
+        case 0x0018ULL:
+            message << "SetUseKeyAccelFlag(TRUE)関数が失敗しました。";
+            break;
+        case 0x0019ULL:
+            message << "AddKeyAccel_ID関数が失敗しました。ID_40001の登録。";
+            break;
+        case 0x001AULL:
+            message << "LoadMenuResource(IDR_MENU1)関数が失敗しました。";
+            break;
+        case 0x001BULL:
+            message << "SetUseMenuFlag(TRUE)関数が失敗しました。";
+            break;
+        case 0x001CULL:
+            message << "ウィンドウの属性変更に失敗しました。";
             break;
         default:
             message << "未定義エラー。";

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/17
+//      Last update     : 2023/02/20
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -55,6 +55,7 @@
 /* SOURCES */
 HWND            xg_hWnd = NULL;
 HINSTANCE       xg_hInstance = NULL;
+WNDPROC         xg_DxLibWnd = NULL;
 
 
 std::string     xg_exChar = "";

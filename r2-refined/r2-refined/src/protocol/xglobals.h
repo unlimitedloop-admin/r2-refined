@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/17
+//      Last update     : 2023/02/20
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -49,9 +49,14 @@
 extern HWND xg_hWnd;
 
 /// <summary>
-/// <para>Main instance of the system. The instance is WINAPI-specific.</para>
+/// Main instance of the system. The instance is WINAPI-specific.
 /// </summary>
 extern HINSTANCE xg_hInstance;
+
+/// <summary>
+/// Holds window handlers for windows created with DxLib.
+/// </summary>
+extern WNDPROC xg_DxLibWnd;
 
 /// <summary>
 /// Global exception message storages.
