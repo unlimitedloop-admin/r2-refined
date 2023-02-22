@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/18
+//      Last update     : 2023/02/22
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -39,6 +39,7 @@
 /* INCLUDES */
 // PROJECT USING HEADER
 #include "src/protocol/evaluation.h"
+#include "src/app/models/cursor.h"
 
 
 
@@ -61,9 +62,14 @@ namespace terminal {
         Evaluate period_ = Evaluate::PROC_FAILED;
 
         /// <summary>
+        /// Substance of the main program.
+        /// </summary>
+        models::implements::ICursor* sequence_ = nullptr;
+
+        /// <summary>
         /// This is the frontgate entrance of the main program sequencer.
         /// </summary>
-        /// <param name="ticket">run mode enum value</param>
+        /// <param name="ticket">Run mode enum value</param>
         /// <returns>Return true if the process is successful, false otherwise</returns>
         bool Receptions(RunMode ticket);
 

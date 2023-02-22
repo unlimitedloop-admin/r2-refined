@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/20
+//      Last update     : 2023/02/22
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -50,6 +50,8 @@
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/xglobals.h"
 #include "src/traceable/output_logs.h"
+#include "src/app/sequence/cursor_pointer.h"
+#include "src/app/sequence/cursor_simulator.h"
 #include "src/util/conv/converting.h"               /* UTILITY MODULES */
 #include "resource.h"
 
@@ -144,18 +146,27 @@ namespace terminal {
     bool AppEngine::Receptions(RunMode ticket) {
         switch (activator) {
         case Activator::NOT_ACTIVATION:
-            (void)writeStatusLog("ゲームプログラムの運転を停止しました。");
-            DxLib::SetBackgroundColor(0, 0, 0);   // ★ test code.
-            activator = Activator::DISABLED;
+            if (nullptr != sequence_) {
+                delete sequence_;
+                sequence_ = nullptr;
+                DxLib::SetBackgroundColor(0, 0, 0);   // ★ test code.
+                (void)writeStatusLog("ゲームプログラムの運転を停止しました。");
+                activator = Activator::DISABLED;
+            }
             break;
         case Activator::CHANGE_MAINPROC:
-            (void)writeStatusLog("ゲームプログラムの運転を開始しました。");
-            DxLib::SetBackgroundColor(255, 255, 255);   // ★ test code.
-            activator = Activator::DISABLED;
+            if (nullptr == sequence_) {
+                sequence_ = new sequence::CursorPointer();
+                (void)writeStatusLog("ゲームプログラムの運転を開始しました。");
+                activator = Activator::DISABLED;
+            }
             break;
         case Activator::CHANGE_DEVELOPPROC:
-            (void)writeStatusLog("ゲームプログラムの運転を開始しました。[DEVELOPMENT MODE IS ENABLED]");
-            DxLib::SetBackgroundColor(255, 255, 255);   // ★ test code.
+            if (nullptr == sequence_) {
+                sequence_ = new sequence::CursorSimulator();
+                (void)writeStatusLog("ゲームプログラムの運転を開始しました。[DEVELOPMENT MODE IS ENABLED]");
+                activator = Activator::DISABLED;
+            }
             activator = Activator::DISABLED;
             break;
         case Activator::DISABLED:
@@ -188,6 +199,9 @@ namespace terminal {
         else {
             if (getParameter("$DXLIB_OUTPUT_LOG_PATH", &str)) {
                 if (0 != SetApplicationLogSaveDirectory(str.c_str())) { setStaticProcessCode(0x000871ULL, STATIC_ERR_DOMINATOR); }
+            }
+            else {
+                if (0 != SetOutApplicationLogValidFlag(FALSE)) { setStaticProcessCode(0x000771ULL, STATIC_ERR_DOMINATOR); }
             }
         }
         // Active (or inactive) window always running application.

@@ -19,6 +19,8 @@
     <ClCompile Include="src\forms\device\keyboards_in.cc" />
     <ClCompile Include="src\exceptions\error\errorlist_overlapped.cc" />
     <ClCompile Include="src\exceptions\error\errorlist_0x01x.cc" />
+    <ClCompile Include="src\app\sequence\cursor_simulator.cc" />
+    <ClCompile Include="src\app\sequence\cursor_pointer.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -44,6 +46,9 @@
     <ClInclude Include="src\util\fmt\format_printer.h" />
     <ClInclude Include="src\exceptions\error\errorlist_overlapped.h" />
     <ClInclude Include="src\exceptions\error\errorlist_0x01x.h" />
+    <ClInclude Include="src\app\models\cursor.h" />
+    <ClInclude Include="src\app\sequence\cursor_simulator.h" />
+    <ClInclude Include="src\app\sequence\cursor_pointer.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />
