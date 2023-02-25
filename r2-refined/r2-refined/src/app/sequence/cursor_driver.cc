@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : cursor_pointer.cc
+//      File name       : cursor_driver.cc
 //
 //      Author          : u7
 //
 //      Last update     : 2023-02-25
 //
-//      File version    : 3
+//      File version    : 1
 //
 //
 /**************************************************************/
@@ -28,14 +28,14 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * It is the main core that controls the main program.
+ * It's for verification.
 **/
 
 
 
 /* INCLUDES */
 // PRIMARY HEADER
-#include "cursor_pointer.h"
+#include "cursor_driver.h"
 // GENERAL USING HEADER
 #include <DxLib.h>
 // PROJECT USING HEADER
@@ -43,7 +43,6 @@
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/message_box.h"
 #include "src/app/input/inputkey.h"
-#include "src/traceable/output_logs.h"
 
 
 
@@ -53,30 +52,35 @@ namespace sequence {
     /* using namespace */
     using namespace protocol;
     using namespace input;
-    using namespace traceable;
 
 
 
 
-    CursorPointer::CursorPointer() {
-        (void)writeStatusLog("ゲームプログラムの運転を開始しました。");
+    CursorDriver::CursorDriver() {
+        DxLib::SetBackgroundColor(255, 255, 255);
     }
 
 
-    CursorPointer::~CursorPointer() {}
+    CursorDriver::~CursorDriver() {}
 
 
-    Evaluate CursorPointer::Service(Evaluate evals) {
+    Evaluate CursorDriver::Service(Evaluate evals) {
         // Update the gamepad key information.
         if (!GController()->updateJoyBtnStateKey()) {
             setStaticProcessCode(0x001EA1ULL, STATIC_ERR_DOMINATOR);
             return Evaluate::PROC_FAILED;
         }
-        // TODO : Please describe the sequencer controlling from here. >>>
 
-
-
-
+        // Added proof code at the 2023-02-25. >>>
+        /* Specify GetKey (JPBTN enumeration identifier) to get the value of the gamepad or keyboard. */
+        if (GetKey(JPBTN::START)) {
+            MSG_BOX("ゲームプログラムを終了するビヘイビアーサンプルです。");
+            return Evaluate::PROC_QUIT;
+        }
+        DxLib::DrawFormatString(2, 2, DxLib::GetColor(0, 0, 0), "Aボタンの現在値：%d", GetKey(JPBTN::A));
+        DxLib::DrawFormatString(2, 26, DxLib::GetColor(0, 0, 0), "Bボタンの現在値：%d", GetKey(JPBTN::B));
+        DxLib::DrawFormatString(2, 50, DxLib::GetColor(0, 0, 0), "Xボタンの現在値：%d", GetKey(JPBTN::X));
+        DxLib::DrawFormatString(2, 74, DxLib::GetColor(0, 0, 0), "Yボタンの現在値：%d", GetKey(JPBTN::Y));
 
 
         if (0 != DxLib::ScreenFlip()) { return Evaluate::PROC_FAILED; }
@@ -84,7 +88,7 @@ namespace sequence {
     }
 
 
-    void CursorPointer::Exceptions(void) {
+    void CursorDriver::Exceptions(void) {
     }
 
 }  // namespace sequence

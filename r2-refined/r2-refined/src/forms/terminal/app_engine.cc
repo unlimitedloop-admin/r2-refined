@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023-02-25
 //
-//      File version    : 5
+//      File version    : 6
 //
 //
 /**************************************************************/
@@ -55,6 +55,7 @@
 #include "src/app/input/key_binding.h"
 #include "src/app/sequence/cursor_pointer.h"
 #include "src/app/sequence/cursor_simulator.h"
+#include "src/app/sequence/cursor_driver.h"
 
 
 
@@ -71,9 +72,10 @@ namespace {
 
 
     /* local scopes */
-    ResultSet   dev_mode = ResultSet::DISABLED; // Development running mode of applications
-    GAMEPROC    apps_active;                    // Activation supervisor
-    Activator   activator;                      // Main program activator key
+    ResultSet   dev_mode = ResultSet::DISABLED;     // Development running mode of applications
+    ResultSet   test_driver = ResultSet::DISABLED;  // Test driver running flag
+    GAMEPROC    apps_active;                        // Activation supervisor
+    Activator   activator;                          // Main program activator key
 
 
 
@@ -82,8 +84,9 @@ namespace {
         if (flag != apps_active) {
             apps_active = flag;
             if (apps_active) {
-                if (ResultSet::ENABLED != dev_mode) { activator = Activator::CHANGE_MAINPROC; }
-                else { activator = Activator::CHANGE_DEVELOPPROC; }
+                if (ResultSet::ENABLED == test_driver) { activator = Activator::CHANGE_DRIVER; }
+                else if (ResultSet::ENABLED == dev_mode) { activator = Activator::CHANGE_DEVELOPPROC; }
+                else { activator = Activator::CHANGE_MAINPROC; }
 
                 if (0 != SetDrawScreen(DX_SCREEN_BACK)) {
                     setStaticProcessCode(0x0005B0LL, STATIC_ERR_DOMINATOR);
@@ -158,23 +161,22 @@ namespace terminal {
                 sequence_ = nullptr;
                 DxLib::SetBackgroundColor(0, 0, 0);   // ★ test code.
                 (void)writeStatusLog("ゲームプログラムの運転を停止しました。");
-                activator = Activator::DISABLED;
             }
             break;
         case Activator::CHANGE_MAINPROC:
             if (nullptr == sequence_) {
                 sequence_ = new sequence::CursorPointer();
-                (void)writeStatusLog("ゲームプログラムの運転を開始しました。");
-                activator = Activator::DISABLED;
             }
             break;
         case Activator::CHANGE_DEVELOPPROC:
             if (nullptr == sequence_) {
                 sequence_ = new sequence::CursorSimulator();
-                (void)writeStatusLog("ゲームプログラムの運転を開始しました。[DEVELOPMENT MODE IS ENABLED]");
-                activator = Activator::DISABLED;
             }
-            activator = Activator::DISABLED;
+            break;
+        case Activator::CHANGE_DRIVER:
+            if (nullptr == sequence_) {
+                sequence_ = new sequence::CursorDriver();
+            }
             break;
         case Activator::DISABLED:
             break;
@@ -183,6 +185,7 @@ namespace terminal {
             NATIVE_MSG("#Activator: %d", static_cast<int>(activator));
             return false;
         }
+        activator = Activator::DISABLED;
         return true;
     }
 
@@ -195,7 +198,13 @@ namespace terminal {
         /* ******* Pick up an environment variable and set up its value in this system. ******* */
         // Check for development mode flag. (For development, normally 0)
         str.clear();
-        if (getParameter("$DEV_MODE", &str)) {
+        if (getParameter("$HIDDEN_DRIVER", &str)) {
+            if ("1" == str) {
+                test_driver = ResultSet::ENABLED;
+                (void)writeStatusLog("テストモジュールを起動します。", LogClass::LOG_LEVEL_OFF);
+            }
+        }
+        else if (getParameter("$DEV_MODE", &str)) {
             if ("1" == str) {
                 dev_mode = ResultSet::ENABLED;
                 (void)writeStatusLog("システムはデヴェロップメントモードで開始されます。", LogClass::LOG_LEVEL_OFF);
@@ -313,7 +322,8 @@ namespace terminal {
         // Do event loop of the main program sequence.
         while (!ProcessMessage() && !ClearDrawScreen() && !getStaticBindingFailureFlag() && device::updateAllStateKey() && this->Receptions(indicator)) {
             if (nullptr != sequence_) {
-                period_ = sequence_->Service(period_);  // Begin the main program.
+                // Begin the main program.
+                period_ = sequence_->Service(period_);
                 if (Evaluate::PROC_QUIT == period_) {
                     setAppsActiveFlag(false);
                 }

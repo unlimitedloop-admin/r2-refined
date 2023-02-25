@@ -23,6 +23,7 @@
     <ClCompile Include="src\app\sequence\cursor_pointer.cc" />
     <ClCompile Include="src\app\input\key_binding.cc" />
     <ClCompile Include="src\app\input\inputkey.cc" />
+    <ClCompile Include="src\app\sequence\cursor_driver.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -54,6 +55,7 @@
     <ClInclude Include="src\app\input\key_binding.h" />
     <ClInclude Include="src\app\models\signature_object.h" />
     <ClInclude Include="src\app\input\inputkey.h" />
+    <ClInclude Include="src\app\sequence\cursor_driver.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/18
+//      Last update     : 2023-02-25
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -76,6 +76,7 @@ namespace protocol {
         , NOT_ACTIVATION
         , CHANGE_MAINPROC
         , CHANGE_DEVELOPPROC
+        , CHANGE_DRIVER
     };
 
 }  // namespace protocol

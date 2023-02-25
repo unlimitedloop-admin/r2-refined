@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023-02-25
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -40,6 +40,8 @@
 #include <DxLib.h>
 // PROJECT USING HEADER
 #include "src/protocol/evaluation.h"
+#include "src/app/input/inputkey.h"
+#include "src/traceable/output_logs.h"
 
 
 
@@ -48,12 +50,13 @@ namespace sequence {
 
     /* using namespace */
     using namespace protocol;
-
+    using namespace input;
+    using namespace traceable;
 
 
 
     CursorSimulator::CursorSimulator() {
-        DxLib::SetBackgroundColor(128, 255, 128);   // ★ test code.
+        (void)writeStatusLog("ゲームプログラムの運転を開始しました。[DEVELOPMENT MODE IS ENABLED]");
     }
 
 
@@ -61,8 +64,21 @@ namespace sequence {
 
 
     Evaluate CursorSimulator::Service(Evaluate evals) {
+        // Update the gamepad key information.
+        if (!GController()->updateJoyBtnStateKey()) {
+            setStaticProcessCode(0x001EA1ULL, STATIC_ERR_DOMINATOR);
+            return Evaluate::PROC_FAILED;
+        }
+        // TODO : Please describe the sequencer controlling from here. >>>
+
+
+
+
+
+
+        if (0 != DxLib::ScreenFlip()) { return Evaluate::PROC_FAILED; }
         return Evaluate::PROC_SUCCEED;
-    } 
+    }
 
 
     void CursorSimulator::Exceptions(void) {
