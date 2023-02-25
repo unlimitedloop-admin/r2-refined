@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/20
+//      Last update     : 2023/02/25
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -32,6 +32,9 @@
 **/
 
 
+
+#ifndef _R2R_PROTOCOL_XGLOBALS_H_
+#define _R2R_PROTOCOL_XGLOBALS_H_
 
 /* INCLUDES */
 // C++ SYSTEM HEADER
@@ -67,3 +70,6 @@ extern std::string xg_exChar;
 /// Native error descriptions. (Supplemental Information)
 /// </summary>
 extern std::string xg_nMsg;
+
+
+#endif // !_R2R_PROTOCOL_XGLOBALS_H_

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/22
+//      Last update     : 2023/02/25
 //
-//      File version    : 2
+//      File version    : 3 
 //
 //
 /**************************************************************/
@@ -75,7 +75,7 @@ namespace terminal {
 
 
     public:
-        AppEngine();
+        AppEngine() {}
         AppEngine(const AppEngine&) = delete;
         ~AppEngine();
 

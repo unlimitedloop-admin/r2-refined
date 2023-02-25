@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/22
+//      Last update     : 2023/02/25
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -46,6 +46,12 @@
 /* SOURCES */
 namespace sequence {
 
+    /* using namespace */
+    using namespace protocol;
+
+
+
+
     CursorSimulator::CursorSimulator() {
         DxLib::SetBackgroundColor(128, 255, 128);   // ★ test code.
     }
@@ -54,8 +60,8 @@ namespace sequence {
     CursorSimulator::~CursorSimulator() {}
 
 
-    protocol::Evaluate CursorSimulator::Service(protocol::Evaluate evals) {
-        return protocol::Evaluate::PROC_SUCCEED;
+    Evaluate CursorSimulator::Service(Evaluate evals) {
+        return Evaluate::PROC_SUCCEED;
     } 
 
 

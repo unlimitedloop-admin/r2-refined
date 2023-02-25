@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/13
+//      Last update     : 2023/02/25
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -40,8 +40,7 @@
 /// A hexadecimal value that represents the processing OK. 
 constexpr unsigned __int64 R2R_PROCESS_CODE_HARD_OK = 0x000000ULL;
 
-/// Gamepad buttons.
-constexpr unsigned __int16 R2R_G_JOYPADKEY = 16U;
+
 
 /// <summary>
 /// Get static process code for globals.

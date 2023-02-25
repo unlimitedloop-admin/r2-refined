@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/22
+//      Last update     : 2023/02/25
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -49,6 +49,7 @@ namespace sequence {
 
     /* using namespace */
     using namespace models;
+    using namespace protocol;
 
 
 
@@ -64,7 +65,7 @@ namespace sequence {
         /// </summary>
         /// <param name="evals">Enumeration representing the execution result</param>
         /// <returns>Processing report enum</returns>
-        protocol::Evaluate Service(protocol::Evaluate evals) override;
+        Evaluate Service(Evaluate evals) override;
 
         /// <summary>
         /// Exception handling.

@@ -161,6 +161,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\app\input\inputkey.cc" />
+    <ClCompile Include="src\app\input\key_binding.cc" />
     <ClCompile Include="src\app\sequence\cursor_pointer.cc" />
     <ClCompile Include="src\app\sequence\cursor_simulator.cc" />
     <ClCompile Include="src\exceptions\error\errorlist_0x00x.cc" />
@@ -184,7 +186,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\app\input\inputkey.h" />
+    <ClInclude Include="src\app\input\key_binding.h" />
     <ClInclude Include="src\app\models\cursor.h" />
+    <ClInclude Include="src\app\models\signature_object.h" />
     <ClInclude Include="src\app\sequence\cursor_pointer.h" />
     <ClInclude Include="src\app\sequence\cursor_simulator.h" />
     <ClInclude Include="src\exceptions\error\errorlist_0x00x.h" />

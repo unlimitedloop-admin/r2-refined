@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/20
+//      Last update     : 2023/02/25
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -137,6 +137,12 @@ namespace exceptions {
             break;
         case 0x001CULL:
             message << "ウィンドウの属性変更に失敗しました。";
+            break;
+        case 0x001DULL:
+            message << "キーバインド処理が失敗しました。";
+            break;
+        case 0x001EULL:
+            message << "ジョイパッド／キーボード情報の更新に失敗しました。";
             break;
         default:
             message << "未定義エラー。";
