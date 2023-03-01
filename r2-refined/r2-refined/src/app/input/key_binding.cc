@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023/03/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -76,13 +76,13 @@ namespace {
 
 namespace input {
 
-    bool setBindingSCon(int keys[], bool hatsw, bool joypad) {
-        // TODO : return false pattern. (Why not?)
+    bool setBindingSCon(unsigned __int16 keys[], bool hatsw, bool joypad) {
         s_con.xinput_enabled = joypad;
         if (!s_con.xinput_enabled) {
             // xi_up to xi_y_button assignment.
             unsigned __int16* ptr = &s_con.xi_up;
             for (size_t i = 0; i < R2R_G_JOYPADKEY; ++i) {
+                if (0xFF < keys[i]) { return false; }
                 *ptr = keys[i];
                 ++ptr;
             }
@@ -104,7 +104,7 @@ namespace input {
 
 
     bool defaultSetBindingSCon(void) {
-        int key[] = {
+        unsigned __int16 key[] = {
             KEY_INPUT_W             // xi_up
             , KEY_INPUT_S           // xi_down
             , KEY_INPUT_A           // xi_left
@@ -124,13 +124,13 @@ namespace input {
         };
         // Only do keyboard key bindings when no gamepad is connected.
         if (GetJoypadNum()) {
-            if (!input::setBindingSCon(0, true, true)) {
+            if (!setBindingSCon(0, true, true)) {
                 setStaticProcessCode(0x001DC1ULL, STATIC_FULL_CD);
                 return false;
             }
         }
         else {
-            if (!input::setBindingSCon(key, true, false)) {
+            if (!setBindingSCon(key, true, false)) {
                 setStaticProcessCode(0x001DC1ULL, STATIC_FULL_CD);
                 return false;
             }

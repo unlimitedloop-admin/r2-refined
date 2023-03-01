@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/03/01
 //
-//      File version    : 8
+//      File version    : 9
 //
 //
 /**************************************************************/
@@ -103,6 +103,7 @@ namespace {
 
 
     void sysIgnition(LPSTR szcmdline) {
+        // A 'mode' set GENERAL or DEBUG that application execute a mode.
         RunMode mode = internalExecutionSelect(szcmdline);
         terminal::AppEngine apps;
         if (apps.Initialize(mode)) {

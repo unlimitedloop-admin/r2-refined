@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023-02-25
+//      Last update     : 2023/03/01
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -69,7 +69,7 @@ namespace sequence {
             setStaticProcessCode(0x001EA1ULL, STATIC_ERR_DOMINATOR);
             return Evaluate::PROC_FAILED;
         }
-        // TODO : Please describe the sequencer controlling from here. >>>
+        // ★ Please describe the sequencer controlling from here. >>>
 
 
 

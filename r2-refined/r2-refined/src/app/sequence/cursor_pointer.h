@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023/03/01
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -53,7 +53,9 @@ namespace sequence {
 
 
 
-
+    /// <summary>
+    /// A behavior cursor that controls the phases of the main program.
+    /// </summary>
     class CursorPointer final : public implements::ICursor {
     public:
         CursorPointer();

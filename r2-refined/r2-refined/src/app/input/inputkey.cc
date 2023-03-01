@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023/03/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -75,7 +75,10 @@ namespace input {
         else {
             for (size_t i = 0; i < joybtn_.button_.size(); ++i) {
                 joybtn_.button_[i] = device::getHoldKeyValue(getBindingSCon(i));
-                if (0 != joybtn_.button_[i]) {
+                if (-1 == joybtn_.button_[i]) {
+                    return false;
+                }
+                else if (0 != joybtn_.button_[i]) {
                     joybtn_released_.button_[i] = 0;
                 }
                 else {
@@ -88,20 +91,20 @@ namespace input {
 
 
     bool Inputkey::getPressingForAnyBtnKey(void) const {
-        if (0 != std::accumulate(joybtn_.button_.begin(), joybtn_.button_.end(), 0)) return true;
+        if (0 != std::accumulate(joybtn_.button_.begin(), joybtn_.button_.end(), 0)) { return true; }
         return false;
     }
 
 
     bool Inputkey::getReleasedForAllBtnKey(void) const {
-        if (0 == std::accumulate(joybtn_.button_.begin(), joybtn_.button_.end(), 0)) return true;
+        if (0 == std::accumulate(joybtn_.button_.begin(), joybtn_.button_.end(), 0)) { return true; }
         return false;
     }
 
 
     bool Inputkey::getPressingForAnyBtnKey(JPBTN* btn_args, int num) const {
         for (size_t i = 0; i < num; ++i) {
-            if (joybtn_.button_[static_cast<int>(btn_args[i])]) return true;
+            if (joybtn_.button_[static_cast<int>(btn_args[i])]) { return true; }
         }
         return false;
     }
@@ -109,7 +112,7 @@ namespace input {
 
     bool Inputkey::getReleasedForAnyBtnKey(JPBTN* btn_args, int num) const {
         for (size_t i = 0; i < num; ++i) {
-            if (joybtn_.button_[static_cast<int>(btn_args[i])]) return false;
+            if (joybtn_.button_[static_cast<int>(btn_args[i])]) { return false; }
         }
         return true;
     }

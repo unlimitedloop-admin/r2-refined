@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023-02-25
+//      Last update     : 2023/03/01
 //
-//      File version    : 6
+//      File version    : 7
 //
 //
 /**************************************************************/
@@ -159,7 +159,7 @@ namespace terminal {
             if (nullptr != sequence_) {
                 delete sequence_;
                 sequence_ = nullptr;
-                DxLib::SetBackgroundColor(0, 0, 0);   // ★ test code.
+                DxLib::SetBackgroundColor(0, 0, 0);
                 (void)writeStatusLog("ゲームプログラムの運転を停止しました。");
             }
             break;
@@ -192,11 +192,9 @@ namespace terminal {
 
     bool AppEngine::Initialize(RunMode indicator) const {
         std::string str;
-        // TODO : Substitute for the exception handling part.
         auto exceptions = [](unsigned __int64 code) { setStaticProcessCode(code, STATIC_ERR_DOMINATOR); return false; };
 
         /* ******* Pick up an environment variable and set up its value in this system. ******* */
-        // Check for development mode flag. (For development, normally 0)
         str.clear();
         if (getParameter("$HIDDEN_DRIVER", &str)) {
             if ("1" == str) {
@@ -204,6 +202,7 @@ namespace terminal {
                 (void)writeStatusLog("テストモジュールを起動します。", LogClass::LOG_LEVEL_OFF);
             }
         }
+        // Check for development mode flag. (For development, normally 0)
         else if (getParameter("$DEV_MODE", &str)) {
             if ("1" == str) {
                 dev_mode = ResultSet::ENABLED;
@@ -212,42 +211,42 @@ namespace terminal {
         }
         // Output DxLib log. Specify the output destination of the DxLib exclusive log before calling the DxLib function. 
         if (RunMode::GENERAL_MODE == indicator) {
-            if (0 != SetOutApplicationLogValidFlag(FALSE)) { setStaticProcessCode(0x000771ULL, STATIC_ERR_DOMINATOR); return false; }
+            if (0 != SetOutApplicationLogValidFlag(FALSE)) { exceptions(0x000771ULL); }
         }
         else {
             if (getParameter("$DXLIB_OUTPUT_LOG_PATH", &str)) {
-                if (0 != SetApplicationLogSaveDirectory(str.c_str())) { setStaticProcessCode(0x000871ULL, STATIC_ERR_DOMINATOR); return false; }
+                if (0 != SetApplicationLogSaveDirectory(str.c_str())) { exceptions(0x000871ULL); }
             }
             else {
-                if (0 != SetOutApplicationLogValidFlag(FALSE)) { setStaticProcessCode(0x000771ULL, STATIC_ERR_DOMINATOR); return false; }
+                if (0 != SetOutApplicationLogValidFlag(FALSE)) { exceptions(0x000771ULL); }
             }
         }
         // Active (or inactive) window always running application.
         str.clear();
         if (getParameter("$WINDOW_ALWAYS_RUN_ENABLED", &str)) {
             if ("1" == str) {
-                if (0 != SetAlwaysRunFlag(TRUE)) { setStaticProcessCode(0x000951ULL, STATIC_ERR_DOMINATOR); return false; }
+                if (0 != SetAlwaysRunFlag(TRUE)) { exceptions(0x000951ULL); }
             }
             else {
-                if (0 != SetAlwaysRunFlag(FALSE)) { setStaticProcessCode(0x000A51ULL, STATIC_ERR_DOMINATOR); return false; }
+                if (0 != SetAlwaysRunFlag(FALSE)) { exceptions(0x000A51ULL); }
             }
         }
         // Screen setup.
         str.clear();
         (void)getParameter("$WINDOW_MODE_ENABLED", &str);
         if ("0" == str) {
-            if (DX_CHANGESCREEN_OK != ChangeWindowMode(FALSE)) { setStaticProcessCode(0x000BF1ULL, STATIC_ERR_DOMINATOR); return false; }
-            if (0 != SetUseMenuFlag(FALSE)) { setStaticProcessCode(0x000C91ULL, STATIC_ERR_DOMINATOR); return false; }
+            if (DX_CHANGESCREEN_OK != ChangeWindowMode(FALSE)) { exceptions(0x000BF1ULL); }
+            if (0 != SetUseMenuFlag(FALSE)) { exceptions(0x000C91ULL); }
         }
         else {
             // Default route.
-            if (DX_CHANGESCREEN_OK != ChangeWindowMode(TRUE)) { setStaticProcessCode(0x000DF1ULL, STATIC_ERR_DOMINATOR); return false; }
-            if (0 != SetWindowPosition(10, 10)) { setStaticProcessCode(0x000E71ULL, STATIC_ERR_DOMINATOR); return false; }
+            if (DX_CHANGESCREEN_OK != ChangeWindowMode(TRUE)) { exceptions(0x000DF1ULL); }
+            if (0 != SetWindowPosition(10, 10)) { exceptions(0x000E71ULL); }
             str.clear();
             if (getParameter("$WINDOW_EXTEND_RATE", &str)) {
                 double rate;
                 if (!str.empty() && util_conv::tryParseStrToDouble(&rate, str)) {
-                    if (0 != SetWindowSizeExtendRate(rate)) { setStaticProcessCode(0x000F70ULL, STATIC_ERR_DOMINATOR); return false; }
+                    if (0 != SetWindowSizeExtendRate(rate)) { exceptions(0x000F70ULL); }
                 }
             }
             auto size = 0, winsizex = 0, winsizey = 0, colorbit = 0;
@@ -262,34 +261,33 @@ namespace terminal {
             if (!str.empty() && util_conv::tryParseStrToInt(&size, str)) colorbit = size;
             if (winsizex && winsizey && colorbit) {
                 if (DX_CHANGESCREEN_OK != SetGraphMode(winsizex, winsizey, colorbit)) {
-                    if (DX_CHANGESCREEN_OK != SetGraphMode(256, 240, 16)) { setStaticProcessCode(0x0012F1ULL, STATIC_ERR_DOMINATOR); return false; }
+                    if (DX_CHANGESCREEN_OK != SetGraphMode(256, 240, 16)) { exceptions(0x0012F1ULL); }
                 }
             }
             else {
-                if (DX_CHANGESCREEN_OK != SetGraphMode(256, 240, 16)) { setStaticProcessCode(0x0012F1ULL, STATIC_ERR_DOMINATOR); return false; }
-                if (0 != SetWindowSizeExtendRate(1.0)) { setStaticProcessCode(0x000F70ULL, STATIC_ERR_DOMINATOR); return false; }
+                if (DX_CHANGESCREEN_OK != SetGraphMode(256, 240, 16)) { exceptions(0x0012F1ULL); }
+                if (0 != SetWindowSizeExtendRate(1.0)) { exceptions(0x000F70ULL); }
             }
             // NOTE : Edit resource files only in Visual Studio.
-            if (0 != LoadMenuResource(IDR_MENU1)) { setStaticProcessCode(0x001AB1ULL, STATIC_ERR_DOMINATOR); return false; }
-            if (0 != SetUseMenuFlag(TRUE)) { setStaticProcessCode(0x001B90ULL, STATIC_ERR_DOMINATOR); return false; }
+            if (0 != LoadMenuResource(IDR_MENU1)) { exceptions(0x001AB1ULL); }
+            if (0 != SetUseMenuFlag(TRUE)) { exceptions(0x001B90ULL); }
         }
         // Specified application title.
         str.clear();
         if (getParameter("$WINDOW_TEXT", &str)) {
             if (!str.empty()) {
-                if (0 != DxLib::SetWindowText(str.c_str())) { setStaticProcessCode(0x0013A0ULL, STATIC_ERR_DOMINATOR); return false; }
+                if (0 != DxLib::SetWindowText(str.c_str())) { exceptions(0x0013A0ULL); }
             }
         }
 
         /* ******* DxLib setup. ******* */
-        if (0 != SetDoubleStartValidFlag(FALSE)) { setStaticProcessCode(0x001490ULL, STATIC_ERR_DOMINATOR); return false; }
+        if (0 != SetDoubleStartValidFlag(FALSE)) { exceptions(0x001490ULL); }
         // Initialize the DX-Library.
-        if (0 != DxLib_Init()) { setStaticProcessCode(0x0015F0ULL, STATIC_ERR_DOMINATOR); return false; }
+        if (0 != DxLib_Init()) { exceptions(0x0015F0ULL); }
         // Reserve a callback so that the DxLib_End function is always called when an error occurs.
         if (std::atexit((void(_cdecl*)())DxLib_End)) {
-            setStaticProcessCode(0x0016F0ULL, STATIC_ERR_DOMINATOR);
             NATIVE_MSG("std::atexit((void(_cdecl*)())DxLib_End)が失敗。");
-            return false;
+            exceptions(0x0016F0ULL);
         }
 
         if (DxLib_IsInit()) {
@@ -299,7 +297,7 @@ namespace terminal {
                 xg_DxLibWnd = (WNDPROC)GetWindowLongPtr(xg_hWnd, GWLP_WNDPROC);
                 xg_hInstance = GetTaskInstance();
                 if (!setAccelaratorCommand()) { return false; }
-                if (!SetWindowLongPtr(xg_hWnd, GWLP_WNDPROC, (LONG_PTR)DefinitiveProc)) { setStaticProcessCode(0x001CD0ULL, STATIC_ERR_DOMINATOR); return false; }
+                if (!SetWindowLongPtr(xg_hWnd, GWLP_WNDPROC, (LONG_PTR)DefinitiveProc)) { exceptions(0x001CD0ULL); }
             }
             else {
                 // NOTE : Automatically run the game program when in full screen mode. (because there is no menu bar)

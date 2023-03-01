@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023/03/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -46,7 +46,7 @@ namespace input {
     /// <param name="hatsw">Hat switch enabled/disabled</param>
     /// <param name="joypad">Gamepad enable/disable</param>
     /// <returns>True or false, functions succeeded or failed</returns>
-    bool setBindingSCon(int keys[], bool hatsw, bool joypad);
+    bool setBindingSCon(unsigned __int16 keys[], bool hatsw, bool joypad);
 
     /// <summary>
     /// Get key configs of XInputModulation.

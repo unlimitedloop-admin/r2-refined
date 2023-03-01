@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/22
+//      Last update     : 2023/03/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -45,6 +45,11 @@
 /* SOURCES */
 namespace models {
 
+    /* using namespace */
+    using namespace protocol;
+
+
+
     namespace implements {
 
         /// <summary>
@@ -53,7 +58,7 @@ namespace models {
         class ICursor {
         public:
             virtual ~ICursor() {}
-            virtual protocol::Evaluate Service(protocol::Evaluate evals) = 0;
+            virtual Evaluate Service(Evaluate evals) = 0;
             virtual void Exceptions(void) = 0;
         };
 

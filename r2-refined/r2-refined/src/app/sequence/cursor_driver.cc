@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023-02-25
 //
-//      File version    : 1
+//
+//
 //
 //
 /**************************************************************/
@@ -43,6 +43,8 @@
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/message_box.h"
 #include "src/app/input/inputkey.h"
+
+#include "src/app/input/key_binding.h"
 
 
 
