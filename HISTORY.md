@@ -4,4 +4,5 @@
     - 1stビルド
 
 
-- and more...
+- 2023/03/02
+    - feature/terminals 機能を実装。git merge.
