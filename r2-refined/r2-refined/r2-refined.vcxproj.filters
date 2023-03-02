@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\forms\boot\api_entry.cc" />
+    <ClCompile Include="src\forms\boot\kernel.cc" />
+    <ClCompile Include="src\traceable\spdlogs_inc.cc" />
+    <ClCompile Include="src\protocol\env_params.cc" />
+    <ClCompile Include="src\traceable\log_filepath.cc" />
+    <ClCompile Include="src\util\time\systime.cc" />
+    <ClCompile Include="src\traceable\output_logs.cc" />
+    <ClCompile Include="src\protocol\message_box.cc" />
+    <ClCompile Include="src\protocol\xglobals.cc" />
+    <ClCompile Include="src\util\conv\converting.cc" />
+    <ClCompile Include="src\forms\boot\hardware_check.cc" />
+    <ClCompile Include="src\protocol\process_code_hard.cc" />
+    <ClCompile Include="src\exceptions\exception_handler.cc" />
+    <ClCompile Include="src\exceptions\error\errorlist_0x00x.cc" />
+    <ClCompile Include="src\forms\terminal\app_engine.cc" />
+    <ClCompile Include="src\forms\device\keyboards_in.cc" />
+    <ClCompile Include="src\exceptions\error\errorlist_overlapped.cc" />
+    <ClCompile Include="src\exceptions\error\errorlist_0x01x.cc" />
+    <ClCompile Include="src\app\sequence\cursor_simulator.cc" />
+    <ClCompile Include="src\app\sequence\cursor_pointer.cc" />
+    <ClCompile Include="src\app\input\key_binding.cc" />
+    <ClCompile Include="src\app\input\inputkey.cc" />
+    <ClCompile Include="src\app\sequence\cursor_driver.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\forms\boot\kernel.h" />
+    <ClInclude Include="src\protocol\evaluation.h" />
+    <ClInclude Include="src\traceable\spdlogs_inc.h" />
+    <ClInclude Include="src\traceable\logclass.h" />
+    <ClInclude Include="src\protocol\env_params.h" />
+    <ClInclude Include="src\traceable\log_filepath.h" />
+    <ClInclude Include="src\util\time\systime.h" />
+    <ClInclude Include="src\traceable\output_logs.h" />
+    <ClInclude Include="src\protocol\message_box.h" />
+    <ClInclude Include="src\protocol\xglobals.h" />
+    <ClInclude Include="src\util\conv\converting.h" />
+    <ClInclude Include="src\forms\boot\hardware_check.h" />
+    <ClInclude Include="src\protocol\process_code_hard.h" />
+    <ClInclude Include="src\exceptions\throws.h" />
+    <ClInclude Include="src\exceptions\exception_handler.h" />
+    <ClInclude Include="src\util\logic\reference.h" />
+    <ClInclude Include="src\exceptions\error\errorlist_0x00x.h" />
+    <ClInclude Include="src\forms\terminal\app_engine.h" />
+    <ClInclude Include="src\forms\device\keyboards_in.h" />
+    <ClInclude Include="src\util\fmt\format_printer.h" />
+    <ClInclude Include="src\exceptions\error\errorlist_overlapped.h" />
+    <ClInclude Include="src\exceptions\error\errorlist_0x01x.h" />
+    <ClInclude Include="src\app\models\cursor.h" />
+    <ClInclude Include="src\app\sequence\cursor_simulator.h" />
+    <ClInclude Include="src\app\sequence\cursor_pointer.h" />
+    <ClInclude Include="src\app\input\key_binding.h" />
+    <ClInclude Include="src\app\models\signature_object.h" />
+    <ClInclude Include="src\app\input\inputkey.h" />
+    <ClInclude Include="src\app\sequence\cursor_driver.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="r2-refined.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".env" />
+    <None Include="cpp.hint" />
+  </ItemGroup>
+</Project>
