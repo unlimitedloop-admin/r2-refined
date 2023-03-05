@@ -52,7 +52,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 0,0,0,16
+ FILEVERSION 0,0,0,17
  PRODUCTVERSION 0,0,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -70,7 +70,7 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "UNLIMITED LOOP ROOT-ONE"
             VALUE "FileDescription", "https://github.com/unlimitedloop-admin/r2-refined"
-            VALUE "FileVersion", "0.0.0.16"
+            VALUE "FileVersion", "0.0.0.17"
             VALUE "InternalName", "r2-refined.exe"
             VALUE "LegalCopyright", "Copyright (C) 2023"
             VALUE "OriginalFilename", "r2-refined.exe"

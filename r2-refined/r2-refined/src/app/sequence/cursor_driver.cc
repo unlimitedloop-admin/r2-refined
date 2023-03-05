@@ -45,6 +45,7 @@
 #include "src/app/input/inputkey.h"
 
 #include "src/app/input/key_binding.h"
+#include "src/database/tables/MST_NES_PALETTE.h"
 
 
 
@@ -52,6 +53,7 @@
 namespace sequence {
 
     /* using namespace */
+    using namespace DB;
     using namespace protocol;
     using namespace input;
 
@@ -59,11 +61,13 @@ namespace sequence {
 
 
     CursorDriver::CursorDriver() {
-        DxLib::SetBackgroundColor(255, 255, 255);
+        MST_NES_PALETTE::tr_0x20();
     }
 
 
-    CursorDriver::~CursorDriver() {}
+    CursorDriver::~CursorDriver() {
+        MST_NES_PALETTE::tr_0x0F();
+    }
 
 
     Evaluate CursorDriver::Service(Evaluate evals) {

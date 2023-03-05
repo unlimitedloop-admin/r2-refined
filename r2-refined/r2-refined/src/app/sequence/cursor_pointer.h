@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/01
+//      Last update     : 2023/03/05
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -39,8 +39,10 @@
 /* INCLUDES */
 // PRIMARY HEADER
 #include "src/app/models/cursor.h"
+#include "src/app/models/radar.h"
 // PROJECT USING HEADER
 #include "src/protocol/evaluation.h"
+#include "src/app/models/components.h"
 
 
 
@@ -56,7 +58,13 @@ namespace sequence {
     /// <summary>
     /// A behavior cursor that controls the phases of the main program.
     /// </summary>
-    class CursorPointer final : public implements::ICursor {
+    class CursorPointer final : public implements::ICursor, implements::IRadar {
+    private:
+        /// <summary>
+        /// Component container.
+        /// </summary>
+        implements::IComponents* container_;
+    
     public:
         CursorPointer();
         CursorPointer(const CursorPointer&) = delete;
@@ -74,6 +82,13 @@ namespace sequence {
         /// </summary>
         /// <param name="">Void</param>
         void Exceptions(void) override;
+
+        /// <summary>
+        /// Change the component.
+        /// </summary>
+        /// <param name="object">Component object</param>
+        /// <returns>True or false, functions succeeded or failed</returns>
+        bool changeComponents(implements::IComponents* object) override;
     };
 
 }  // namespace sequence

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/01
+//      Last update     : 2023/03/05
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -42,6 +42,7 @@
 #include "src/protocol/evaluation.h"
 #include "src/app/input/inputkey.h"
 #include "src/traceable/output_logs.h"
+#include "src/database/tables/MST_NES_PALETTE.h"
 
 
 
@@ -49,6 +50,7 @@
 namespace sequence {
 
     /* using namespace */
+    using namespace DB;
     using namespace protocol;
     using namespace input;
     using namespace traceable;
@@ -60,7 +62,9 @@ namespace sequence {
     }
 
 
-    CursorSimulator::~CursorSimulator() {}
+    CursorSimulator::~CursorSimulator() {
+        MST_NES_PALETTE::tr_0x0F();
+    }
 
 
     Evaluate CursorSimulator::Service(Evaluate evals) {

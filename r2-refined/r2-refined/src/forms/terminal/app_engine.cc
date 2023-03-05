@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/01
+//      Last update     : 2023/03/05
 //
-//      File version    : 7
+//      File version    : 8
 //
 //
 /**************************************************************/
@@ -159,7 +159,6 @@ namespace terminal {
             if (nullptr != sequence_) {
                 delete sequence_;
                 sequence_ = nullptr;
-                DxLib::SetBackgroundColor(0, 0, 0);
                 (void)writeStatusLog("ゲームプログラムの運転を停止しました。");
             }
             break;
