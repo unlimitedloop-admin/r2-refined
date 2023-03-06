@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/05
+//      Last update     : 2023/03/06
 //
-//      File version    : 8
+//      File version    : 9
 //
 //
 /**************************************************************/
@@ -74,8 +74,8 @@ namespace {
     /* local scopes */
     ResultSet   dev_mode = ResultSet::DISABLED;     // Development running mode of applications
     ResultSet   test_driver = ResultSet::DISABLED;  // Test driver running flag
-    GAMEPROC    apps_active;                        // Activation supervisor
-    Activator   activator;                          // Main program activator key
+    GAMEPROC    apps_active = false;                // Activation supervisor
+    Activator   activator = Activator::DISABLED;    // Main program activator key
 
 
 
@@ -317,7 +317,7 @@ namespace terminal {
 
     void AppEngine::eventLoop(RunMode indicator) {
         // Do event loop of the main program sequence.
-        while (!ProcessMessage() && !ClearDrawScreen() && !getStaticBindingFailureFlag() && device::updateAllStateKey() && this->Receptions(indicator)) {
+        while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen() && !getStaticBindingFailureFlag() && device::updateAllStateKey() && this->Receptions(indicator)) {
             if (nullptr != sequence_) {
                 // Begin the main program.
                 period_ = sequence_->Service(period_);
