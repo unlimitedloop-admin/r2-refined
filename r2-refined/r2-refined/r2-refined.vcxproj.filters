@@ -24,7 +24,7 @@
     <ClCompile Include="src\app\input\key_binding.cc" />
     <ClCompile Include="src\app\input\inputkey.cc" />
     <ClCompile Include="src\app\sequence\cursor_driver.cc" />
-    <ClCompile Include="src\app\component\sample_component.cc" />
+    <ClCompile Include="src\app\component\CX\C0_sample1\sample_component.cc" />
     <ClCompile Include="src\database\tables\mst_nes_palette.cc" />
   </ItemGroup>
   <ItemGroup>
@@ -58,7 +58,7 @@
     <ClInclude Include="src\app\models\signature_object.h" />
     <ClInclude Include="src\app\input\inputkey.h" />
     <ClInclude Include="src\app\sequence\cursor_driver.h" />
-    <ClInclude Include="src\app\component\sample_component.h" />
+    <ClInclude Include="src\app\component\CX\C0_sample1\sample_component.h" />
     <ClInclude Include="src\app\models\components.h" />
     <ClInclude Include="src\app\models\radar.h" />
     <ClInclude Include="src\database\tables\MST_NES_PALETTE.h" />

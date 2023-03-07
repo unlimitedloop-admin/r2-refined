@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/06
+//      Last update     : 2023/03/07
 //
-//      File version    : 9
+//      File version    : 10
 //
 //
 /**************************************************************/
@@ -320,6 +320,11 @@ namespace terminal {
         while (!ProcessMessage() && !ScreenFlip() && !ClearDrawScreen() && !getStaticBindingFailureFlag() && device::updateAllStateKey() && this->Receptions(indicator)) {
             if (nullptr != sequence_) {
                 // Begin the main program.
+                /*
+                 * >>> sequence_ = CursorPointer defaults to the main program when executed.
+                 * >>> sequence_ = CursorSimulator provides a backdoor menu for development.
+                 * >>> sequence_ = CursorDriver are not normally used. It's a laboratory table when you do temporary program testing.
+                 */
                 period_ = sequence_->Service(period_);
                 if (Evaluate::PROC_QUIT == period_) {
                     setAppsActiveFlag(false);

@@ -39,8 +39,10 @@
 /* INCLUDES */
 // PRIMARY HEADER
 #include "src/app/models/cursor.h"
+#include "src/app/models/radar.h"
 // PROJECT USING HEADER
 #include "src/protocol/evaluation.h"
+#include "src/app/models/components.h"
 
 
 
@@ -54,7 +56,10 @@ namespace sequence {
 
 
 
-    class CursorDriver : public implements::ICursor {
+    class CursorDriver : public implements::ICursor, public implements::IRadar {
+    private:
+        implements::IComponents* container_;
+
     public:
         CursorDriver();
         CursorDriver(const CursorDriver&) = delete;
@@ -72,6 +77,9 @@ namespace sequence {
         /// </summary>
         /// <param name="">Void</param>
         void Exceptions(void) override;
+
+
+        bool changeComponents(implements::IComponents* object) override;
     };
 
 }  // namespace sequence

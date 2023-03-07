@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023-03-05
+//      Last update     : 2023/03/07
 //
-//      File version    : 5
+//      File version    : 6
 //
 //
 /**************************************************************/
@@ -44,7 +44,6 @@
 #include "src/protocol/message_box.h"
 #include "src/app/input/inputkey.h"
 #include "src/traceable/output_logs.h"
-#include "src/app/component/sample_component.h"
 #include "src/database/tables/MST_NES_PALETTE.h"
 
 
@@ -57,13 +56,12 @@ namespace sequence {
     using namespace protocol;
     using namespace input;
     using namespace traceable;
-    using namespace component;
 
 
 
     CursorPointer::CursorPointer() {
         (void)writeStatusLog("ゲームプログラムの運転を開始しました。");
-        container_ = new SampleComponent1();
+        container_ = nullptr;
     }
 
 
@@ -85,16 +83,11 @@ namespace sequence {
         // ★ Please describe the sequencer controlling from here. >>>
 
 
-        // ■ BEGIN TEST CODE >>>
-        container_->doComponentScene(this);
-        if (nullptr == container_) {
-            return Evaluate::PROC_QUIT;
-        }
-        // ■ END TEST CODE.
 
 
 
-        if (0 != DxLib::ScreenFlip()) { return Evaluate::PROC_FAILED; }
+
+
         return Evaluate::PROC_SUCCEED;
     }
 

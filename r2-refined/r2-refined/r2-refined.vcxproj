@@ -161,7 +161,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\app\component\sample_component.cc" />
+    <ClCompile Include="src\app\component\CX\C0_sample1\sample_component.cc" />
     <ClCompile Include="src\app\input\inputkey.cc" />
     <ClCompile Include="src\app\input\key_binding.cc" />
     <ClCompile Include="src\app\sequence\cursor_driver.cc" />
@@ -189,7 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\app\component\sample_component.h" />
+    <ClInclude Include="src\app\component\CX\C0_sample1\sample_component.h" />
     <ClInclude Include="src\app\input\inputkey.h" />
     <ClInclude Include="src\app\input\key_binding.h" />
     <ClInclude Include="src\app\models\components.h" />

@@ -47,6 +47,9 @@
 #include "src/app/input/key_binding.h"
 #include "src/database/tables/MST_NES_PALETTE.h"
 
+#include "src/app/component/CX/C0_sample1/sample_component.h"
+
+
 
 
 /* SOURCES */
@@ -56,16 +59,21 @@ namespace sequence {
     using namespace DB;
     using namespace protocol;
     using namespace input;
+    using namespace component;
 
 
 
 
     CursorDriver::CursorDriver() {
-        MST_NES_PALETTE::tr_0x20();
+        container_ = new SampleComponent1();
     }
 
 
     CursorDriver::~CursorDriver() {
+        if (nullptr != container_) {
+            delete container_;
+            container_ = nullptr;
+        }
         MST_NES_PALETTE::tr_0x0F();
     }
 
@@ -77,24 +85,29 @@ namespace sequence {
             return Evaluate::PROC_FAILED;
         }
 
-        // Added proof code at the 2023-02-25. >>>
-        /* Specify GetKey (JPBTN enumeration identifier) to get the value of the gamepad or keyboard. */
-        if (GetKey(JPBTN::START)) {
-            MSG_BOX("ゲームプログラムを終了するビヘイビアーサンプルです。");
+        // ■ BEGIN TEST CODE >>>
+        container_->doComponentScene(this);
+        if (nullptr == container_) {
             return Evaluate::PROC_QUIT;
         }
-        DxLib::DrawFormatString(2, 2, DxLib::GetColor(0, 0, 0), "Aボタンの現在値：%d", GetKey(JPBTN::A));
-        DxLib::DrawFormatString(2, 26, DxLib::GetColor(0, 0, 0), "Bボタンの現在値：%d", GetKey(JPBTN::B));
-        DxLib::DrawFormatString(2, 50, DxLib::GetColor(0, 0, 0), "Xボタンの現在値：%d", GetKey(JPBTN::X));
-        DxLib::DrawFormatString(2, 74, DxLib::GetColor(0, 0, 0), "Yボタンの現在値：%d", GetKey(JPBTN::Y));
+        // ■ END TEST CODE.
 
 
-        if (0 != DxLib::ScreenFlip()) { return Evaluate::PROC_FAILED; }
         return Evaluate::PROC_SUCCEED;
     }
 
 
     void CursorDriver::Exceptions(void) {
+    }
+
+
+
+    bool CursorDriver::changeComponents(implements::IComponents* object) {
+        if (nullptr != container_) {
+            delete container_;
+            container_ = object;
+        }
+        return true;
     }
 
 }  // namespace sequence

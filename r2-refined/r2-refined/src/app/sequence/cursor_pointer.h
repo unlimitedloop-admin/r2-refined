@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/05
+//      Last update     : 2023/03/07
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -58,7 +58,7 @@ namespace sequence {
     /// <summary>
     /// A behavior cursor that controls the phases of the main program.
     /// </summary>
-    class CursorPointer final : public implements::ICursor, implements::IRadar {
+    class CursorPointer final : public implements::ICursor, public implements::IRadar {
     private:
         /// <summary>
         /// Component container.
