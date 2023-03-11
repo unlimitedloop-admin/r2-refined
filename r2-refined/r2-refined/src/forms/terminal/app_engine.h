@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023/03/11
 //
-//      File version    : 3 
+//      File version    : 4 
 //
 //
 /**************************************************************/
@@ -77,7 +77,7 @@ namespace terminal {
     public:
         AppEngine() {}
         AppEngine(const AppEngine&) = delete;
-        ~AppEngine();
+        ~AppEngine() {}
 
         /// <summary>
         /// Initialize the substance program.
@@ -96,7 +96,7 @@ namespace terminal {
         /// Finalize the substance program.
         /// </summary>
         /// <param name="">Void</param>
-        void Finalize(void) const;
+        void Finalize(void);
 
     };
 

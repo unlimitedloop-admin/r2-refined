@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/07
+//      Last update     : 2023/03/11
 //
-//      File version    : 10
+//      File version    : 11
 //
 //
 /**************************************************************/
@@ -142,14 +142,6 @@ namespace terminal {
             break;
         }
         return CallWindowProc(xg_DxLibWnd, hWnd, msg, wParam, lParam);
-    }
-
-
-    AppEngine::~AppEngine() {
-        if (nullptr != sequence_) {
-            delete sequence_;
-            sequence_ = nullptr;
-        }
     }
 
 
@@ -341,7 +333,11 @@ namespace terminal {
     }
 
 
-    void AppEngine::Finalize(void) const {
+    void AppEngine::Finalize(void) {
+        if (nullptr != sequence_) {
+            delete sequence_;
+            sequence_ = nullptr;
+        }
         // Finalize the DX-Library.
         if (0 != DxLib_End()) {
             setStaticProcessCode(0x0017F0ULL, STATIC_ERR_DOMINATOR);

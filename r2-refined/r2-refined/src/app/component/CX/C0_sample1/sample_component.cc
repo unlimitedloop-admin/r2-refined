@@ -21,6 +21,9 @@
 #include "src/database/tables/MST_NES_PALETTE.h"
 #include "src/app/input/inputkey.h"
 
+#include "src/app/matter/sprite/sprite_loader.h"
+
+
 
 
 namespace component {
@@ -28,11 +31,13 @@ namespace component {
     using namespace DB;
     using namespace traceable;
     using namespace input;
+    using namespace matter;
 
 
-    SampleComponent1::SampleComponent1() : abnormality_(false) {
+    SampleComponent1::SampleComponent1() : abnormality_(false), sprite_("assets/3_sprite/sample_graphic.png") {
         (void)writeStatusLog("サンプルコンポーネント1を開始します。");
         MST_NES_PALETTE::tr_0x00();
+        sprite_.Unzip(16, 4, 4, 32, 32);
     }
 
 
@@ -45,6 +50,19 @@ namespace component {
                 return false;
             }
         }
+
+        // ★ sample code has begin ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ
+
+        if (1 == GetKey(JPBTN::RIGHT)) {
+            if (3 > t_num_) { ++t_num_; }
+        }
+        else if (1 == GetKey(JPBTN::LEFT)) {
+            if (0 < t_num_) { --t_num_; }
+        }
+        sprite_.Use(100, 100, t_num_, true);
+
+        // ★ sample code up to this ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ..:｡*ﾟ:.｡*ﾟ..:｡*ﾟ
+
         return true;
     }
 

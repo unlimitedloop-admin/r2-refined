@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/03/11
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -68,6 +68,15 @@ namespace exceptions {
             break;
         case 0x00E100ULL:
             message << "キー配列番号が異常値を示しました。詳細は以下を参照して下さい。";
+            break;
+        case 0x00E200ULL:
+            message << "[SpriteLoader] メモリ上のグラフィックの削除処理が失敗しました。";
+            break;
+        case 0x00E300ULL:
+            message << "[SpriteLoader] グラフィックデータのメモリへの展開ができませんでした。";
+            break;
+        case 0x00E400ULL:
+            message << "[SpriteLoader] グラフィックデータの描画処理が失敗しました。";
             break;
         case 0x00FE00ULL:
             message << "エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";

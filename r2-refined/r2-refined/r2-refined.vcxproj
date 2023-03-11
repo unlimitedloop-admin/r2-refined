@@ -161,9 +161,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\app\component\AX\A1_launch\launching_component.cc" />
     <ClCompile Include="src\app\component\CX\C0_sample1\sample_component.cc" />
     <ClCompile Include="src\app\input\inputkey.cc" />
     <ClCompile Include="src\app\input\key_binding.cc" />
+    <ClCompile Include="src\app\matter\sprite\sprite_loader.cc" />
     <ClCompile Include="src\app\sequence\cursor_driver.cc" />
     <ClCompile Include="src\app\sequence\cursor_pointer.cc" />
     <ClCompile Include="src\app\sequence\cursor_simulator.cc" />
@@ -189,13 +191,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\app\component\AX\A1_launch\launching_component.h" />
     <ClInclude Include="src\app\component\CX\C0_sample1\sample_component.h" />
     <ClInclude Include="src\app\input\inputkey.h" />
     <ClInclude Include="src\app\input\key_binding.h" />
+    <ClInclude Include="src\app\matter\sprite\sprite_loader.h" />
     <ClInclude Include="src\app\models\components.h" />
     <ClInclude Include="src\app\models\cursor.h" />
+    <ClInclude Include="src\app\models\loader.h" />
     <ClInclude Include="src\app\models\radar.h" />
     <ClInclude Include="src\app\models\signature_object.h" />
+    <ClInclude Include="src\app\route\region\founding_cursor.h" />
     <ClInclude Include="src\app\sequence\cursor_driver.h" />
     <ClInclude Include="src\app\sequence\cursor_pointer.h" />
     <ClInclude Include="src\app\sequence\cursor_simulator.h" />
@@ -229,6 +235,9 @@
   <ItemGroup>
     <None Include=".env" />
     <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\3_sprite\sample_graphic.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

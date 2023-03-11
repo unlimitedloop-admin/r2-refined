@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/01
+//      Last update     : 2023/03/11
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -40,6 +40,7 @@
 // PRIMARY HEADER
 #include "src/app/models/cursor.h"
 // PROJECT USING HEADER
+#include "src/app/models/components.h"
 #include "src/protocol/evaluation.h"
 
 
@@ -56,7 +57,15 @@ namespace sequence {
     /// <summary>
     /// A behavior cursor that controls the main program for development.
     /// </summary>
-    class CursorSimulator : public implements::ICursor {
+    class CursorSimulator final : public implements::ICursor {
+    
+    private:
+        /// <summary>
+        /// Component container.
+        /// </summary>
+        implements::IComponents* container_;
+
+
     public:
         CursorSimulator();
         CursorSimulator(const CursorSimulator&) = delete;

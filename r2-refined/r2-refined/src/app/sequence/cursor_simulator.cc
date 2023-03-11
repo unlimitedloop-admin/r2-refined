@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/05
+//      Last update     : 2023/03/11
 //
-//      File version    : 5
+//      File version    : 6
 //
 //
 /**************************************************************/
@@ -59,6 +59,7 @@ namespace sequence {
 
     CursorSimulator::CursorSimulator() {
         (void)writeStatusLog("ゲームプログラムの運転を開始しました。[DEVELOPMENT MODE IS ENABLED]");
+        container_ = nullptr;
     }
 
 
@@ -80,7 +81,6 @@ namespace sequence {
 
 
 
-        if (0 != DxLib::ScreenFlip()) { return Evaluate::PROC_FAILED; }
         return Evaluate::PROC_SUCCEED;
     }
 

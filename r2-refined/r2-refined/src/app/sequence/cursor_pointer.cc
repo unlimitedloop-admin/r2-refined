@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/07
+//      Last update     : 2023/03/11
 //
-//      File version    : 6
+//      File version    : 7
 //
 //
 /**************************************************************/
@@ -45,6 +45,7 @@
 #include "src/app/input/inputkey.h"
 #include "src/traceable/output_logs.h"
 #include "src/database/tables/MST_NES_PALETTE.h"
+#include "src/app/route/region/founding_cursor.h"
 
 
 
@@ -54,6 +55,7 @@ namespace sequence {
     /* using namespace */
     using namespace DB;
     using namespace protocol;
+    using namespace route;
     using namespace input;
     using namespace traceable;
 
@@ -61,7 +63,8 @@ namespace sequence {
 
     CursorPointer::CursorPointer() {
         (void)writeStatusLog("ゲームプログラムの運転を開始しました。");
-        container_ = nullptr;
+        region::FoundingCursor obj_;
+        container_ = obj_.getComponents();
     }
 
 
@@ -71,6 +74,7 @@ namespace sequence {
             container_ = nullptr;
         }
         MST_NES_PALETTE::tr_0x0F();
+        (void)writeStatusLog("ゲームプログラムの運転を停止しました。");
     }
 
 
@@ -81,7 +85,9 @@ namespace sequence {
             return Evaluate::PROC_FAILED;
         }
         // ★ Please describe the sequencer controlling from here. >>>
-
+        if (nullptr != container_) {
+            if (!container_->doComponentScene(this)) { return Evaluate::PROC_FAILED; }
+        }
 
 
 

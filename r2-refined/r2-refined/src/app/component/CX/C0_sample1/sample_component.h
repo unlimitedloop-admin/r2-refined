@@ -16,12 +16,14 @@
 **/
 
 
-#ifndef _R2R_APP_COMPONENT_SAMPLE_COMPONENT_H_
-#define _R2R_APP_COMPONENT_SAMPLE_COMPONENT_H_
+#ifndef _R2R_APP_COMPONENT_CX_C0_SAMPLE1_SAMPLE_COMPONENT_H_
+#define _R2R_APP_COMPONENT_CX_C0_SAMPLE1_SAMPLE_COMPONENT_H_
 
 
 #include "src/app/models/components.h"
 #include "src/app/models/radar.h"
+
+#include "src/app/matter/sprite/sprite_loader.h"
 
 
 
@@ -29,12 +31,15 @@
 namespace component {
 
     using namespace models;
+    using namespace matter;
 
 
     class SampleComponent1 : public implements::IComponents {
 
     private:
         bool abnormality_;
+        sprite::SpriteLoader sprite_;
+        size_t t_num_ = 0;
 
     public:
         SampleComponent1();
@@ -74,4 +79,4 @@ namespace component {
 
 }  // namespace component
 
-#endif // !_R2R_APP_COMPONENT_SAMPLE_COMPONENT_H_
+#endif // !_R2R_APP_COMPONENT_CX_C0_SAMPLE1_SAMPLE_COMPONENT_H_
