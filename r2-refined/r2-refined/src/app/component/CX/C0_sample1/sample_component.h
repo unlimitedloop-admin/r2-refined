@@ -23,23 +23,21 @@
 #include "src/app/models/components.h"
 #include "src/app/models/radar.h"
 
-#include "src/app/matter/sprite/sprite_loader.h"
-
+#include "src/app/matter/sprite/sprite_bank.h"
 
 
 
 namespace component {
 
     using namespace models;
-    using namespace matter;
 
 
     class SampleComponent1 : public implements::IComponents {
 
     private:
         bool abnormality_;
-        sprite::SpriteLoader sprite_;
         size_t t_num_ = 0;
+        matter::sprite::SpriteBank sprite_;
 
     public:
         SampleComponent1();

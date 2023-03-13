@@ -165,6 +165,8 @@
     <ClCompile Include="src\app\component\CX\C0_sample1\sample_component.cc" />
     <ClCompile Include="src\app\input\inputkey.cc" />
     <ClCompile Include="src\app\input\key_binding.cc" />
+    <ClCompile Include="src\app\matter\sprite\clay_diecast.cc" />
+    <ClCompile Include="src\app\matter\sprite\sprite_bank.cc" />
     <ClCompile Include="src\app\matter\sprite\sprite_loader.cc" />
     <ClCompile Include="src\app\sequence\cursor_driver.cc" />
     <ClCompile Include="src\app\sequence\cursor_pointer.cc" />
@@ -195,10 +197,15 @@
     <ClInclude Include="src\app\component\CX\C0_sample1\sample_component.h" />
     <ClInclude Include="src\app\input\inputkey.h" />
     <ClInclude Include="src\app\input\key_binding.h" />
+    <ClInclude Include="src\app\matter\sprite\clay_diecast.h" />
+    <ClInclude Include="src\app\matter\sprite\diecast.h" />
+    <ClInclude Include="src\app\matter\sprite\sprite_bank.h" />
     <ClInclude Include="src\app\matter\sprite\sprite_loader.h" />
+    <ClInclude Include="src\app\matter\structures\tag_divgraph_p.h" />
     <ClInclude Include="src\app\models\components.h" />
     <ClInclude Include="src\app\models\cursor.h" />
     <ClInclude Include="src\app\models\loader.h" />
+    <ClInclude Include="src\app\models\mat_benefits.h" />
     <ClInclude Include="src\app\models\radar.h" />
     <ClInclude Include="src\app\models\signature_object.h" />
     <ClInclude Include="src\app\route\region\founding_cursor.h" />

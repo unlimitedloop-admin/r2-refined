@@ -28,6 +28,8 @@
     <ClCompile Include="src\database\tables\mst_nes_palette.cc" />
     <ClCompile Include="src\app\component\AX\A1_launch\launching_component.cc" />
     <ClCompile Include="src\app\matter\sprite\sprite_loader.cc" />
+    <ClCompile Include="src\app\matter\sprite\clay_diecast.cc" />
+    <ClCompile Include="src\app\matter\sprite\sprite_bank.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -68,6 +70,11 @@
     <ClInclude Include="src\app\component\AX\A1_launch\launching_component.h" />
     <ClInclude Include="src\app\models\loader.h" />
     <ClInclude Include="src\app\matter\sprite\sprite_loader.h" />
+    <ClInclude Include="src\app\models\mat_benefits.h" />
+    <ClInclude Include="src\app\matter\sprite\diecast.h" />
+    <ClInclude Include="src\app\matter\sprite\clay_diecast.h" />
+    <ClInclude Include="src\app\matter\sprite\sprite_bank.h" />
+    <ClInclude Include="src\app\matter\structures\tag_divgraph_p.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />
