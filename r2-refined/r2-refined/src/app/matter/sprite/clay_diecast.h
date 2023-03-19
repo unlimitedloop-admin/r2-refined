@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : diecast.h
+//      File name       : clay_diecast.h
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/13
+//      Last update     : 2023/03/19
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -53,7 +53,6 @@ namespace matter {
 
         /* using namespace */
         using namespace models;
-
 
 
 

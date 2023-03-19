@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : clay_diecast.cc
+//      File name       : board_sculpture.cc
 //
 //      Author          : u7
 //
 //      Last update     : 2023/03/19
 //
-//      File version    : 2
+//      File version    : 1
 //
 //
 /**************************************************************/
@@ -28,37 +28,37 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * Diecast for creating some sprite data.
+ * Create by drawing on BG tiles.
 **/
 
 
 
 /* INCLUDES */
 // PRIMARY HEADER
-#include "clay_diecast.h"
+#include "board_sculpture.h"
 // C++ SYSTEM HEADER
 #include <string>
 // PROJECT USING HEADER
 #include "src/app/models/mat_benefits.h"
-#include "sprite_loader.h"
+#include "tile_loader.h"
 
 
 
 /* SOURCES */
 namespace matter {
 
-    namespace sprite {
+    namespace BG {
 
         /* using namespace */
         using namespace models;
 
 
 
-        implements::IMatBenefits* ClayDiecast::createClay(std::string files) {
-            SpriteLoader* object = new SpriteLoader(files);
+        implements::IMatBenefits* BoardSculpture::createBoard(std::string files) {
+            TileLoader* object = new TileLoader(files);
             return object;
         }
 
-    }  // namespace sprite
+    }  // namespace BG
 
 }  // namespace matter

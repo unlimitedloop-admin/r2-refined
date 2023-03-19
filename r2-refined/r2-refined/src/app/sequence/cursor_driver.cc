@@ -86,7 +86,9 @@ namespace sequence {
         }
 
         // ■ BEGIN TEST CODE >>>
-        container_->doComponentScene(this);
+        if (!container_->doComponentScene(this)) {
+            return Evaluate::PROC_FAILED;
+        }
         if (nullptr == container_) {
             return Evaluate::PROC_QUIT;
         }

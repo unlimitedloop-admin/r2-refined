@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : clay_diecast.cc
+//      File name       : board_sculpture.h
 //
 //      Author          : u7
 //
 //      Last update     : 2023/03/19
 //
-//      File version    : 2
+//      File version    : 1
 //
 //
 /**************************************************************/
@@ -28,37 +28,53 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * Diecast for creating some sprite data.
+ * board sculpture.header
 **/
 
 
 
+#ifndef _R2R_APP_MATTER_BG_BOARD_SCULPTURE_H_
+#define _R2R_APP_MATTER_BG_BOARD_SCULPTURE_H_
+
 /* INCLUDES */
 // PRIMARY HEADER
-#include "clay_diecast.h"
+#include "sculpture.h"
 // C++ SYSTEM HEADER
 #include <string>
 // PROJECT USING HEADER
 #include "src/app/models/mat_benefits.h"
-#include "sprite_loader.h"
 
 
 
 /* SOURCES */
 namespace matter {
 
-    namespace sprite {
+    namespace BG {
 
         /* using namespace */
         using namespace models;
 
 
 
-        implements::IMatBenefits* ClayDiecast::createClay(std::string files) {
-            SpriteLoader* object = new SpriteLoader(files);
-            return object;
-        }
+        /// <summary>
+        /// Receiver for passing BG data.
+        /// </summary>
+        class BoardSculpture : public extends::Sculpture {
 
-    }  // namespace sprite
+        public:
+            ~BoardSculpture() {}
+
+            /// <summary>
+            /// Generate BG data and get an new instance.
+            /// </summary>
+            /// <param name="files">File path of the BG data</param>
+            /// <returns>Material data common interface object</returns>
+            implements::IMatBenefits* createBoard(std::string files) override;
+
+        };
+
+    }  // namespace BG
 
 }  // namespace matter
+
+#endif // !_R2R_APP_MATTER_BG_BOARD_SCULPTURE_H_

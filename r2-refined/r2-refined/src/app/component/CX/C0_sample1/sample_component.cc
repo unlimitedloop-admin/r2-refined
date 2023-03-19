@@ -73,6 +73,9 @@ namespace component {
 
     SampleComponent2::SampleComponent2() : abnormality_(false) {
         (void)writeStatusLog("サンプルコンポーネント2を開始します。");
+        background_.loadStructure("assets/1_Mapdata/demostage_mapdata.bin", 2);
+        DivGraphParam params = { 128, 16, 8, 16, 16 };
+        background_.loadTexture("assets/2_BG/demostage_BG.png", &params);
         MST_NES_PALETTE::tr_0x01();
     }
 
@@ -81,6 +84,13 @@ namespace component {
 
 
     bool SampleComponent2::doComponentScene(implements::IRadar* object) {
+        
+        if (!background_.mappingOn(1, 0, 0)) {
+            return false;
+        }   // 背景タイルを指定、引数は第一から順にマップ番号、VRAM上の左上に位置するX座標、Y座標を指定
+        
+        
+        
         if (1 == GetKey(JPBTN::START)) {
             if (!object->changeComponents(new SampleComponent3())) {
                 return false;

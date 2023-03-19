@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/13
+//      Last update     : 2023/03/19
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -39,9 +39,9 @@
 // C++ SYSTEM HEADER
 #include <string>
 // PROJECT USING HEADER
-#include "src/app/models/mat_benefits.h"
 #include "src/app/matter/sprite/diecast.h"
 #include "src/app/matter/sprite/clay_diecast.h"
+#include "src/app/matter/structures/tag_divgraph_p.h"
 
 
 
@@ -62,7 +62,7 @@ namespace matter {
 
         SpriteBank::~SpriteBank() {
             auto begin = objects_.begin(), end = objects_.end();
-            for (auto itr = begin; itr != end; itr++) {
+            for (auto& itr = begin; itr != end; itr++) {
                 delete itr->second;
                 itr->second = nullptr;
             }

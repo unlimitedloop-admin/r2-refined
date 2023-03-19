@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023/03/19
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -136,7 +136,7 @@ namespace exceptions {
             (void)writeErrorLog(xg_exChar, "EXCEPTION TRACEABILITY", level);     // Go output error log.
             xg_exChar.clear();
         }
-        if (abend) { setStaticBindingFailureFlag(true); }  // The flag conversion for abend bookmarks.
+        return setStaticBindingFailureFlag(abend);  // The flag conversion for abend bookmarks.
     }
 
 }  // namespace exceptions

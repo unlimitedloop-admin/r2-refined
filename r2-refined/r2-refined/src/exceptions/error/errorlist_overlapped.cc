@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/11
+//      Last update     : 2023/03/19
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -77,6 +77,18 @@ namespace exceptions {
             break;
         case 0x00E400ULL:
             message << "[SpriteLoader] グラフィックデータの描画処理が失敗しました。";
+            break;
+        case 0x00E500ULL:
+            message << "[MapstructLoader] バイナリデータのオープンに失敗しました。";
+            break;
+        case 0x00E600ULL:
+            message << "[TileLoader] メモリ上のグラフィックの削除処理が失敗しました。";
+            break;
+        case 0x00E700ULL:
+            message << "[TileLoader] グラフィックデータのメモリへの展開ができませんでした。";
+            break;
+        case 0x00E800ULL:
+            message << "[TileLoader] グラフィックデータの描画処理が失敗しました。";
             break;
         case 0x00FE00ULL:
             message << "エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";

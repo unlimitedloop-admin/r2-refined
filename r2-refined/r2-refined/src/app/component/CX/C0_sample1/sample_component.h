@@ -24,6 +24,7 @@
 #include "src/app/models/radar.h"
 
 #include "src/app/matter/sprite/sprite_bank.h"
+#include "src/app/matter/BG/tile_arrays.h"
 
 
 
@@ -52,6 +53,7 @@ namespace component {
 
     private:
         bool abnormality_;
+        matter::BG::TileArrays background_;
 
     public:
         SampleComponent2();
