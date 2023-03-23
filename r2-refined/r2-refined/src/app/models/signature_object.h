@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023/03/23
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -57,7 +57,7 @@ namespace models {
 
     public:
         // NOTE : Compile-time instance retrieval available only in singleton pattern.
-        static constexpr T* getInstance(void) {
+        static T* getInstance(void) {
             static T obj;
             return &obj;
         }

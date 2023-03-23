@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/03/23
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -101,6 +101,14 @@ namespace matter {
             /// <param name="col_num">Column Index</param>
             /// <returns>Hex code</returns>
             BYTE getMapData(const size_t page, const size_t row_num, const size_t col_num) const;
+
+            /// <summary>
+            /// Get head information of binary data in memory.
+            /// </summary>
+            /// <param name="page">The page position to retrieve</param>
+            /// <param name="block">A constant value of DB::MST_MAP_STRUCTURES</param>
+            /// <returns>Hex code</returns>
+            BYTE getHeadData(const size_t page, const uint8_t block) const;
 
         };
 

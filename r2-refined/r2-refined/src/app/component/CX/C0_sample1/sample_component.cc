@@ -85,7 +85,7 @@ namespace component {
 
     bool SampleComponent2::doComponentScene(implements::IRadar* object) {
         
-        if (!background_.mappingOn(1, 0, 0)) {
+        if (!background_.mappingOn(2, 0, 0)) {
             return false;
         }   // 背景タイルを指定、引数は第一から順にマップ番号、VRAM上の左上に位置するX座標、Y座標を指定
         

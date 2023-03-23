@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/03/23
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -45,6 +45,7 @@
 #include "src/exceptions/exception_handler.h"
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/xglobals.h"
+#include "src/database/tables/MST_MAP_STRUCTURES.h"
 
 
 
@@ -97,6 +98,11 @@ namespace matter {
             size_t loc = 0x100 * (page - 1);
             loc = loc + 0x10 + (0x10 * row_num) + col_num;  // Skip the head data (0x10) and specify the number of rows and column position in the area after that with 0x10 separators.
             return data_[loc];
+        }
+
+
+        BYTE MapstructLoader::getHeadData(const size_t page, const uint8_t block) const {
+            return this->getData(page, static_cast<size_t>(block));
         }
 
     }  // namespace BG

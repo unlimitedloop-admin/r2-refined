@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/03/23
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -89,13 +89,11 @@ namespace matter {
 
         bool TileArrays::mappingOn(const size_t map_no, const __int16 axis_x, const __int16 axis_y) const {
             try {
-                size_t x = 0, y = 0, index = 0;
+                size_t index = 0;
                 for (size_t i = 0; i < 15; ++i) {
                     for (size_t j = 0; j < 16; ++j) {
-                        x = j * 16;
-                        y = i * 16;
                         index = structure_.getMapData(map_no, i, j);
-                        texture_->Use(x, y, index, false);
+                        texture_->Use((j * 16), (i * 16), index, false);
                     }
                 }
             }

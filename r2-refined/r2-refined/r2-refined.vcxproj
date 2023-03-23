@@ -221,6 +221,7 @@
     <ClInclude Include="src\app\sequence\cursor_driver.h" />
     <ClInclude Include="src\app\sequence\cursor_pointer.h" />
     <ClInclude Include="src\app\sequence\cursor_simulator.h" />
+    <ClInclude Include="src\database\tables\MST_MAP_STRUCTURES.h" />
     <ClInclude Include="src\database\tables\MST_NES_PALETTE.h" />
     <ClInclude Include="src\exceptions\error\errorlist_0x00x.h" />
     <ClInclude Include="src\exceptions\error\errorlist_0x01x.h" />

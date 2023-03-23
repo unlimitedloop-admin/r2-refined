@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/01
+//      Last update     : 2023/03/23
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -115,6 +115,22 @@ namespace input {
             if (joybtn_.button_[static_cast<int>(btn_args[i])]) { return false; }
         }
         return true;
+    }
+
+
+
+    Inputkey* GController() {
+        return Inputkey::getInstance();
+    }
+
+
+    __int32 GetKey(JPBTN x) {
+        return Inputkey::getInstance()->getPressJoyBtnKey(x);
+    }
+
+
+    __int32 GetFreeKey(JPBTN x) {
+        return Inputkey::getInstance()->getReleaseJoyBtnKey(x);
     }
 
 }  // namespace input

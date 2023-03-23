@@ -84,6 +84,7 @@
     <ClInclude Include="src\app\matter\BG\sculpture.h" />
     <ClInclude Include="src\app\matter\BG\board_sculpture.h" />
     <ClInclude Include="src\app\matter\BG\tile_loader.h" />
+    <ClInclude Include="src\database\tables\MST_MAP_STRUCTURES.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />

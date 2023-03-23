@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023/03/23
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -137,7 +137,7 @@ namespace input {
         /// </summary>
         /// <param name="btn_num">The button name definition</param>
         /// <returns>Press time of the specified key (number of frames).</returns>
-        __int32 constexpr getPressJoyBtnKey(JPBTN btn_num) const {
+        __int32 getPressJoyBtnKey(JPBTN btn_num) const {
             return joybtn_.button_[static_cast<int>(btn_num)];
         }
 
@@ -146,7 +146,7 @@ namespace input {
         /// </summary>
         /// <param name="btn_num">The button name difinition</param>
         /// <returns>The amount of time the specified key has not been pressed (number of frames).</returns>
-        __int32 constexpr getReleaseJoyBtnKey(JPBTN btn_num) const {
+        __int32 getReleaseJoyBtnKey(JPBTN btn_num) const {
             return joybtn_released_.button_[static_cast<int>(btn_num)];
         }
 
@@ -183,13 +183,13 @@ namespace input {
 
 
     //#define GController Inputkey::getInstance()
-    constexpr auto GController() { return Inputkey::getInstance(); }
+    extern Inputkey* GController();
 
     //#define GetKey Inputkey::getInstance()->getPressJoyBtnKey
-    constexpr auto GetKey(JPBTN x) { return Inputkey::getInstance()->getPressJoyBtnKey(x); }
+    extern __int32 GetKey(JPBTN x);
 
     //#define GetKey Inputkey::getInstance()->getReleaseJoyBtnKey
-    constexpr auto GetFreeKey(JPBTN x) { return Inputkey::getInstance()->getReleaseJoyBtnKey(x); }
+    extern __int32 GetFreeKey(JPBTN x);
 
 }  // namespace input
 
