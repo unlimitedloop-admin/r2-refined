@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/04/01
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -89,6 +89,15 @@ namespace exceptions {
             break;
         case 0x00E800ULL:
             message << "[TileLoader] グラフィックデータの描画処理が失敗しました。";
+            break;
+        case 0x00E900ULL:
+            message << "[AudioLoader] 不正な引数です。";
+            break;
+        case 0x00EA00ULL:
+            message << "[AudioLoader] メモリ上のサウンドデータハンドルの削除処理が失敗しました。";
+            break;
+        case 0x00EB00ULL:
+            message << "[AudioLoader] サウンドデータハンドルの作成が失敗しました。";
             break;
         case 0x00FE00ULL:
             message << "エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/04/01
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -54,7 +54,7 @@ namespace matter {
 
 
 
-        implements::IMatBenefits* ClayDiecast::createClay(std::string files) {
+        implements::IMatBenefits* ClayDiecast::createClay(const std::string files) const {
             SpriteLoader* object = new SpriteLoader(files);
             return object;
         }

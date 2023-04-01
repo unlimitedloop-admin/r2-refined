@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/11
+//      Last update     : 2023/04/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -68,13 +68,13 @@ namespace route {
             /// </summary>
             /// <param name="">Void</param>
             /// <returns>The cursor instance</returns>
-            implements::IComponents* getComponents(void);
+            implements::IComponents* getComponents(void) const;
 
         };
 
 
         
-        inline implements::IComponents* FoundingCursor::getComponents(void) {
+        inline implements::IComponents* FoundingCursor::getComponents(void) const {
             /* Immediately after the program is executed, specify the cursor to be executed first. */
             return new component::A1_launch::LaunchingComponent();
         }

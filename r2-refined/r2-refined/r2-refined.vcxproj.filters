@@ -25,7 +25,7 @@
     <ClCompile Include="src\app\input\inputkey.cc" />
     <ClCompile Include="src\app\sequence\cursor_driver.cc" />
     <ClCompile Include="src\app\component\CX\C0_sample1\sample_component.cc" />
-    <ClCompile Include="src\database\tables\mst_nes_palette.cc" />
+    <ClCompile Include="src\database\tables\request\mst_nes_palette.cc" />
     <ClCompile Include="src\app\component\AX\A1_launch\launching_component.cc" />
     <ClCompile Include="src\app\matter\sprite\sprite_loader.cc" />
     <ClCompile Include="src\app\matter\sprite\clay_diecast.cc" />
@@ -34,6 +34,11 @@
     <ClCompile Include="src\app\matter\BG\mapstruct_loader.cc" />
     <ClCompile Include="src\app\matter\BG\board_sculpture.cc" />
     <ClCompile Include="src\app\matter\BG\tile_loader.cc" />
+    <ClCompile Include="src\app\matter\sound\vinyl_track.cc" />
+    <ClCompile Include="src\app\matter\sound\audio_loader.cc" />
+    <ClCompile Include="src\database\tables\request\trn_apu_channel_enabled.cc" />
+    <ClCompile Include="src\app\matter\sound\audio_equipment.cc" />
+    <ClCompile Include="src\database\views\mst_apu_channels_view.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -85,6 +90,15 @@
     <ClInclude Include="src\app\matter\BG\board_sculpture.h" />
     <ClInclude Include="src\app\matter\BG\tile_loader.h" />
     <ClInclude Include="src\database\tables\MST_MAP_STRUCTURES.h" />
+    <ClInclude Include="src\app\models\echo_benefits.h" />
+    <ClInclude Include="src\app\matter\sound\vinyl.h" />
+    <ClInclude Include="src\app\matter\sound\vinyl_track.h" />
+    <ClInclude Include="src\app\matter\structures\tag_track_channel_p.h" />
+    <ClInclude Include="src\app\matter\sound\audio_loader.h" />
+    <ClInclude Include="src\database\tables\MST_APU_CHANNELS.h" />
+    <ClInclude Include="src\database\tables\TRN_APU_CHANNEL_ENABLED.h" />
+    <ClInclude Include="src\app\matter\sound\audio_equipment.h" />
+    <ClInclude Include="src\database\views\MST_APU_CHANNELS_VIEW.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />

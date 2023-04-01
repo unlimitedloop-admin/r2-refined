@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : sprite_bank.h
+//      File name       : tag_divgraph_p.h
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/13
+//      Last update     : 2023/04/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/

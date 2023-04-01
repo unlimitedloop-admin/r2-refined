@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/23
+//      Last update     : 2023/04/01
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -83,7 +83,7 @@ namespace matter {
             /// </summary>
             /// <param name="">Void</param>
             /// <returns>Page numbers</returns>
-            size_t getAllPage(void);
+            size_t getAllPage(void) const;
 
             /// <summary>
             /// Get binary data in memory (how to specify original array).

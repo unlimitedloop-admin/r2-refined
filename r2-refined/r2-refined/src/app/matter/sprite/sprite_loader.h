@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/13
+//      Last update     : 2023/04/01
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -63,7 +63,7 @@ namespace matter {
             std::vector<int> graphics_;
 
         public:
-            SpriteLoader(std::string filepath);
+            SpriteLoader(const std::string filepath);
             ~SpriteLoader();
 
             /// <summary>
@@ -75,7 +75,7 @@ namespace matter {
             /// <param name="x_size">Size of one tile(width)</param>
             /// <param name="y_size">Size of one tile(height)</param>
             /// <returns>True if loaded into memory successfully, false otherwise</returns>
-            bool Unzip(size_t all_num, size_t x_num, size_t y_num, size_t x_size, size_t y_size) override;
+            bool Unzip(const size_t all_num, const size_t x_num, const size_t y_num, const size_t x_size, const size_t y_size) override;
 
             /// <summary>
             /// Draw sprite data loaded in memory.
@@ -85,7 +85,7 @@ namespace matter {
             /// <param name="t_num">Tile label no. to draw</param>
             /// <param name="transparent">Specify true if the image should be transparent</param>
             /// <returns>True if draw to the screen successfully, false otherwise</returns>
-            bool Use(__int16 x, __int16 y, size_t t_num, bool transparent) const override;
+            bool Use(const __int16 x, const __int16 y, const size_t t_num, const bool transparent) const override;
 
         };
 

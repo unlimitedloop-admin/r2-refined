@@ -37,5 +37,5 @@
 　
 　デヴェロッパーモードで起動するプログラムは、ICursorインタフェースで分岐するような構造で作成する事ができるようになっていますので、
 　app_engine.ccのAppEngineクラスReceptionsメソッドで確認して下さい。
-　またICursorインターフェースは、src=>container=>phantom=>cursor.hで定義されます。
+　またICursorインターフェースは、src=>app=>models=>cursor.hで定義されます。
 

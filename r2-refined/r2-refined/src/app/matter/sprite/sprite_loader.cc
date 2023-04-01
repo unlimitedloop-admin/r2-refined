@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/11
+//      Last update     : 2023/04/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -51,7 +51,7 @@ namespace matter {
 
     namespace sprite {
 
-        SpriteLoader::SpriteLoader(std::string filepath) {
+        SpriteLoader::SpriteLoader(const std::string filepath) {
             graphics_.clear();
             setFile(filepath);
         }
@@ -66,7 +66,7 @@ namespace matter {
         }
 
 
-        bool SpriteLoader::Unzip(size_t all_num, size_t x_num, size_t y_num, size_t x_size, size_t y_size) {
+        bool SpriteLoader::Unzip(const size_t all_num, const size_t x_num, const size_t y_num, const size_t x_size, const size_t y_size) {
             graphics_.resize(static_cast<size_t>(all_num));
             if (-1 == DxLib::LoadDivGraph(getFile().c_str(), all_num, x_num, y_num, x_size, y_size, &graphics_[0])) {
                 setStaticProcessCode(0x00E3B1ULL, STATIC_ERR_DOMINATOR);
@@ -76,7 +76,7 @@ namespace matter {
         }
 
 
-        bool SpriteLoader::Use(__int16 axis_x, __int16 axis_y, size_t t_num, bool transparent) const {
+        bool SpriteLoader::Use(const __int16 axis_x, const __int16 axis_y, const size_t t_num, const bool transparent) const {
             if (t_num > graphics_.size()) { return false; }
             if (-1 == DxLib::DrawGraph(axis_x, axis_y, graphics_[t_num], transparent)) {
                 setStaticProcessCode(0x00E4B1ULL, STATIC_ERR_DOMINATOR);

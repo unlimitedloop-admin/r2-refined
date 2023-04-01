@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/04/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -51,7 +51,7 @@ namespace matter {
 
     namespace BG {
 
-        TileLoader::TileLoader(std::string filepath) {
+        TileLoader::TileLoader(const std::string filepath) {
             graphics_.clear();
             setFile(filepath);
         }
@@ -66,7 +66,7 @@ namespace matter {
         }
 
 
-        bool TileLoader::Unzip(size_t all_num, size_t x_num, size_t y_num, size_t x_size, size_t y_size) {
+        bool TileLoader::Unzip(const size_t all_num, const size_t x_num, const size_t y_num, const size_t x_size, const size_t y_size) {
             graphics_.resize(static_cast<size_t>(all_num));
             if (-1 == DxLib::LoadDivGraph(getFile().c_str(), all_num, x_num, y_num, x_size, y_size, &graphics_[0])) {
                 setStaticProcessCode(0x00E7B1ULL, STATIC_ERR_DOMINATOR);
@@ -76,7 +76,7 @@ namespace matter {
         }
 
 
-        bool TileLoader::Use(__int16 axis_x, __int16 axis_y, size_t t_num, bool transparent) const {
+        bool TileLoader::Use(const __int16 axis_x, const __int16 axis_y, const size_t t_num, const bool transparent) const {
             if (t_num > graphics_.size()) { return false; }
             if (-1 == DxLib::DrawGraph(axis_x, axis_y, graphics_[t_num], transparent)) {
                 setStaticProcessCode(0x00E8B1ULL, STATIC_ERR_DOMINATOR);

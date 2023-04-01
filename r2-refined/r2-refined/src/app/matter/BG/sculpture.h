@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/04/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -62,7 +62,7 @@ namespace matter {
             class Sculpture {
 
             protected:
-                virtual implements::IMatBenefits* createBoard(std::string files) = 0;
+                virtual implements::IMatBenefits* createBoard(const std::string files) const = 0;
 
             public:
                 virtual ~Sculpture() {}
@@ -72,7 +72,7 @@ namespace matter {
                 /// </summary>
                 /// <param name="files">File path of the BG tile data to get</param>
                 /// <returns>Product of BG tile data</returns>
-                virtual implements::IMatBenefits* Create(std::string files) {
+                virtual implements::IMatBenefits* Create(const std::string files) {
                     implements::IMatBenefits* object = createBoard(files);
                     return object;
                 }

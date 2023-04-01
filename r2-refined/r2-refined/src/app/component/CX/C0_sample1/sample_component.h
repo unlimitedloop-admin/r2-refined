@@ -20,11 +20,16 @@
 #define _R2R_APP_COMPONENT_CX_C0_SAMPLE1_SAMPLE_COMPONENT_H_
 
 
+#include <string>
+
+
 #include "src/app/models/components.h"
 #include "src/app/models/radar.h"
 
 #include "src/app/matter/sprite/sprite_bank.h"
 #include "src/app/matter/BG/tile_arrays.h"
+#include "src/app/matter/sound/audio_equipment.h"
+
 
 
 
@@ -68,6 +73,9 @@ namespace component {
 
     private:
         bool abnormality_;
+        matter::sound::AudioEquipment sound_;
+        std::string music_ = "Off";
+        std::string vol_[4] = {"On", "On", "On", "On"};
 
     public:
         SampleComponent3();

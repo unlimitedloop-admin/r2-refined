@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/11
+//      Last update     : 2023/04/01
 //
-//      File version    : 11
+//      File version    : 12
 //
 //
 /**************************************************************/
@@ -56,6 +56,7 @@
 #include "src/app/sequence/cursor_pointer.h"
 #include "src/app/sequence/cursor_simulator.h"
 #include "src/app/sequence/cursor_driver.h"
+#include "src/database/tables/TRN_APU_CHANNEL_ENABLED.h"
 
 
 
@@ -116,7 +117,12 @@ namespace {
         return true;
     }
 
-}  // plain namespace
+
+    void setApplicationConfiguration(void) {
+        DB::TRN_APU_CHANNEL_ENABLED::Insert(5U);   // SQ1, SQ2, TRI, NOI, DPCM (5)
+    }
+
+}  // local scope
 
 
 
@@ -298,6 +304,9 @@ namespace terminal {
             }
             // Apps default key set up.
             if (!input::defaultSetBindingSCon()) { return false; }
+            
+            // Set application config.
+            setApplicationConfiguration();
             (void)writeStatusLog("アプリエンジンの初期化処理を実行しました。");
             return true;
         }

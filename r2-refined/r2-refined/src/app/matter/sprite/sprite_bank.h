@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/13
+//      Last update     : 2023/04/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -58,7 +58,7 @@ namespace matter {
 
 
         /// <summary>
-        /// Management of sprite of texture
+        /// Management of sprite of texture.
         /// </summary>
         class SpriteBank {
 

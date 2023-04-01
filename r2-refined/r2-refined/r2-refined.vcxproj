@@ -91,6 +91,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/source-charset:utf-8 /d1trimfile:"$(SolutionDir)\" %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -111,6 +112,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/source-charset:utf-8 /d1trimfile:"$(SolutionDir)\" %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -131,6 +133,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/source-charset:utf-8 /d1trimfile:"$(SolutionDir)\" %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -151,6 +154,7 @@
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/source-charset:utf-8 /d1trimfile:"$(SolutionDir)\" %(AdditionalOptions)</AdditionalOptions>
+      <ExceptionHandling>Async</ExceptionHandling>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -169,13 +173,18 @@
     <ClCompile Include="src\app\matter\BG\mapstruct_loader.cc" />
     <ClCompile Include="src\app\matter\BG\tile_arrays.cc" />
     <ClCompile Include="src\app\matter\BG\tile_loader.cc" />
+    <ClCompile Include="src\app\matter\sound\audio_equipment.cc" />
+    <ClCompile Include="src\app\matter\sound\audio_loader.cc" />
+    <ClCompile Include="src\app\matter\sound\vinyl_track.cc" />
     <ClCompile Include="src\app\matter\sprite\clay_diecast.cc" />
     <ClCompile Include="src\app\matter\sprite\sprite_bank.cc" />
     <ClCompile Include="src\app\matter\sprite\sprite_loader.cc" />
     <ClCompile Include="src\app\sequence\cursor_driver.cc" />
     <ClCompile Include="src\app\sequence\cursor_pointer.cc" />
     <ClCompile Include="src\app\sequence\cursor_simulator.cc" />
-    <ClCompile Include="src\database\tables\mst_nes_palette.cc" />
+    <ClCompile Include="src\database\tables\request\mst_nes_palette.cc" />
+    <ClCompile Include="src\database\tables\request\trn_apu_channel_enabled.cc" />
+    <ClCompile Include="src\database\views\mst_apu_channels_view.cc" />
     <ClCompile Include="src\exceptions\error\errorlist_0x00x.cc" />
     <ClCompile Include="src\exceptions\error\errorlist_0x01x.cc" />
     <ClCompile Include="src\exceptions\error\errorlist_overlapped.cc" />
@@ -206,13 +215,19 @@
     <ClInclude Include="src\app\matter\BG\sculpture.h" />
     <ClInclude Include="src\app\matter\BG\tile_arrays.h" />
     <ClInclude Include="src\app\matter\BG\tile_loader.h" />
+    <ClInclude Include="src\app\matter\sound\audio_equipment.h" />
+    <ClInclude Include="src\app\matter\sound\audio_loader.h" />
+    <ClInclude Include="src\app\matter\sound\vinyl_track.h" />
+    <ClInclude Include="src\app\matter\sound\vinyl.h" />
     <ClInclude Include="src\app\matter\sprite\clay_diecast.h" />
     <ClInclude Include="src\app\matter\sprite\diecast.h" />
     <ClInclude Include="src\app\matter\sprite\sprite_bank.h" />
     <ClInclude Include="src\app\matter\sprite\sprite_loader.h" />
     <ClInclude Include="src\app\matter\structures\tag_divgraph_p.h" />
+    <ClInclude Include="src\app\matter\structures\tag_track_channel_p.h" />
     <ClInclude Include="src\app\models\components.h" />
     <ClInclude Include="src\app\models\cursor.h" />
+    <ClInclude Include="src\app\models\echo_benefits.h" />
     <ClInclude Include="src\app\models\loader.h" />
     <ClInclude Include="src\app\models\mat_benefits.h" />
     <ClInclude Include="src\app\models\radar.h" />
@@ -221,8 +236,11 @@
     <ClInclude Include="src\app\sequence\cursor_driver.h" />
     <ClInclude Include="src\app\sequence\cursor_pointer.h" />
     <ClInclude Include="src\app\sequence\cursor_simulator.h" />
+    <ClInclude Include="src\database\tables\MST_APU_CHANNELS.h" />
     <ClInclude Include="src\database\tables\MST_MAP_STRUCTURES.h" />
     <ClInclude Include="src\database\tables\MST_NES_PALETTE.h" />
+    <ClInclude Include="src\database\tables\TRN_APU_CHANNEL_ENABLED.h" />
+    <ClInclude Include="src\database\views\MST_APU_CHANNELS_VIEW.h" />
     <ClInclude Include="src\exceptions\error\errorlist_0x00x.h" />
     <ClInclude Include="src\exceptions\error\errorlist_0x01x.h" />
     <ClInclude Include="src\exceptions\error\errorlist_overlapped.h" />

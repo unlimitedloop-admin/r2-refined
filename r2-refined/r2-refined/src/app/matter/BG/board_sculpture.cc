@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/04/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -54,7 +54,7 @@ namespace matter {
 
 
 
-        implements::IMatBenefits* BoardSculpture::createBoard(std::string files) {
+        implements::IMatBenefits* BoardSculpture::createBoard(const std::string files) const {
             TileLoader* object = new TileLoader(files);
             return object;
         }

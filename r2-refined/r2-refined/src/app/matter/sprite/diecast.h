@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/13
+//      Last update     : 2023/04/01
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -62,7 +62,7 @@ namespace matter {
             class Diecast {
 
             protected:
-                virtual implements::IMatBenefits* createClay(std::string files) = 0;
+                virtual implements::IMatBenefits* createClay(const std::string files) const = 0;
 
             public:
                 virtual ~Diecast() {}
@@ -72,7 +72,7 @@ namespace matter {
                 /// </summary>
                 /// <param name="files">File path of the sprite data to get</param>
                 /// <returns>Product of sprite data</returns>
-                virtual implements::IMatBenefits* Create(std::string files) {
+                virtual implements::IMatBenefits* Create(const std::string files) {
                     implements::IMatBenefits* object = createClay(files);
                     return object;
                 }
