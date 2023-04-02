@@ -239,6 +239,7 @@
     <ClInclude Include="src\database\tables\MST_APU_CHANNELS.h" />
     <ClInclude Include="src\database\tables\MST_MAP_STRUCTURES.h" />
     <ClInclude Include="src\database\tables\MST_NES_PALETTE.h" />
+    <ClInclude Include="src\database\tables\MST_XINPUT_TO_KEYBOARDS_DEFAULT_BINDER.h" />
     <ClInclude Include="src\database\tables\TRN_APU_CHANNEL_ENABLED.h" />
     <ClInclude Include="src\database\views\MST_APU_CHANNELS_VIEW.h" />
     <ClInclude Include="src\exceptions\error\errorlist_0x00x.h" />
@@ -249,6 +250,7 @@
     <ClInclude Include="src\forms\boot\kernel.h" />
     <ClInclude Include="src\forms\device\keyboards_in.h" />
     <ClInclude Include="src\forms\terminal\app_engine.h" />
+    <ClInclude Include="src\protocol\configuration.h" />
     <ClInclude Include="src\protocol\env_params.h" />
     <ClInclude Include="src\protocol\evaluation.h" />
     <ClInclude Include="src\protocol\message_box.h" />

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/02
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -131,6 +131,13 @@ namespace matter {
             /// <param name="channel">Target channel</param>
             /// <returns>Volumes</returns>
             uint8_t getVolume(const std::string name, const std::string channel) const;
+
+            /// <summary>
+            /// Stop the ringing sound for all.
+            /// </summary>
+            /// <param name="">Void</param>
+            /// <returns>True if all sounds have stopped, false otherwise.</returns>
+            bool allTrackStop(void) const;
 
         };
 

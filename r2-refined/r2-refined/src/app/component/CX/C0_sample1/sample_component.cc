@@ -16,6 +16,8 @@
 **/
 
 
+
+
 #include "sample_component.h"
 #include "src/traceable/output_logs.h"
 #include "src/database/tables/MST_NES_PALETTE.h"
@@ -104,7 +106,7 @@ namespace component {
     }
 
 
-    SampleComponent3::SampleComponent3() : abnormality_(false) {
+    SampleComponent3::SampleComponent3() : abnormality_(false), track_(0i16) {
         (void)writeStatusLog("サンプルコンポーネント3を開始します。");
         TrackChannelParam params = {
             "assets/5_music/sampleBGM/Pulse1.wav"
@@ -113,7 +115,15 @@ namespace component {
             , "assets/5_music/sampleBGM/Noise.wav"
             , "assets/5_music/sampleBGM/DeltaPCM.wav"
         };
-        sound_.Push("BGM_1", &params);
+        sound_.Push("01", &params);
+        params = {
+            "assets/5_music/sampleBGM2(+DPCM)/Pulse1.wav"
+            , "assets/5_music/sampleBGM2(+DPCM)/Pulse2.wav"
+            , "assets/5_music/sampleBGM2(+DPCM)/Triangle.wav"
+            , "assets/5_music/sampleBGM2(+DPCM)/Noise.wav"
+            , "assets/5_music/sampleBGM2(+DPCM)/DeltaPCM.wav"
+        };
+        sound_.Push("02", &params);
         MST_NES_PALETTE::tr_0x02();
     }
 
@@ -129,64 +139,85 @@ namespace component {
             return MAIN_PROGRAM_EXIT;
         }
 
+
+        if (1 == GetKey(JPBTN::RIGHT)) { track_++; }
+        else if (1 == GetKey(JPBTN::LEFT)) { track_--; }
+        if (track_ % 2) {
+            music_ = "01";
+        }
+        else {
+            music_ = "02";
+        }
+
         if (1 == GetKey(JPBTN::START)) {
-            if (sound_.checkNowPlaying("BGM_1")) {
-                if (!sound_.allChannelStop("BGM_1")) { return false; }
+            if (sound_.checkNowPlaying(music_)) {
+                if (!sound_.allChannelStop(music_)) { return false; }
                 music_ = "Off";
             }
             else {
-                if (!sound_.allChannelGo("BGM_1")) { return false; }
-                music_ = "On";
+                if (!sound_.allTrackStop()) { return false; }
+                if (!sound_.allChannelGo(music_)) { return false; }
             }
         }
 
         if (1 == GetKey(JPBTN::A)) {
-            if (0 == sound_.getVolume("BGM_1", "APU_CH_SQUARE_1")) {
-                if (!sound_.volumeControl("BGM_1", "APU_CH_SQUARE_1", 100)) { return false; }
+            if (0 == sound_.getVolume(music_, "APU_CH_SQUARE_1")) {
+                if (!sound_.volumeControl(music_, "APU_CH_SQUARE_1", 100)) { return false; }
                 vol_[0] = "On";
             }
             else {
-                if (!sound_.volumeControl("BGM_1", "APU_CH_SQUARE_1", 0)) { return false; }
+                if (!sound_.volumeControl(music_, "APU_CH_SQUARE_1", 0)) { return false; }
                 vol_[0] = "Off";
             }
         }
         if (1 == GetKey(JPBTN::B)) {
-            if (0 == sound_.getVolume("BGM_1", "APU_CH_SQUARE_2")) {
-                if (!sound_.volumeControl("BGM_1", "APU_CH_SQUARE_2", 100)) { return false; }
+            if (0 == sound_.getVolume(music_, "APU_CH_SQUARE_2")) {
+                if (!sound_.volumeControl(music_, "APU_CH_SQUARE_2", 100)) { return false; }
                 vol_[1] = "On";
             }
             else {
-                if (!sound_.volumeControl("BGM_1", "APU_CH_SQUARE_2", 0)) { return false; }
+                if (!sound_.volumeControl(music_, "APU_CH_SQUARE_2", 0)) { return false; }
                 vol_[1] = "Off";
             }
         }
         if (1 == GetKey(JPBTN::X)) {
-            if (0 == sound_.getVolume("BGM_1", "APU_CH_TRIANGLE")) {
-                if (!sound_.volumeControl("BGM_1", "APU_CH_TRIANGLE", 100)) { return false; }
+            if (0 == sound_.getVolume(music_, "APU_CH_TRIANGLE")) {
+                if (!sound_.volumeControl(music_, "APU_CH_TRIANGLE", 100)) { return false; }
                 vol_[2] = "On";
             }
             else {
-                if (!sound_.volumeControl("BGM_1", "APU_CH_TRIANGLE", 0)) { return false; }
+                if (!sound_.volumeControl(music_, "APU_CH_TRIANGLE", 0)) { return false; }
                 vol_[2] = "Off";
             }
         }
         if (1 == GetKey(JPBTN::Y)) {
-            if (0 == sound_.getVolume("BGM_1", "APU_CH_NOISE_BG")) {
-                if (!sound_.volumeControl("BGM_1", "APU_CH_NOISE_BG", 100)) { return false; }
+            if (0 == sound_.getVolume(music_, "APU_CH_NOISE_BG")) {
+                if (!sound_.volumeControl(music_, "APU_CH_NOISE_BG", 100)) { return false; }
                 vol_[3] = "On";
             }
             else {
-                if (!sound_.volumeControl("BGM_1", "APU_CH_NOISE_BG", 0)) { return false; }
+                if (!sound_.volumeControl(music_, "APU_CH_NOISE_BG", 0)) { return false; }
                 vol_[3] = "Off";
+            }
+        }
+        if (1 == GetKey(JPBTN::L)) {
+            if (0 == sound_.getVolume(music_, "APU_CH_DELTAPCM")) {
+                if (!sound_.volumeControl(music_, "APU_CH_DELTAPCM", 100)) { return false; }
+                vol_[4] = "On";
+            }
+            else {
+                if (!sound_.volumeControl(music_, "APU_CH_DELTAPCM", 0)) { return false; }
+                vol_[4] = "Off";
             }
         }
 
 
-        DxLib::DrawFormatString(2, 2, DxLib::GetColor(0xFF, 0xFF, 0xFF), "BGM : %s", music_.c_str());
+        DxLib::DrawFormatString(2, 2, DxLib::GetColor(0xFF, 0xFF, 0xFF), "BGM : ＜ %s ＞", ("No." + music_).c_str());
         DxLib::DrawFormatString(2, 22, DxLib::GetColor(0x90, 0xFF, 0xFF), "PULSE 1  ch : %s", vol_[0].c_str());
         DxLib::DrawFormatString(2, 42, DxLib::GetColor(0x90, 0xFF, 0xFF), "PULSE 2  ch : %s", vol_[1].c_str());
         DxLib::DrawFormatString(2, 62, DxLib::GetColor(0x90, 0xFF, 0xFF), "TRIANGLE ch : %s", vol_[2].c_str());
         DxLib::DrawFormatString(2, 82, DxLib::GetColor(0x90, 0xFF, 0xFF), "NOISE    ch : %s", vol_[3].c_str());
+        DxLib::DrawFormatString(2, 102, DxLib::GetColor(0x90, 0xFF, 0xFF), "DELTAPCM ch : %s", vol_[4].c_str());
 
         return true;
     }

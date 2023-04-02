@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/23
+//      Last update     : 2023/04/02
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -42,18 +42,19 @@
 // GENERAL USING HEADER
 #include <DxLib.h>
 // PROJECT USING HEADER
+#include "src/protocol/configuration.h"
 #include "src/protocol/process_code_hard.h"
 #include "src/app/models/signature_object.h"
 
 
 
 /* SOURCES */
-/// Gamepad buttons.
-constexpr unsigned __int16 R2R_G_JOYPADKEY = 16U;
-
-
-
 namespace {
+
+    /* using namespace */
+    using namespace protocol;
+
+
 
     typedef struct tC16Button {
         std::array<__int32, R2R_G_JOYPADKEY> button_;

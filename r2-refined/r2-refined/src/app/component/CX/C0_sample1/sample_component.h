@@ -75,7 +75,8 @@ namespace component {
         bool abnormality_;
         matter::sound::AudioEquipment sound_;
         std::string music_ = "Off";
-        std::string vol_[4] = {"On", "On", "On", "On"};
+        std::string vol_[5] = { "On", "On", "On", "On", "On" };
+        int16_t track_;
 
     public:
         SampleComponent3();

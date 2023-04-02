@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/01
+//      Last update     : 2023/04/02
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -34,15 +34,25 @@
 
 
 /* INCLUDES */
+// C++ SYSTEM HEADER
+#include <array>
 // GENERAL USING HEADER
 #include <DxLib.h>
 // PROJECT USING HEADER
 #include "inputkey.h"
+#include "src/protocol/configuration.h"
+#include "src/database/tables/MST_XINPUT_TO_KEYBOARDS_DEFAULT_BINDER.h"
 
 
 
 /* SOURCES */
 namespace {
+
+    /* using namespace */
+    using namespace protocol;
+
+
+
 
     /// <summary>
     /// A key list containing Z-trigger values, ThumbL and ThumbR as buttons.
@@ -76,7 +86,7 @@ namespace {
 
 namespace input {
 
-    bool setBindingSCon(unsigned __int16 keys[], bool hatsw, bool joypad) {
+    bool setBindingSCon(const std::array<uint16_t, R2R_G_JOYPADKEY> keys, const bool hatsw, const bool joypad) {
         s_con.xinput_enabled = joypad;
         if (!s_con.xinput_enabled) {
             // xi_up to xi_y_button assignment.
@@ -92,7 +102,7 @@ namespace input {
     }
 
 
-    unsigned __int16 getBindingSCon(unsigned __int16 num) {
+    unsigned __int16 getBindingSCon(const unsigned __int16 num) {
         unsigned __int16* ptr = &s_con.xi_up;
         return *(ptr + num);
     }
@@ -104,33 +114,15 @@ namespace input {
 
 
     bool defaultSetBindingSCon(void) {
-        unsigned __int16 key[] = {
-            KEY_INPUT_W             // xi_up
-            , KEY_INPUT_S           // xi_down
-            , KEY_INPUT_A           // xi_left
-            , KEY_INPUT_D           // xi_right
-            , KEY_INPUT_RETURN      // xi_start_button
-            , KEY_INPUT_SPACE       // xi_back_button
-            , KEY_INPUT_F           // xi_ls_stick
-            , KEY_INPUT_H           // xi_rs_stick
-            , KEY_INPUT_1           // xi_l_button
-            , KEY_INPUT_0           // xi_r_button
-            , KEY_INPUT_5           // xi_lz_button
-            , KEY_INPUT_7           // xi_rz_button
-            , KEY_INPUT_M           // xi_a_button
-            , KEY_INPUT_N           // xi_b_button
-            , KEY_INPUT_L           // xi_x_button
-            , KEY_INPUT_K           // xi_y_button
-        };
         // Only do keyboard key bindings when no gamepad is connected.
         if (GetJoypadNum()) {
-            if (!setBindingSCon(0, true, true)) {
+            if (!setBindingSCon({}, true, true)) {
                 setStaticProcessCode(0x001DC1ULL, STATIC_FULL_CD);
                 return false;
             }
         }
         else {
-            if (!setBindingSCon(key, true, false)) {
+            if (!setBindingSCon(DB::MST_XINPUT_TO_KEYBOARDS_DEFAULT_BINDER::getDefaultBindKeyArray(), true, false)) {
                 setStaticProcessCode(0x001DC1ULL, STATIC_FULL_CD);
                 return false;
             }

@@ -99,6 +99,8 @@
     <ClInclude Include="src\database\tables\TRN_APU_CHANNEL_ENABLED.h" />
     <ClInclude Include="src\app\matter\sound\audio_equipment.h" />
     <ClInclude Include="src\database\views\MST_APU_CHANNELS_VIEW.h" />
+    <ClInclude Include="src\database\tables\MST_XINPUT_TO_KEYBOARDS_DEFAULT_BINDER.h" />
+    <ClInclude Include="src\protocol\configuration.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />

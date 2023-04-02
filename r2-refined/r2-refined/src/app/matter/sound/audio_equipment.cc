@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/02
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -128,6 +128,14 @@ namespace matter {
             if (auto itr = objects_.find(name); itr != end(objects_)) {
                 return itr->second->getLouder(DB::APU_CHANNELS::Rows(channel));
             }
+        }
+
+
+        bool AudioEquipment::allTrackStop(void) const {
+            for (const auto& v : objects_) {
+                v.second->Stop(DB::APU_CHANNELS_VIEW::allApuChannel());
+            }
+            return true;
         }
 
     }  // namespace sound
