@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -63,7 +63,7 @@ namespace matter {
             std::vector<int> graphics_;
 
         public:
-            SpriteLoader(const std::string filepath);
+            SpriteLoader(const std::wstring filepath);
             ~SpriteLoader();
 
             /// <summary>

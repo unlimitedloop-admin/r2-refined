@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -76,7 +76,7 @@ namespace matter {
             /// <param name="filepath">File path of the binary file</param>
             /// <param name="pages">Specify how many pages to import, with 0x100 as one page</param>
             /// <returns>True is fetched successfully</returns>
-            bool Loading(const std::string filepath, const size_t pages);
+            bool Loading(const std::wstring filepath, const size_t pages);
 
             /// <summary>
             /// Get the set number of pages.

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/08
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -50,7 +50,7 @@ namespace boot {
     /// </summary>
     /// <param name="cmdline">Command line arguments</param>
     /// <returns>True or false, functions succeeded or failed</returns>
-    bool Systems(LPSTR cmdline);
+    bool Systems(LPTSTR cmdline);
 
 }  // namespace boot
 

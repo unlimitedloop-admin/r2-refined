@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -68,7 +68,7 @@ namespace exceptions {
         /// <param name="unsigned __int64">Error codes</param>
         /// <param name="LogClass">Log levels</param>
         /// <returns>Concrete error statements</returns>
-        std::string Minor(unsigned __int64, LogClass) override;
+        std::wstring Minor(unsigned __int64, LogClass) override;
     };
 
 }  // namespace exceptions

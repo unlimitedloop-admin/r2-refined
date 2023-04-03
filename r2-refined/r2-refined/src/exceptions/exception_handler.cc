@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -58,7 +58,7 @@ namespace exceptions {
 
     ExceptionHandler::ExceptionHandler() {
         creature_ = nullptr;
-        msg_ = "";
+        msg_ = L"";
     }
 
 
@@ -124,16 +124,16 @@ namespace exceptions {
             creature_ = new ErrorList0x01x;
             msg_ = creature_->Major(error_code, level);
         }
-        if (!msg_.empty()) { MessageBox(xg_hWnd, msg_.c_str(), "エラー通知", MB_OK); }
+        if (!msg_.empty()) { MessageBox(xg_hWnd, msg_.c_str(), L"エラー通知", MB_OK); }
 
         if (!xg_nMsg.empty()) {
-            (void)writeErrorLog(xg_nMsg, "NATIVE MSG", level);     // Go output error log.
+            (void)writeErrorLog(xg_nMsg, L"NATIVE MSG", level);     // Go output error log.
             xg_nMsg.clear();
         }
         // If a system exception message is received, print that message.
         if (!xg_exChar.empty()) {
-            MessageBox(xg_hWnd, xg_exChar.c_str(), "例外詳細", MB_OK);
-            (void)writeErrorLog(xg_exChar, "EXCEPTION TRACEABILITY", level);     // Go output error log.
+            MessageBox(xg_hWnd, xg_exChar.c_str(), L"例外詳細", MB_OK);
+            (void)writeErrorLog(xg_exChar, L"EXCEPTION TRACEABILITY", level);     // Go output error log.
             xg_exChar.clear();
         }
         return setStaticBindingFailureFlag(abend);  // The flag conversion for abend bookmarks.

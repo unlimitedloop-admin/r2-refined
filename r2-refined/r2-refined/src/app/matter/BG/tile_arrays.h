@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -76,7 +76,7 @@ namespace matter {
             /// <param name="bin_filepath">Filepath</param>
             /// <param name="pages">File capacity in units of 0x100</param>
             /// <returns>True if successfully loaded into memory</returns>
-            bool loadStructure(const std::string bin_filepath, const size_t pages);
+            bool loadStructure(const std::wstring bin_filepath, const size_t pages);
 
             /// <summary>
             /// Import BG tile data.
@@ -84,7 +84,7 @@ namespace matter {
             /// <param name="filepath">Filepath</param>
             /// <param name="params">Split options</param>
             /// <returns>True if successfully loaded into memory</returns>
-            bool loadTexture(const std::string filepath, const LPDivGraphParam params);
+            bool loadTexture(const std::wstring filepath, const LPDivGraphParam params);
             
             /// <summary>
             /// BG data read in memory is mapped to VRAM and loaded.

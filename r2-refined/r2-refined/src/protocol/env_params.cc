@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/17
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -43,6 +43,7 @@
 #include "src/exceptions/exception_handler.h"
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/xglobals.h"
+#include "src/util/conv/converting.h"           /* UTILITY MODULES */
 
 
 
@@ -50,7 +51,7 @@
 namespace {
 
     // This map contains environment variable values and labels.
-    std::map<std::string, std::string> env_params;
+    std::map<std::wstring, std::wstring> env_params;
 
 }  // plain namespace
 
@@ -58,17 +59,17 @@ namespace {
 
 namespace protocol {
 
-    __int8 loadParameterFromEnv(const char* file_path) {
-        const auto kSymbols = '$';
+    __int8 loadParameterFromEnv(const wchar_t* file_path) {
+        const auto kSymbols = L'$';
         try {
-            std::string str_key, str_value;
-            std::ifstream fs(file_path);
+            std::wstring str_key, str_value;
+            std::wifstream fs(file_path);
             if (!fs) return 1;
 
             while (std::getline(fs, str_key)) {
                 if (kSymbols == str_key[0]) {
-                    std::stringstream ss{ str_key };
-                    std::getline(ss, str_key, ' ');
+                    std::wstringstream ss{ str_key };
+                    std::getline(ss, str_key, L' ');
                     std::getline(ss, str_value);
                     env_params[str_key] = str_value;
                 }
@@ -76,15 +77,15 @@ namespace protocol {
             return 0;
         }
         catch (const std::exception& e) {
-            xg_exChar = e.what();
-            NATIVE_MSG("#Exception_desc: %s", xg_exChar.c_str());
+            xg_exChar = CHAR_TO_LPCWSTR(e.what());
+            NATIVE_MSG(L"#Exception_desc: %s", xg_exChar.c_str());
             setStaticProcessCode(0x0001C1ULL, STATIC_ERR_DOMINATOR);
             return -1;
         }
     }
 
 
-    bool getParameter(const char* label, std::string* byref_args) {
+    bool getParameter(const wchar_t* label, std::wstring* byref_args) {
         auto itr = env_params.find(label);
         if (itr != env_params.end()) {
             *byref_args = env_params[label];

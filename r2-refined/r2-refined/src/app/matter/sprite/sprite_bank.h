@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -66,7 +66,7 @@ namespace matter {
             /// <summary>
             /// Sprite bank object.
             /// </summary>
-            std::map<std::string, implements::IMatBenefits*> objects_;
+            std::map<std::wstring, implements::IMatBenefits*> objects_;
 
         public:
             SpriteBank();
@@ -80,7 +80,7 @@ namespace matter {
             /// <param name="filepath">Filepath to import</param>
             /// <param name="params">Split options</param>
             /// <returns>True if successfully loaded into memory</returns>
-            bool Push(const std::string name, const std::string filepath, const LPDivGraphParam params);
+            bool Push(const std::wstring name, const std::wstring filepath, const LPDivGraphParam params);
 
             /// <summary>
             /// Draw the loaded sprite image to the screen.
@@ -91,7 +91,7 @@ namespace matter {
             /// <param name="y">The Y coordinate position of the screen to draw</param>
             /// <param name="transparent">Whether the rendered image should be transparent</param>
             /// <returns>True if successfully drawn to the window</returns>
-            bool Draw(const std::string name, const size_t tile_num, const __int16 x, const __int16 y, const bool transparent) const;
+            bool Draw(const std::wstring name, const size_t tile_num, const __int16 x, const __int16 y, const bool transparent) const;
 
         };
 

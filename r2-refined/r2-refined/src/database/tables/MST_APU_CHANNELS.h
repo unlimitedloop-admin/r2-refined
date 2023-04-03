@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -51,7 +51,7 @@ namespace {
     /// CREATE TABLE MST_APU_CHANNELS.
     /// </summary>
     struct tagMSTApuChannels {
-        std::string name;
+        std::wstring name;
         uint8_t value;
     };
 
@@ -59,11 +59,11 @@ namespace {
     /// INSERT INTO MST_APU_CHANNELS.
     /// </summary>
     const std::vector<tagMSTApuChannels> MST_APU_CHANNELS = {
-        {"APU_CH_SQUARE_1", 1U},
-        {"APU_CH_SQUARE_2", 2U},
-        {"APU_CH_TRIANGLE", 4U},
-        {"APU_CH_NOISE_BG", 8U},
-        {"APU_CH_DELTAPCM", 16U}
+        {L"APU_CH_SQUARE_1", 1U},
+        {L"APU_CH_SQUARE_2", 2U},
+        {L"APU_CH_TRIANGLE", 4U},
+        {L"APU_CH_NOISE_BG", 8U},
+        {L"APU_CH_DELTAPCM", 16U}
     };
 
 }  // local scope
@@ -89,7 +89,7 @@ namespace DB {
         /// </summary>
         /// <param name="name">The name of the object to retrieve</param>
         /// <returns></returns>
-        inline uint8_t selectValue(const std::string name) {
+        inline uint8_t selectValue(const std::wstring name) {
             for (const auto& v : MST_APU_CHANNELS) {
                 if (name == v.name) { return v.value; }
             }
@@ -97,7 +97,7 @@ namespace DB {
         }
 
 
-        inline size_t Rows(const std::string name) {
+        inline size_t Rows(const std::wstring name) {
             for (const auto& v : MST_APU_CHANNELS) {
                 if (name == v.name) { return &v - &MST_APU_CHANNELS[0]; }
             }

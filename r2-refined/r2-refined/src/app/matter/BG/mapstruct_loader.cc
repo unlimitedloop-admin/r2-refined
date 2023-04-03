@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -46,6 +46,7 @@
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/xglobals.h"
 #include "src/database/tables/MST_MAP_STRUCTURES.h"
+#include "src/util/conv/converting.h"           /* UTILITY MODULES */
 
 
 
@@ -60,11 +61,11 @@ namespace matter {
         }
 
 
-        bool MapstructLoader::Loading(const std::string filepath, const size_t pages) {
+        bool MapstructLoader::Loading(const std::wstring filepath, const size_t pages) {
             try {
                 if (std::ifstream dat(filepath, std::ios::in | std::ios::binary); dat.fail()) {
                     setStaticProcessCode(0x00E5F1ULL, STATIC_ERR_DOMINATOR);
-                    NATIVE_MSG("#Bad tried file open: %s", filepath.c_str());
+                    NATIVE_MSG(L"#Bad tried file open: %s", filepath.c_str());
                     return false;
                 }
                 else {
@@ -75,7 +76,7 @@ namespace matter {
                 }
             }
             catch (std::exception& e) {
-                xg_exChar = e.what();
+                xg_exChar = CHAR_TO_LPCWSTR(e.what());
                 setStaticProcessCode(0x0000F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/08
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -50,7 +50,7 @@
 /// <param name="lpszCmdLine">Unicode string command line arguments</param>
 /// <param name="nCmdShow">A flag that says whether the main application window will be minimized, maximized, or shown normally</param>
 /// <returns>Argument values for exit</returns>
-INT APIENTRY WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpszCmdLine, _In_ int nCmdShow) {
+INT APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPTSTR lpszCmdLine, _In_ int nCmdShow) {
 
     if (!boot::Systems(lpszCmdLine)) { return EXIT_FAILURE; }
 

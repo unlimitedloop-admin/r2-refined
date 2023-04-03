@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/20
+//      Last update     : 2023/04/03
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -58,5 +58,5 @@ HINSTANCE       xg_hInstance = NULL;
 WNDPROC         xg_DxLibWnd = NULL;
 
 
-std::string     xg_exChar = "";
-std::string     xg_nMsg = "";
+std::wstring     xg_exChar = L"";
+std::wstring     xg_nMsg = L"";

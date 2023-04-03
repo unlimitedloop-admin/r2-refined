@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -56,7 +56,7 @@ namespace matter {
     namespace sound {
 
         AudioLoader::AudioLoader(const uint8_t size, const LPTrackChannelParam files) : Loader(size) {
-            std::string* ref = &files->square1;
+            std::wstring* ref = &files->square1;
             for (auto i = 0; i < size; ++i) {
                 this->setFile(*(ref + i), i);
             }
@@ -74,7 +74,7 @@ namespace matter {
 
         bool AudioLoader::Unzip(const uint8_t channels) {
             if (32U <= channels) {
-                NATIVE_MSG("#Exception_desc: channels => %d", channels);
+                NATIVE_MSG(L"#Exception_desc: channels => %d", channels);
                 setStaticProcessCode(0x00E9F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }
@@ -96,7 +96,7 @@ namespace matter {
 
         bool AudioLoader::Play(const uint8_t channel, const bool rewind) const {
             if (16U < channel) {
-                NATIVE_MSG("#Exception_desc: channels => %d", channel);
+                NATIVE_MSG(L"#Exception_desc: channels => %d", channel);
                 setStaticProcessCode(0x00E9F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }
@@ -113,7 +113,7 @@ namespace matter {
 
         bool AudioLoader::Stop(const uint8_t channels) const {
             if (32U <= channels) {
-                NATIVE_MSG("#Exception_desc: channels => %d", channels);
+                NATIVE_MSG(L"#Exception_desc: channels => %d", channels);
                 setStaticProcessCode(0x00E9F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }
@@ -130,7 +130,7 @@ namespace matter {
 
         bool AudioLoader::Del(const uint8_t channels) const {
             if (32U <= channels) {
-                NATIVE_MSG("#Exception_desc: channels => %d", channels);
+                NATIVE_MSG(L"#Exception_desc: channels => %d", channels);
                 setStaticProcessCode(0x00E9F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }
@@ -147,7 +147,7 @@ namespace matter {
 
         bool AudioLoader::changeVolume(const size_t channel, const size_t volume) {
             if (16U < channel) {
-                NATIVE_MSG("#Exception_desc: channels => %d", channel);
+                NATIVE_MSG(L"#Exception_desc: channels => %d", channel);
                 setStaticProcessCode(0x00E9F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }
@@ -160,7 +160,7 @@ namespace matter {
         // HACK : This method will be deleted. The score settings shouldn't be changed while the application is running, they are configuration settings and should be normalized by the database.
         bool AudioLoader::setMusicNotation(const uint8_t channel, const size_t start_point, const size_t end_point, const size_t DS_point) {
             if (16U < channel) {
-                NATIVE_MSG("#Exception_desc: channels => %d", channel);
+                NATIVE_MSG(L"#Exception_desc: channels => %d", channel);
                 setStaticProcessCode(0x00E9F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }
@@ -174,7 +174,7 @@ namespace matter {
 
         bool AudioLoader::checkNowPlaying(const uint8_t channels) const {
             if (32U <= channels) {
-                NATIVE_MSG("#Exception_desc: channels => %d", channels);
+                NATIVE_MSG(L"#Exception_desc: channels => %d", channels);
                 setStaticProcessCode(0x00E9F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }

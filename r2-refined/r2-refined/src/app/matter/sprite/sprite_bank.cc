@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -69,7 +69,7 @@ namespace matter {
         }
 
 
-        bool SpriteBank::Push(const std::string name, const std::string filepath, const LPDivGraphParam params) {
+        bool SpriteBank::Push(const std::wstring name, const std::wstring filepath, const LPDivGraphParam params) {
             extends::Diecast* factory = new ClayDiecast();
             objects_[name] = factory->Create(filepath);
             if (!objects_[name]->Unzip(params->all_num, params->x_num, params->y_num, params->x_size, params->y_size)) { return false; }
@@ -78,7 +78,7 @@ namespace matter {
         }
 
 
-        bool SpriteBank::Draw(const std::string name, const size_t tile_num, const __int16 x, const __int16 y, const bool transparent) const {
+        bool SpriteBank::Draw(const std::wstring name, const size_t tile_num, const __int16 x, const __int16 y, const bool transparent) const {
             if (auto itr = objects_.find(name); itr != end(objects_)) {
                 return itr->second->Use(x, y, tile_num, transparent);
             }

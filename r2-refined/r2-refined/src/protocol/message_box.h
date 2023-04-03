@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -62,7 +62,7 @@ namespace protocol {
     /// Shows a message box.
     /// </summary>
     /// <param name="message">An array of fixed strings</param>
-    void showMessageBox(std::string message);
+    void showMessageBox(std::wstring message);
 
 
     /// <summary>
@@ -72,12 +72,12 @@ namespace protocol {
     /// <param name="format">Format specifier strings</param>
     /// <param name="...args">Any datas...</param>
     template <typename ... Args>
-    void showMessageBox(const char* format, Args const & ... args) {
-        char cstr[1024]{};
-        std::string str;
-        if (0 <= snprintf(cstr, std::size(cstr), format, args ...)) {
-            if (getParameter("$MESSAGE_BOX_LABELS", &str)) {
-                MessageBox(xg_hWnd, CHAR_TO_LPCSTR(cstr), str.c_str(), MB_OK);
+    void showMessageBox(const wchar_t* format, Args const & ... args) {
+        wchar_t cstr[1024]{};
+        std::wstring str;
+        if (0 <= swprintf(cstr, std::size(cstr), format, args ...)) {
+            if (getParameter(L"$MESSAGE_BOX_LABELS", &str)) {
+                MessageBox(xg_hWnd, WCHAR_TO_LPCWSTR(cstr), str.c_str(), MB_OK);
             }
         }
     }
@@ -90,12 +90,12 @@ namespace protocol {
     /// <param name="format">Format specifier strings</param>
     /// <param name="...args">Any datas...</param>
     template <typename ... Args>
-    void showMessageBox(std::string format, Args const & ... args) {
-        char cstr[1024]{};
-        std::string str;
+    void showMessageBox(std::wstring format, Args const & ... args) {
+        wchar_t cstr[1024]{};
+        std::wstring str;
         if (0 <= snprintf(cstr, std::size(cstr), format.c_str(), args ...)) {
-            if (getParameter("$MESSAGE_BOX_LABELS", &str)) {
-                MessageBox(xg_hWnd, CHAR_TO_LPCSTR(cstr), str.c_str(), MB_OK);
+            if (getParameter(L"$MESSAGE_BOX_LABELS", &str)) {
+                MessageBox(xg_hWnd, WCHAR_TO_LPCWSTR(cstr), str.c_str(), MB_OK);
             }
         }
     }

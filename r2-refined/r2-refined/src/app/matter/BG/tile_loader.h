@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -63,7 +63,7 @@ namespace matter {
             std::vector<int> graphics_;
 
         public:
-            TileLoader(const std::string filepath);
+            TileLoader(const std::wstring filepath);
             ~TileLoader();
 
             /// <summary>

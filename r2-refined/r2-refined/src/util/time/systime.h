@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/11
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -50,7 +50,7 @@ namespace util_time {
     /// </summary>
     /// <param name="byref">A string-type reference address</param>
     /// <param name="format">Format YMD format</param>
-    void getCurrentDateTime(std::string* byref, const std::string format);
+    void getCurrentDateTime(std::wstring* byref, const std::wstring format);
 
 }  // namespace util_time
 

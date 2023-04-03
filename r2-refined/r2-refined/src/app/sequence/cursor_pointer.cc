@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/11
+//      Last update     : 2023/04/03
 //
-//      File version    : 7
+//      File version    : 8
 //
 //
 /**************************************************************/
@@ -62,7 +62,7 @@ namespace sequence {
 
 
     CursorPointer::CursorPointer() {
-        (void)writeStatusLog("ゲームプログラムの運転を開始しました。");
+        (void)writeStatusLog(L"ゲームプログラムの運転を開始しました。");
         region::FoundingCursor obj_;
         container_ = obj_.getComponents();
     }
@@ -74,7 +74,7 @@ namespace sequence {
             container_ = nullptr;
         }
         MST_NES_PALETTE::tr_0x0F();
-        (void)writeStatusLog("ゲームプログラムの運転を停止しました。");
+        (void)writeStatusLog(L"ゲームプログラムの運転を停止しました。");
     }
 
 

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -58,8 +58,8 @@ namespace exceptions {
     class Throws {
     public:
         virtual ~Throws() {}
-        virtual std::string Major(unsigned __int64, LogClass) = 0;  // Identify error codes with great discretion.
-        virtual std::string Minor(unsigned __int64, LogClass) = 0;  // Determine the error code with more discretion.
+        virtual std::wstring Major(unsigned __int64, LogClass) = 0;  // Identify error codes with great discretion.
+        virtual std::wstring Minor(unsigned __int64, LogClass) = 0;  // Determine the error code with more discretion.
     };
 
 }  // namespace exceptions

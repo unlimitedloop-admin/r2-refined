@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/09
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -50,7 +50,7 @@ namespace protocol {
     /// </summary>
     /// <param name="file_path">Environment file path</param>
     /// <returns>Return zero if successful, others fails</returns>
-    __int8 loadParameterFromEnv(const char* file_path = ".env");
+    __int8 loadParameterFromEnv(const wchar_t* file_path = L".env");
 
     /// <summary>
     /// Gets the environment variable with the specified variable label.
@@ -58,7 +58,7 @@ namespace protocol {
     /// <param name="label">Variable labels</param>
     /// <param name="byref_args">A reference argument to store the variable</param>
     /// <returns>The return value will be true if the value is stored in the reference pointer, others false</returns>
-    bool getParameter(const char* label, std::string* byref_args);
+    bool getParameter(const wchar_t* label, std::wstring* byref_args);
 
     /// <summary>
     /// Check if environment variable exists.

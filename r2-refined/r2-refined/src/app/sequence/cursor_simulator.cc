@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/11
+//      Last update     : 2023/04/03
 //
-//      File version    : 6
+//      File version    : 7
 //
 //
 /**************************************************************/
@@ -58,7 +58,7 @@ namespace sequence {
 
 
     CursorSimulator::CursorSimulator() {
-        (void)writeStatusLog("ゲームプログラムの運転を開始しました。[DEVELOPMENT MODE IS ENABLED]");
+        (void)writeStatusLog(L"ゲームプログラムの運転を開始しました。[DEVELOPMENT MODE IS ENABLED]");
         container_ = nullptr;
     }
 

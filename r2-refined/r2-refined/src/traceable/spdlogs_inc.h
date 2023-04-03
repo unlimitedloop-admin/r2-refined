@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/08
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -57,7 +57,7 @@ namespace traceable {
     /// <param name="body">Log contents</param>
     /// <param name="level">Log levels with LogClass</param>
     /// <returns>True or false, functions succeeded or failed</returns>
-    bool doOutputSpdlog(std::string path, std::string title, std::string body, LogClass level);
+    bool doOutputSpdlog(std::wstring path, std::string title, std::wstring body, LogClass level);
 
 }  // namespace traceable
 

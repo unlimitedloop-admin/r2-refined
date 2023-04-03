@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -47,11 +47,11 @@ namespace matter {
 
     typedef struct tagTrackChannelParam {
     public:
-        std::string square1;
-        std::string square2;
-        std::string triangle;
-        std::string noise;
-        std::string DPCM;
+        std::wstring square1;
+        std::wstring square2;
+        std::wstring triangle;
+        std::wstring noise;
+        std::wstring DPCM;
     } TrackChannelParam, * LPTrackChannelParam;
 
 }  // namespace matter

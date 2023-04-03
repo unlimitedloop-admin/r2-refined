@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -54,53 +54,53 @@ namespace exceptions {
 
 
 
-    std::string ErrorListOverlapped::Major(unsigned __int64 error_code, LogClass level) {
-        std::ostringstream message;
-        const std::string str_crlf = "\r\n";
-        message << "発生したエラーコードは：[" << "0x" << std::setw(6) << std::hex << std::uppercase << std::setfill('0') << error_code << "] です。";
-        (void)writeErrorLog(message.str(), "エラーコード");
-        message.str(""); message.clear();
+    std::wstring ErrorListOverlapped::Major(unsigned __int64 error_code, LogClass level) {
+        std::wostringstream message;
+        const std::wstring str_crlf = L"\r\n";
+        message << L"発生したエラーコードは：[" << L"0x" << std::setw(6) << std::hex << std::uppercase << std::setfill(L'0') << error_code << L"] です。";
+        (void)writeErrorLog(message.str(), L"エラーコード");
+        message.str(L""); message.clear();
 
         // This switch statement includes some commonly-defined error codes.
         switch (error_code & 0x00FF00ULL) {
         case 0x00E000ULL:
-            message << "GetHitKeyStateAll関数が失敗しました。";
+            message << L"GetHitKeyStateAll関数が失敗しました。";
             break;
         case 0x00E100ULL:
-            message << "キー配列番号が異常値を示しました。詳細は以下を参照して下さい。";
+            message << L"キー配列番号が異常値を示しました。詳細は以下を参照して下さい。";
             break;
         case 0x00E200ULL:
-            message << "[SpriteLoader] メモリ上のグラフィックの削除処理が失敗しました。";
+            message << L"[SpriteLoader] メモリ上のグラフィックの削除処理が失敗しました。";
             break;
         case 0x00E300ULL:
-            message << "[SpriteLoader] グラフィックデータのメモリへの展開ができませんでした。";
+            message << L"[SpriteLoader] グラフィックデータのメモリへの展開ができませんでした。";
             break;
         case 0x00E400ULL:
-            message << "[SpriteLoader] グラフィックデータの描画処理が失敗しました。";
+            message << L"[SpriteLoader] グラフィックデータの描画処理が失敗しました。";
             break;
         case 0x00E500ULL:
-            message << "[MapstructLoader] バイナリデータのオープンに失敗しました。";
+            message << L"[MapstructLoader] バイナリデータのオープンに失敗しました。";
             break;
         case 0x00E600ULL:
-            message << "[TileLoader] メモリ上のグラフィックの削除処理が失敗しました。";
+            message << L"[TileLoader] メモリ上のグラフィックの削除処理が失敗しました。";
             break;
         case 0x00E700ULL:
-            message << "[TileLoader] グラフィックデータのメモリへの展開ができませんでした。";
+            message << L"[TileLoader] グラフィックデータのメモリへの展開ができませんでした。";
             break;
         case 0x00E800ULL:
-            message << "[TileLoader] グラフィックデータの描画処理が失敗しました。";
+            message << L"[TileLoader] グラフィックデータの描画処理が失敗しました。";
             break;
         case 0x00E900ULL:
-            message << "[AudioLoader] 不正な引数です。";
+            message << L"[AudioLoader] 不正な引数です。";
             break;
         case 0x00EA00ULL:
-            message << "[AudioLoader] メモリ上のサウンドデータハンドルの削除処理が失敗しました。";
+            message << L"[AudioLoader] メモリ上のサウンドデータハンドルの削除処理が失敗しました。";
             break;
         case 0x00EB00ULL:
-            message << "[AudioLoader] サウンドデータハンドルの作成が失敗しました。";
+            message << L"[AudioLoader] サウンドデータハンドルの作成が失敗しました。";
             break;
         case 0x00FE00ULL:
-            message << "エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";
+            message << L"エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";
             // UNRESOLVED : It seems that character arrays that are only accepted in UTF-8 codepages can no longer be sent to ostringstream. (C++20)
             //message << u8"エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";  // damn :(
             break;
@@ -109,8 +109,8 @@ namespace exceptions {
             break;
         }
 
-        (void)writeErrorLog(message.str(), "エラーログ", level);     // Go output error log.
-        message << str_crlf << "ご迷惑をお掛けし申し訳ございません。";
+        (void)writeErrorLog(message.str(), L"エラーログ", level);     // Go output error log.
+        message << str_crlf << L"ご迷惑をお掛けし申し訳ございません。";
         return message.str();
     }
 

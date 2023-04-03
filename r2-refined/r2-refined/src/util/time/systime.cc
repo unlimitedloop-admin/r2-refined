@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/11
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -48,91 +48,91 @@
 /* SOURCES */
 namespace util_time {
 
-    void getCurrentDateTime(std::string* byref, const std::string format) {
-        std::string str = format;
+    void getCurrentDateTime(std::wstring* byref, const std::wstring format) {
+        std::wstring str = format;
         SYSTEMTIME sys;
         GetLocalTime(&sys);
         size_t sz;
-        std::string tms;
-        std::stringstream ss;
+        std::wstring tms;
+        std::wstringstream ss;
 
         // Formatting of Year.
-        if (-1 != (sz = str.find("YYYY"))) {
-            str.replace(sz, 4, std::to_string(sys.wYear));
+        if (-1 != (sz = str.find(L"YYYY"))) {
+            str.replace(sz, 4, std::to_wstring(sys.wYear));
         }
-        else if (-1 != (sz = str.find("YY"))) {
-            tms = std::to_string(sys.wYear);
+        else if (-1 != (sz = str.find(L"YY"))) {
+            tms = std::to_wstring(sys.wYear);
             tms.erase(tms.begin(), tms.begin() + 2);
             str.replace(sz, 2, tms);
         }
 
         // Formatting of Month.
-        if (-1 != (sz = str.find("MM"))) {
-            ss << std::setfill('0') << std::setw(2) << std::to_string(sys.wMonth);
+        if (-1 != (sz = str.find(L"MM"))) {
+            ss << std::setfill(L'0') << std::setw(2) << std::to_wstring(sys.wMonth);
             str.replace(sz, 2, ss.str());
-            ss.str("");
-            ss.clear(std::stringstream::goodbit);
+            ss.str(L"");
+            ss.clear(std::wstringstream::goodbit);
         }
-        else if (-1 != (sz = str.find("M"))) {
-            str.replace(sz, 1, std::to_string(sys.wMonth));
+        else if (-1 != (sz = str.find(L"M"))) {
+            str.replace(sz, 1, std::to_wstring(sys.wMonth));
         }
 
         // Formatting of Day.
-        if (-1 != (sz = str.find("DD"))) {
-            ss << std::setfill('0') << std::setw(2) << std::to_string(sys.wDay);
+        if (-1 != (sz = str.find(L"DD"))) {
+            ss << std::setfill(L'0') << std::setw(2) << std::to_wstring(sys.wDay);
             str.replace(sz, 2, ss.str());
-            ss.str("");
-            ss.clear(std::stringstream::goodbit);
+            ss.str(L"");
+            ss.clear(std::wstringstream::goodbit);
         }
-        else if (-1 != (sz = str.find("D"))) {
-            str.replace(sz, 1, std::to_string(sys.wDay));
+        else if (-1 != (sz = str.find(L"D"))) {
+            str.replace(sz, 1, std::to_wstring(sys.wDay));
         }
 
         // Formatting of Hour.
-        if (-1 != (sz = str.find("hh"))) {
-            ss << std::setfill('0') << std::setw(2) << std::to_string(sys.wHour);
+        if (-1 != (sz = str.find(L"hh"))) {
+            ss << std::setfill(L'0') << std::setw(2) << std::to_wstring(sys.wHour);
             str.replace(sz, 2, ss.str());
-            ss.str("");
-            ss.clear(std::stringstream::goodbit);
+            ss.str(L"");
+            ss.clear(std::wstringstream::goodbit);
         }
-        else if (-1 != (sz = str.find("h"))) {
-            str.replace(sz, 1, std::to_string(sys.wHour));
+        else if (-1 != (sz = str.find(L"h"))) {
+            str.replace(sz, 1, std::to_wstring(sys.wHour));
         }
 
         // Formatting of Minute.
-        if (-1 != (sz = str.find("mm"))) {
-            ss << std::setfill('0') << std::setw(2) << std::to_string(sys.wMinute);
+        if (-1 != (sz = str.find(L"mm"))) {
+            ss << std::setfill(L'0') << std::setw(2) << std::to_wstring(sys.wMinute);
             str.replace(sz, 2, ss.str());
-            ss.str("");
-            ss.clear(std::stringstream::goodbit);
+            ss.str(L"");
+            ss.clear(std::wstringstream::goodbit);
         }
-        else if (-1 != (sz = str.find("m"))) {
-            str.replace(sz, 1, std::to_string(sys.wMinute));
+        else if (-1 != (sz = str.find(L"m"))) {
+            str.replace(sz, 1, std::to_wstring(sys.wMinute));
         }
 
         // Formatting of Second and Millisec.
-        if (-1 != (sz = str.find("sssss"))) {
-            ss << std::setfill('0') << std::setw(2) << std::to_string(sys.wSecond);
-            ss << std::setfill('0') << std::setw(3) << std::to_string(sys.wMilliseconds);
+        if (-1 != (sz = str.find(L"sssss"))) {
+            ss << std::setfill(L'0') << std::setw(2) << std::to_wstring(sys.wSecond);
+            ss << std::setfill(L'0') << std::setw(3) << std::to_wstring(sys.wMilliseconds);
             str.replace(sz, 5, ss.str());
-            ss.str("");
-            ss.clear(std::stringstream::goodbit);
+            ss.str(L"");
+            ss.clear(std::wstringstream::goodbit);
         }
-        else if (-1 != (sz = str.find("ss.sss"))) {
-            ss << std::setfill('0') << std::setw(2) << std::to_string(sys.wSecond) << ".";
-            ss << std::setfill('0') << std::setw(3) << std::to_string(sys.wMilliseconds);
+        else if (-1 != (sz = str.find(L"ss.sss"))) {
+            ss << std::setfill(L'0') << std::setw(2) << std::to_wstring(sys.wSecond) << L".";
+            ss << std::setfill(L'0') << std::setw(3) << std::to_wstring(sys.wMilliseconds);
             str.replace(sz, 6, ss.str());
-            ss.str("");
-            ss.clear(std::stringstream::goodbit);
+            ss.str(L"");
+            ss.clear(std::wstringstream::goodbit);
         }
-        else if (-1 != (sz = str.find("ss"))) {
-            ss << std::setfill('0') << std::setw(2) << std::to_string(sys.wSecond);
+        else if (-1 != (sz = str.find(L"ss"))) {
+            ss << std::setfill(L'0') << std::setw(2) << std::to_wstring(sys.wSecond);
             str.replace(sz, 2, ss.str());
-            ss.str("");
-            ss.clear(std::stringstream::goodbit);
+            ss.str(L"");
+            ss.clear(std::wstringstream::goodbit);
         }
-        else if (-1 != (sz = str.find("s"))) {
-            str.replace(sz, 1, std::to_string(sys.wSecond));
+        else if (-1 != (sz = str.find(L"s"))) {
+            str.replace(sz, 1, std::to_wstring(sys.wSecond));
         }
 
         *byref = str;

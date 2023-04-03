@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 9
+//      File version    : 10
 //
 //
 /**************************************************************/
@@ -60,17 +60,17 @@ namespace {
 
 
 
-    auto internalExecutionSelect(LPSTR command) {
+    auto internalExecutionSelect(LPTSTR command) {
         auto mode = RunMode::GENERAL_MODE;
-        if (!lstrcmp(command, "debug")) {
+        if (!lstrcmp(command, L"debug")) {
             mode = RunMode::DEBUG_MODE;
         }
         return mode;
     }
 
 
-    bool sysInit(LPSTR szcmdline) {
-        std::string str;
+    bool sysInit(LPTSTR szcmdline) {
+        std::wstring str;
         // Before running the system, it checks whether it satisfies the operation standards of the execution environment.
         if (!boot::checkingSystemInfo()) { return false; }
 
@@ -81,28 +81,28 @@ namespace {
         auto env = loadParameterFromEnv();
         if (0 == env) {
             // Sets some system properties if starting the system in debug mode is selected.
-            if (RunMode::DEBUG_MODE == mode && getParameter("$STREAM_OUTPUT_LOG_PATH", &str)) {
+            if (RunMode::DEBUG_MODE == mode && getParameter(L"$STREAM_OUTPUT_LOG_PATH", &str)) {
                 setStreamLogFilePath(str);
             }
             if (RunMode::DEBUG_MODE == mode) {
-                MSG_BOX("Start in debug mode.");
+                MSG_BOX(L"Start in debug mode.");
                 _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);  // Enable the debug heap manager to manage allocated memory regions.
-                (void)writeStatusLog("デバッグモードでシステムを開始します。", LogClass::LOG_LEVEL_OFF);
+                (void)writeStatusLog(L"デバッグモードでシステムを開始します。", LogClass::LOG_LEVEL_OFF);
             }
         }
         else if (1 == env) {
-            MSG_BOX("It doesn't find any environment variables, so it boots in economy mode.\r\nSee README.txt.");
+            MSG_BOX(L"It doesn't find any environment variables, so it boots in economy mode.\r\nSee README.txt.");
         }
         else {
             return false;
         }
 
-        (void)writeStatusLog("システムを起動します。");
+        (void)writeStatusLog(L"システムを起動します。");
         return true;
     }
 
 
-    void sysIgnition(LPSTR szcmdline) {
+    void sysIgnition(LPTSTR szcmdline) {
         // A 'mode' set GENERAL or DEBUG that application execute a mode.
         RunMode mode = internalExecutionSelect(szcmdline);
         terminal::AppEngine apps;
@@ -119,11 +119,11 @@ namespace {
         if (0x000000ULL != (getStaticProcessCode() & 0x00000FULL)) {
             exceptions::ExceptionHandler ex;
             ex.throwException(false);
-            (void)writeErrorLog("エミュレーションでエラーログが出力されています。\n", LogClass::LOG_LEVEL_OFF);
-            (void)writeStatusLog("システムが強制中断されました。\n", LogClass::LOG_LEVEL_OFF);
+            (void)writeErrorLog(L"エミュレーションでエラーログが出力されています。\n", LogClass::LOG_LEVEL_OFF);
+            (void)writeStatusLog(L"システムが強制中断されました。\n", LogClass::LOG_LEVEL_OFF);
             return false;
         }
-        (void)writeStatusLog("システムを終了します。\n");
+        (void)writeStatusLog(L"システムを終了します。\n");
         return true;
     }
 
@@ -133,7 +133,7 @@ namespace {
 
 namespace boot {
 
-    bool Systems(LPSTR cmdline) {
+    bool Systems(LPTSTR cmdline) {
         setStaticProcessCode(0x00ULL, STATIC_PROC_CD);
         if (sysInit(cmdline)) {
             sysIgnition(cmdline);

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -52,16 +52,16 @@ namespace exceptions {
 
 
 
-    std::string ErrorList0x01x::Minor(unsigned __int64 error_code, LogClass level) {
-        std::ostringstream message;
-        const std::string str_crlf = "\r\n";
+    std::wstring ErrorList0x01x::Minor(unsigned __int64 error_code, LogClass level) {
+        std::wostringstream message;
+        const std::wstring str_crlf = L"\r\n";
 
         switch (error_code / 0x000100ULL) {
         case 0x0101ULL:
-            message << "processcode 0x010000のエラー。";
+            message << L"processcode 0x010000のエラー。";
             break;
         default:
-            message << "未定義エラー。";
+            message << L"未定義エラー。";
             break;
         }
 

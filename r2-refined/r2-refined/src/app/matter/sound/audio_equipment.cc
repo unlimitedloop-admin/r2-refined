@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/02
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -71,7 +71,7 @@ namespace matter {
         }
 
 
-        bool AudioEquipment::Push(const std::string name, const LPTrackChannelParam filepath) {
+        bool AudioEquipment::Push(const std::wstring name, const LPTrackChannelParam filepath) {
             extends::Vinyl* factory = new VinylTrack();
             objects_[name] = factory->Create(filepath);
             if (!objects_[name]->Unzip(DB::APU_CHANNELS_VIEW::allApuChannel())) { return false; }
@@ -80,14 +80,14 @@ namespace matter {
         }
 
 
-        bool AudioEquipment::Ring(const std::string name, const uint8_t channel, const size_t volume, bool cue) const {
+        bool AudioEquipment::Ring(const std::wstring name, const uint8_t channel, const size_t volume, bool cue) const {
             if (auto itr = objects_.find(name); itr != end(objects_)) {
                 return itr->second->Play(channel, cue);
             }
         }
 
 
-        bool AudioEquipment::allChannelGo(const std::string name) const {
+        bool AudioEquipment::allChannelGo(const std::wstring name) const {
             if (auto itr = objects_.find(name); itr != end(objects_)) {
                 size_t source = static_cast<size_t>(DB::TRN_APU_CHANNEL_ENABLED::Select());
                 for (size_t i = 0; i < source; ++i) {
@@ -98,7 +98,7 @@ namespace matter {
         }
 
 
-        bool AudioEquipment::allChannelStop(const std::string name) const {
+        bool AudioEquipment::allChannelStop(const std::wstring name) const {
             if (auto itr = objects_.find(name); itr != end(objects_)) {
                 size_t source = static_cast<size_t>(DB::TRN_APU_CHANNEL_ENABLED::Select());
                 for (size_t i = 0; i < source; ++i) {
@@ -109,7 +109,7 @@ namespace matter {
         }
 
 
-        bool AudioEquipment::volumeControl(const std::string name, const std::string channel, const size_t volume) const {
+        bool AudioEquipment::volumeControl(const std::wstring name, const std::wstring channel, const size_t volume) const {
             if (auto itr = objects_.find(name); itr != end(objects_)) {
                 return itr->second->changeVolume(DB::APU_CHANNELS::Rows(channel), volume);
             }
@@ -117,14 +117,14 @@ namespace matter {
         }
 
 
-        bool AudioEquipment::checkNowPlaying(const std::string name) const {
+        bool AudioEquipment::checkNowPlaying(const std::wstring name) const {
             if (auto itr = objects_.find(name); itr != end(objects_)) {
                 return itr->second->checkNowPlaying(DB::APU_CHANNELS_VIEW::allApuChannel());
             }
         }
 
 
-        uint8_t AudioEquipment::getVolume(const std::string name, const std::string channel) const {
+        uint8_t AudioEquipment::getVolume(const std::wstring name, const std::wstring channel) const {
             if (auto itr = objects_.find(name); itr != end(objects_)) {
                 return itr->second->getLouder(DB::APU_CHANNELS::Rows(channel));
             }

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -51,7 +51,7 @@ namespace matter {
 
     namespace BG {
 
-        TileLoader::TileLoader(const std::string filepath) {
+        TileLoader::TileLoader(const std::wstring filepath) {
             graphics_.clear();
             setFile(filepath);
         }

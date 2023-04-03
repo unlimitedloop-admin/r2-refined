@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/17
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -42,6 +42,7 @@
 #include <cstdlib>
 #include <string>
 // GENERAL USING HEADER
+#include <tchar.h>
 #include <Windows.h>
 // PROJECT USING HEADER
 #include "throws.h"
@@ -58,7 +59,7 @@ namespace exceptions {
     class ExceptionHandler final {
     private:
         Throws* creature_;
-        std::string msg_;
+        std::wstring msg_;
 
     public:
         ExceptionHandler();
@@ -80,12 +81,12 @@ namespace exceptions {
         NativeMessage() = delete;
         NativeMessage(const NativeMessage&) = delete;
 
-        const char* const fname_;
+        const wchar_t* const fname_;
         const char* const func_;
         const int line_;
 
     public:
-        NativeMessage(const char *fname, const char *funcname, int line) : fname_(fname), func_(funcname), line_(line) {}
+        NativeMessage(const wchar_t *fname, const char *funcname, int line) : fname_(fname), func_(funcname), line_(line) {}
 
         /// <summary>
         /// Writes the content of the native error message to the error log.
@@ -94,12 +95,12 @@ namespace exceptions {
         /// <param name="format">Format specifier strings</param>
         /// <param name="...args">Any datas...</param>
         template<typename... Args>
-        void Write(const char* format, Args&&... args) {
-            char str_prtf[9999]{};
+        void Write(const wchar_t* format, Args&&... args) {
+            wchar_t str_prtf[65535]{};
             int arg_sz = sizeof...(args);
-            snprintf(str_prtf, std::size(str_prtf), "FileName : %s, FuncName : %s, Lines : %d, ", fname_, func_, line_);
+            swprintf(str_prtf, std::size(str_prtf), L"FileName : %hs, FuncName : %hs, Lines : %d, ", fname_, func_, line_);
             xg_nMsg = str_prtf;
-            snprintf(str_prtf, std::size(str_prtf), format, args ...);
+            swprintf(str_prtf, std::size(str_prtf), format, args ...);
             xg_nMsg = xg_nMsg + str_prtf;
         }
     };
@@ -108,6 +109,6 @@ namespace exceptions {
 
 
 // DEFINE MACROS
-#define NATIVE_MSG(fmt, ...) exceptions::NativeMessage(__FILE__, __func__, __LINE__).Write(fmt, __VA_ARGS__)
+#define NATIVE_MSG(fmt, ...) exceptions::NativeMessage(_T(__FILE__), __func__, __LINE__).Write(fmt, __VA_ARGS__)
 
 #endif // !_R2R_EXCEPTIONS_EXCEPTION_HANDLER_H_

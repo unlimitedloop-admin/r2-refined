@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/23
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -44,6 +44,7 @@
 #include "src/app/matter/structures/tag_divgraph_p.h"
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/xglobals.h"
+#include "src/util/conv/converting.h"           /* UTILITY MODULES */
 
 
 
@@ -70,7 +71,7 @@ namespace matter {
         }
 
 
-        bool TileArrays::loadStructure(const std::string bin_filepath, const size_t pages) {
+        bool TileArrays::loadStructure(const std::wstring bin_filepath, const size_t pages) {
             if (!structure_.Loading(bin_filepath, pages)) {
                 return false;
             }
@@ -78,7 +79,7 @@ namespace matter {
         }
 
         
-        bool TileArrays::loadTexture(const std::string filepath, const LPDivGraphParam params) {
+        bool TileArrays::loadTexture(const std::wstring filepath, const LPDivGraphParam params) {
             extends::Sculpture* factory = new BoardSculpture();
             texture_ = factory->Create(filepath);
             if (!texture_->Unzip(params->all_num, params->x_num, params->y_num, params->x_size, params->y_size)) { return false; }
@@ -98,7 +99,7 @@ namespace matter {
                 }
             }
             catch (std::exception& e) {
-                xg_exChar = e.what();
+                xg_exChar = CHAR_TO_LPCWSTR(e.what());
                 setStaticProcessCode(0x0000F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }

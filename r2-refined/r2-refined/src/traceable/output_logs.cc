@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/11
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -47,7 +47,7 @@
 /* SOURCES */
 namespace {
 
-    bool putLightLog(std::string log_filepath, std::string body_text, std::string head_title, traceable::LogClass levels) {
+    bool putLightLog(std::wstring log_filepath, std::wstring body_text, std::string head_title, traceable::LogClass levels) {
         if (log_filepath.empty()) { return false; }
         return traceable::doOutputSpdlog(log_filepath, head_title, body_text, levels);
     }
@@ -58,41 +58,42 @@ namespace {
 
 namespace traceable {
 
-    bool writeStatusLog(std::string body_text, std::string head_title, LogClass level, std::string log_filepath) {
+    // FIXME : Some methods of spdlog cannot handle wide type strings. So this argument 'title' is just thrown away.
+    bool writeStatusLog(std::wstring body_text, std::wstring head_title, LogClass level, std::wstring log_filepath) {
         if (head_title.empty()) { return false; }
-        std::string str = log_filepath;
+        std::wstring str = log_filepath;
         if (str.empty()) { str = getDefaultLogFilePath(); }
-        if (!putLightLog(str, body_text, head_title, level)) { return false; }
+        if (!putLightLog(str, body_text, "process-log", level)) { return false; }
         return true;
     }
 
 
-    bool writeStatusLog(std::string body_text, LogClass level) {
-        std::string str = getDefaultLogFilePath();
-        if (!putLightLog(str, body_text, "処理ログ", level)) { return false; }
+    bool writeStatusLog(std::wstring body_text, LogClass level) {
+        std::wstring str = getDefaultLogFilePath();
+        if (!putLightLog(str, body_text, "process-log", level)) { return false; }
         return true;
     }
 
 
-    bool writeLog(std::string body_text) {
-        std::string str = getDefaultLogFilePath();
-        if (!putLightLog(str, body_text, "処理ログ", default_prclog_level)) { return false; }
+    bool writeLog(std::wstring body_text) {
+        std::wstring str = getDefaultLogFilePath();
+        if (!putLightLog(str, body_text, "process-log", default_prclog_level)) { return false; }
         return true;
     }
 
 
-    bool writeErrorLog(std::string body_text, std::string head_title, LogClass level, std::string log_filepath) {
+    bool writeErrorLog(std::wstring body_text, std::wstring head_title, LogClass level, std::wstring log_filepath) {
         if (head_title.empty()) { return false; }
-        std::string str = log_filepath;
+        std::wstring str = log_filepath;
         if (str.empty()) { str = getErrorLogFilePath(); }
-        if (!putLightLog(str, body_text, head_title, level)) { return false; }
+        if (!putLightLog(str, body_text, "error-log", level)) { return false; }
         return true;
     }
 
 
-    bool writeErrorLog(std::string body_text, LogClass level) {
-        std::string str = getErrorLogFilePath();
-        if (!putLightLog(str, body_text, "エラーログ", level)) { return false; }
+    bool writeErrorLog(std::wstring body_text, LogClass level) {
+        std::wstring str = getErrorLogFilePath();
+        if (!putLightLog(str, body_text, "error-log", level)) { return false; }
         return true;
     }
 

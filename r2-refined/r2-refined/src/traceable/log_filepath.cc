@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -44,13 +44,13 @@
 /* SOURCES */
 namespace {
 
-    std::string stream_defaultlog = "";
-    std::string stream_errorlog = "error.log";
+    std::wstring stream_defaultlog = L"";
+    std::wstring stream_errorlog = L"error.log";
 
-    std::string createLogFileName(const std::string identifier) {
-        std::string str;
-        util_time::getCurrentDateTime(&str, "YYYYMMDD");
-        str = str.substr(0, 6) + identifier + str + ".log";  // str.substr(0, 6) + "/" + is Monthly partition(Directory).
+    std::wstring createLogFileName(const std::wstring identifier) {
+        std::wstring str;
+        util_time::getCurrentDateTime(&str, L"YYYYMMDD");
+        str = str.substr(0, 6) + identifier + str + L".log";  // str.substr(0, 6) + "/" + is Monthly partition(Directory).
         return str;
     }
 
@@ -60,21 +60,21 @@ namespace {
 
 namespace traceable {
 
-    std::string getDefaultLogFilePath(void) {
+    std::wstring getDefaultLogFilePath(void) {
         return stream_defaultlog;
     }
 
 
-    std::string getErrorLogFilePath(void) {
+    std::wstring getErrorLogFilePath(void) {
         return stream_errorlog;
     }
 
 
-    void setStreamLogFilePath(std::string dir_path) {
+    void setStreamLogFilePath(std::wstring dir_path) {
         if (!dir_path.empty()) {
             // logfile name is '<log_type>log_[YYYYMMDD].log'.
-            stream_defaultlog = dir_path + createLogFileName("\\processlog_");
-            stream_errorlog = dir_path + createLogFileName("\\errorlog_");
+            stream_defaultlog = dir_path + createLogFileName(L"\\processlog_");
+            stream_errorlog = dir_path + createLogFileName(L"\\errorlog_");
         }
     }
 

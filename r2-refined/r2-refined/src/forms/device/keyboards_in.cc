@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -81,7 +81,7 @@ namespace device {
 
     int getHoldKeyValue(int number) {
         if (KEY_NUM <= number) {
-            xg_exChar = util_fmt::snprintf2("keyboards_in.getHoldKeyValue 検知したエラー[数値] %d", number);
+            xg_exChar = util_fmt::swprintf2(L"keyboards_in.getHoldKeyValue 検知したエラー[数値] %d", number);
             MSG_BOX(xg_exChar);
             setStaticProcessCode(0x00E1F1ULL, STATIC_ERR_DOMINATOR);
             return -1;
@@ -92,7 +92,7 @@ namespace device {
 
     int getFreeKeyValue(int number) {
         if (KEY_NUM <= number) {
-            xg_exChar = util_fmt::snprintf2("keyboards_in.getFreeKeyValue 検知したエラー[数値] %d", number);
+            xg_exChar = util_fmt::swprintf2(L"keyboards_in.getFreeKeyValue 検知したエラー[数値] %d", number);
             MSG_BOX(xg_exChar);
             setStaticProcessCode(0x00E1F1ULL, STATIC_ERR_DOMINATOR);
             return -1;

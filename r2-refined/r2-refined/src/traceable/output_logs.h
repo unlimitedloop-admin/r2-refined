@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/11
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -55,7 +55,7 @@ namespace traceable {
     /// <param name="level">(Optional)Log levels with LogClass</param>
     /// <param name="log_filepath">(Optional)Output destination of log files</param>
     /// <returns>True or false, functions succeeded or failed</returns>
-    bool writeStatusLog(std::string body_text, std::string head_title, LogClass level = default_prclog_level, std::string log_filepath = "");
+    bool writeStatusLog(std::wstring body_text, std::wstring head_title, LogClass level = default_prclog_level, std::wstring log_filepath = L"");
 
     /// <summary>
     /// Output infomation to a log file.
@@ -63,14 +63,14 @@ namespace traceable {
     /// <param name="body_text">Log bodies</param>
     /// <param name="level">(Optional)Log levels with LogClass</param>
     /// <returns>True or false, functions succeeded or failed</returns>
-    bool writeStatusLog(std::string body_text, LogClass level = default_prclog_level);
+    bool writeStatusLog(std::wstring body_text, LogClass level = default_prclog_level);
 
     /// <summary>
     /// Output information to a log file.
     /// </summary>
     /// <param name="body_text">Log bodies</param>
     /// <returns>True or false, functions succeeded or failed</returns>
-    bool writeLog(std::string body_text);
+    bool writeLog(std::wstring body_text);
 
     /// <summary>
     /// Output error to a log file.
@@ -80,7 +80,7 @@ namespace traceable {
     /// <param name="level">(Optional)Log levels with LogClass</param>
     /// <param name="log_filepath">(Optional)Output destination of log files</param>
     /// <returns>True or false, functions succeeded or failed</returns>
-    bool writeErrorLog(std::string body_text, std::string head_title, LogClass level = default_errlog_level, std::string log_filepath = "");
+    bool writeErrorLog(std::wstring body_text, std::wstring head_title, LogClass level = default_errlog_level, std::wstring log_filepath = L"");
 
     /// <summary>
     /// Output error to a log file.
@@ -88,7 +88,7 @@ namespace traceable {
     /// <param name="body_text">Log bodies</param>
     /// <param name="level">(Optional)Log levels with LogClass</param>
     /// <returns>True or false, functions succeeded or failed</returns>
-    bool writeErrorLog(std::string body_text, LogClass level = default_errlog_level);
+    bool writeErrorLog(std::wstring body_text, LogClass level = default_errlog_level);
 
 }  // namespace traceable
 

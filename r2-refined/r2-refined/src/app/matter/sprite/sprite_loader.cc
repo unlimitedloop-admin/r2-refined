@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -51,7 +51,7 @@ namespace matter {
 
     namespace sprite {
 
-        SpriteLoader::SpriteLoader(const std::string filepath) {
+        SpriteLoader::SpriteLoader(const std::wstring filepath) {
             graphics_.clear();
             setFile(filepath);
         }

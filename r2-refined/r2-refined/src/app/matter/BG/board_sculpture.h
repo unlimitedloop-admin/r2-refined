@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -69,7 +69,7 @@ namespace matter {
             /// </summary>
             /// <param name="files">File path of the BG data</param>
             /// <returns>Material data common interface object</returns>
-            implements::IMatBenefits* createBoard(const std::string files) const override;
+            implements::IMatBenefits* createBoard(const std::wstring files) const override;
 
         };
 

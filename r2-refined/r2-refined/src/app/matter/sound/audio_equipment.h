@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/02
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -66,7 +66,7 @@ namespace matter {
             /// <summary>
             /// Sound data sources.
             /// </summary>
-            std::map<std::string, implements::IEchoBenefits*> objects_;
+            std::map<std::wstring, implements::IEchoBenefits*> objects_;
 
         public:
             AudioEquipment();
@@ -79,7 +79,7 @@ namespace matter {
             /// <param name="name">Track names</param>
             /// <param name="filepath">File path of the sound data to get</param>
             /// <returns>True if loaded into memory successfully, false otherwise</returns>
-            bool Push(const std::string name, const LPTrackChannelParam filepath);
+            bool Push(const std::wstring name, const LPTrackChannelParam filepath);
 
             /// <summary>
             /// Ring a sound source data into memory.
@@ -89,7 +89,7 @@ namespace matter {
             /// <param name="volume">Volume of ring a sound</param>
             /// <param name="cue">Specify true to rewind</param>
             /// <returns>True if ringing into memory successfully, false otherwise</returns>
-            bool Ring(const std::string name, const uint8_t channel, const size_t volume, bool cue) const;
+            bool Ring(const std::wstring name, const uint8_t channel, const size_t volume, bool cue) const;
 
             /// <summary>
             /// Plays the specified sound data on all channels.
@@ -98,14 +98,14 @@ namespace matter {
             /// <param name="volume">Volume of ring a sound</param>
             /// <param name="cue">Specify true to rewind</param>
             /// <returns>True if ringing into memory successfully, false otherwise</returns>
-            bool allChannelGo(const std::string name) const;
+            bool allChannelGo(const std::wstring name) const;
 
             /// <summary>
             /// Stops the sound source that is playing.
             /// </summary>
             /// <param name="name">Track names</param>
             /// <returns>True if stoped ring a sound successfully</returns>
-            bool allChannelStop(const std::string name) const;
+            bool allChannelStop(const std::wstring name) const;
 
             /// <summary>
             /// Volume adjustment.
@@ -114,7 +114,7 @@ namespace matter {
             /// <param name="channel">Target channel</param>
             /// <param name="volume">Change the volume value</param>
             /// <returns>True if changing in track volume of channel successfully, false otherwise</returns>
-            bool volumeControl(const std::string name, const std::string channel, const size_t volume) const;
+            bool volumeControl(const std::wstring name, const std::wstring channel, const size_t volume) const;
 
             /// <summary>
             /// Checks if the specified channel is sounding.
@@ -122,7 +122,7 @@ namespace matter {
             /// <param name="name">Track names</param>
             /// <param name="channel">Check the playing sound data</param>
             /// <returns>True if playing a specified sound data, false stop sound</returns>
-            bool checkNowPlaying(const std::string name) const;
+            bool checkNowPlaying(const std::wstring name) const;
 
             /// <summary>
             /// Get volume levels.
@@ -130,7 +130,7 @@ namespace matter {
             /// <param name="name">Track names</param>
             /// <param name="channel">Target channel</param>
             /// <returns>Volumes</returns>
-            uint8_t getVolume(const std::string name, const std::string channel) const;
+            uint8_t getVolume(const std::wstring name, const std::wstring channel) const;
 
             /// <summary>
             /// Stop the ringing sound for all.

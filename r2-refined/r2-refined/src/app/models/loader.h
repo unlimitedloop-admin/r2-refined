@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -58,11 +58,11 @@ namespace models {
             /// <summary>
             /// Filepath.
             /// </summary>
-            std::vector<std::string> files_;
+            std::vector<std::wstring> files_;
 
         protected:
             explicit Loader() {
-                files_ = { "" };
+                files_ = { L"" };
             }
 
             explicit Loader(const uint8_t num) {
@@ -79,7 +79,7 @@ namespace models {
             /// </summary>
             /// <param name="filepath">Filepath(fullpath required)</param>
             /// <param name="num">Vector array number</param>
-            void setFile(const std::string filepath, const size_t num = 0) {
+            void setFile(const std::wstring filepath, const size_t num = 0) {
                 if (num + 1 <= files_.size()) { files_[num] = filepath; }
             }
 
@@ -88,9 +88,9 @@ namespace models {
             /// </summary>
             /// <param name="num">Vector array number</param>
             /// <returns>String filepath</returns>
-            std::string getFile(const size_t num = 0) const {
+            std::wstring getFile(const size_t num = 0) const {
                 if (num + 1 <= files_.size()) { return files_[num]; }
-                else { return ""; }
+                else { return L""; }
             }
 
         };

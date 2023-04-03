@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/18
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -46,11 +46,18 @@
 namespace util_conv {
 
     /// <summary>
-    /// Converts a string type array to the Windows-specific const char pointer.
+    /// Converts a string type array to the Windows-specific const wchar_t pointer.
+    /// </summary>
+    /// <param name="expression">Expression for wchar_t type string</param>
+    /// <returns>Converted LPCWSTR for expression</returns>
+    const wchar_t* wcharToConstWchar(wchar_t* expression);
+
+    /// <summary>
+    /// Converts a 1byte char array to the Windows-specific const wchar_t pointer.
     /// </summary>
     /// <param name="expression">Expression for char type string</param>
-    /// <returns>Converted LPCSTR for expression</returns>
-    const char* charToConstChar(char* expression);
+    /// <returns>Converted LPCWSTR for expression</returns>
+    const wchar_t* charToConstWchar(const char* expression);
 
     /// <summary>
     /// Try converting a string to a number of integer type.
@@ -58,7 +65,7 @@ namespace util_conv {
     /// <param name="byref">A Integer-type reference address</param>
     /// <param name="num_str">Target of converting</param>
     /// <returns>Returns true if successful</returns>
-    bool tryParseStrToInt(int* byref, std::string num_str);
+    bool tryParseStrToInt(int* byref, std::wstring num_str);
 
     /// <summary>
     /// Try converting a string to a number of double type.
@@ -66,11 +73,12 @@ namespace util_conv {
     /// <param name="byref">A Double-type reference address</param>
     /// <param name="num_str">Target of converting</param>
     /// <returns>Returns true if successful</returns>
-    bool tryParseStrToDouble(double* byref, std::string num_str);
+    bool tryParseStrToDouble(double* byref, std::wstring num_str);
 
 }  // namespace util_conv
 
 // DEFINE MACROS
-#define CHAR_TO_LPCSTR(expr) util_conv::charToConstChar(expr)
+#define WCHAR_TO_LPCWSTR(expr) util_conv::wcharToConstWchar(expr)
+#define CHAR_TO_LPCWSTR(expr) util_conv::charToConstWchar(expr)
 
 #endif // !_R2R_UTIL_CONV_CONVERTING_H_

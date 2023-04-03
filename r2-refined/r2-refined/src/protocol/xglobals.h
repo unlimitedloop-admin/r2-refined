@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/25
+//      Last update     : 2023/04/03
 //
-//      File version    : 5
+//      File version    : 6
 //
 //
 /**************************************************************/
@@ -64,12 +64,12 @@ extern WNDPROC xg_DxLibWnd;
 /// <summary>
 /// Global exception message storages.
 /// </summary>
-extern std::string xg_exChar;
+extern std::wstring xg_exChar;
 
 /// <summary>
 /// Native error descriptions. (Supplemental Information)
 /// </summary>
-extern std::string xg_nMsg;
+extern std::wstring xg_nMsg;
 
 
 #endif // !_R2R_PROTOCOL_XGLOBALS_H_

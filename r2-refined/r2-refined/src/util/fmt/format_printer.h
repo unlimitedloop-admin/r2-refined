@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -55,10 +55,10 @@ namespace util_fmt {
     /// <param name="...args">Any datas...</param>
     /// <returns>A string generated with the given number of arguments</returns>
     template <typename ... Args>
-    std::string snprintf2(const char* fmt, Args const & ... args) {
-        std::string str{};
-        char chr_ptr[9999]{};
-        if (0 <= snprintf(chr_ptr, std::size(chr_ptr), fmt, args ...)) {
+    std::wstring swprintf2(const wchar_t* fmt, Args const & ... args) {
+        std::wstring str{};
+        wchar_t chr_ptr[9999]{};
+        if (0 <= swprintf(chr_ptr, std::size(chr_ptr), fmt, args ...)) {
             str = chr_ptr;
         }
         return str;

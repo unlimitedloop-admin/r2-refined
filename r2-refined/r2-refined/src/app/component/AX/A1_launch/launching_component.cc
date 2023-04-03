@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/03/11
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -55,7 +55,7 @@ namespace component {
 
 
         LaunchingComponent::LaunchingComponent() {
-            (void)writeStatusLog("LaunchingComponentクラスの実行を開始しました。");
+            (void)writeStatusLog(L"LaunchingComponentクラスの実行を開始しました。");
         }
 
 

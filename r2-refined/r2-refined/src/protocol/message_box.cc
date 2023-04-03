@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/19
+//      Last update     : 2023/04/03
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -47,17 +47,17 @@
 /* SOURCES */
 namespace protocol {
 
-    void showMessageBox(LPCSTR message) {
-        std::string str;
-        if (getParameter("$MESSAGE_BOX_LABELS", &str)) {
+    void showMessageBox(LPTSTR message) {
+        std::wstring str;
+        if (getParameter(L"$MESSAGE_BOX_LABELS", &str)) {
             MessageBox(xg_hWnd, message, str.c_str(), MB_OK);
         }
     }
 
 
-    void showMessageBox(std::string message) {
-        std::string str;
-        if (getParameter("$MESSAGE_BOX_LABELS", &str)) {
+    void showMessageBox(std::wstring message) {
+        std::wstring str;
+        if (getParameter(L"$MESSAGE_BOX_LABELS", &str)) {
             MessageBox(xg_hWnd, message.c_str(), str.c_str(), MB_OK);
         }
     }

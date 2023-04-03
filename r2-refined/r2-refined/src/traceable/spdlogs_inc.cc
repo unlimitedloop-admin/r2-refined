@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/02/08
+//      Last update     : 2023/04/03
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -31,6 +31,11 @@
  * Build an original log output mechanism using the spdlog library.
 **/
 
+
+
+/* PRE-PROCESSOR DEFINES */
+#define SPDLOG_WCHAR_FILENAMES
+#define SPDLOG_WCHAR_TO_UTF8_SUPPORT
 
 
 /* INCLUDES */
@@ -49,7 +54,7 @@
 /* SOURCES */
 namespace traceable {
 
-    bool doOutputSpdlog(std::string path, std::string title, std::string body, LogClass level) {
+    bool doOutputSpdlog(std::wstring path, std::string title, std::wstring body, LogClass level) {
         try {
             auto i_logger = spdlog::basic_logger_mt(title, path);
             switch (level) {
@@ -80,10 +85,10 @@ namespace traceable {
             spdlog::drop(title);
         }
         catch (const spdlog::spdlog_ex& ex) {
-            std::stringstream ss;
-            ss << "Log init failure: " << ex.what() << std::string("\0");
-            std::string exstr = ss.str();
-            MessageBox(NULL, exstr.c_str(), "spdlog Exception info", MB_OK);
+            std::wstringstream ss;
+            ss << L"Log init failure: " << ex.what() << std::wstring(L"\0");
+            std::wstring exstr = ss.str();
+            MessageBox(NULL, exstr.c_str(), L"spdlog Exception info", MB_OK);
             return false;
         }
         return true;
