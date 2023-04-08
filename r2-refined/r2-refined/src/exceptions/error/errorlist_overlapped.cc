@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/08
 //
-//      File version    : 5
+//      File version    : 6
 //
 //
 /**************************************************************/
@@ -101,8 +101,6 @@ namespace exceptions {
             break;
         case 0x00FE00ULL:
             message << L"エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";
-            // UNRESOLVED : It seems that character arrays that are only accepted in UTF-8 codepages can no longer be sent to ostringstream. (C++20)
-            //message << u8"エラー発報の検証を行いました。<BEGIN>　ABCDEFG$\"#%&(#='#！\\/～:]@＠■ 機種依存文字→{槩} <END>";  // damn :(
             break;
         default:
             message << this->Minor(error_code, level);

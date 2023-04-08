@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/08
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -57,7 +57,7 @@ namespace util_conv {
     /// </summary>
     /// <param name="expression">Expression for char type string</param>
     /// <returns>Converted LPCWSTR for expression</returns>
-    const wchar_t* charToConstWchar(const char* expression);
+    std::wstring charToWstring(const char* expression);
 
     /// <summary>
     /// Try converting a string to a number of integer type.
@@ -79,6 +79,6 @@ namespace util_conv {
 
 // DEFINE MACROS
 #define WCHAR_TO_LPCWSTR(expr) util_conv::wcharToConstWchar(expr)
-#define CHAR_TO_LPCWSTR(expr) util_conv::charToConstWchar(expr)
+#define CHAR_TO_WSTRING(expr) util_conv::charToWstring(expr)
 
 #endif // !_R2R_UTIL_CONV_CONVERTING_H_

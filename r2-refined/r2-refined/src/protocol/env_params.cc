@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/08
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -77,7 +77,7 @@ namespace protocol {
             return 0;
         }
         catch (const std::exception& e) {
-            xg_exChar = CHAR_TO_LPCWSTR(e.what());
+            xg_exChar = CHAR_TO_WSTRING(e.what());
             NATIVE_MSG(L"#Exception_desc: %s", xg_exChar.c_str());
             setStaticProcessCode(0x0001C1ULL, STATIC_ERR_DOMINATOR);
             return -1;

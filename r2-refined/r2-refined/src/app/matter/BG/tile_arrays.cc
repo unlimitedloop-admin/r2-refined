@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/08
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -99,7 +99,7 @@ namespace matter {
                 }
             }
             catch (std::exception& e) {
-                xg_exChar = CHAR_TO_LPCWSTR(e.what());
+                xg_exChar = CHAR_TO_WSTRING(e.what());
                 setStaticProcessCode(0x0000F1ULL, STATIC_ERR_DOMINATOR);
                 return false;
             }

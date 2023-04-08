@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/08
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -52,11 +52,11 @@ namespace util_conv {
     }
 
 
-    const wchar_t* charToConstWchar(const char* expression) {
+    std::wstring charToWstring(const char* expression) {
         size_t len = MultiByteToWideChar(CP_UTF8, 0, expression, -1, nullptr, 0);
         std::wstring wstr(len, L'\0');
         MultiByteToWideChar(CP_UTF8, 0, expression, -1, &wstr[0], len);
-        return wstr.c_str();
+        return wstr;
     }
 
 

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/08
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -96,12 +96,14 @@ namespace exceptions {
         /// <param name="...args">Any datas...</param>
         template<typename... Args>
         void Write(const wchar_t* format, Args&&... args) {
-            wchar_t str_prtf[65535]{};
+            size_t max_size = 8192;
+            wchar_t *str_prtf = new wchar_t[max_size];
             int arg_sz = sizeof...(args);
-            swprintf(str_prtf, std::size(str_prtf), L"FileName : %hs, FuncName : %hs, Lines : %d, ", fname_, func_, line_);
+            swprintf(str_prtf, max_size, L"FileName : %ls, FuncName : %hs, Lines : %ld, ", fname_, func_, line_);
             xg_nMsg = str_prtf;
-            swprintf(str_prtf, std::size(str_prtf), format, args ...);
+            swprintf(str_prtf, max_size, format, args ...);
             xg_nMsg = xg_nMsg + str_prtf;
+            delete[] str_prtf;
         }
     };
 

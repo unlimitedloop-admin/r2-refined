@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/08
 //
-//      File version    : 13
+//      File version    : 14
 //
 //
 /**************************************************************/
@@ -50,7 +50,6 @@
 #include "src/protocol/process_code_hard.h"
 #include "src/protocol/xglobals.h"
 #include "src/traceable/output_logs.h"
-#include "src/util/conv/converting.h"               /* UTILITY MODULES */
 #include "resource.h"
 #include "src/app/input/key_binding.h"
 #include "src/app/sequence/cursor_pointer.h"
@@ -187,104 +186,27 @@ namespace terminal {
     }
 
 
-    bool AppEngine::Initialize(RunMode indicator) const {
+    bool AppEngine::Initialize(RunMode indicator) {
         std::wstring str;
-        auto exceptions = [](unsigned __int64 code) { setStaticProcessCode(code, STATIC_ERR_DOMINATOR); return false; };
+        auto exception_exit = [](unsigned __int64 code) { setStaticProcessCode(code, STATIC_ERR_DOMINATOR); return false; };
 
         /* ******* Pick up an environment variable and set up its value in this system. ******* */
-        str.clear();
-        if (getParameter(L"$HIDDEN_DRIVER", &str)) {
-            if (L"1" == str) {
-                test_driver = ResultSet::ENABLED;
-                (void)writeStatusLog(L"テストモジュールを起動します。", LogClass::LOG_LEVEL_OFF);
-            }
-        }
-        // Check for development mode flag. (For development, normally 0)
-        else if (getParameter(L"$DEV_MODE", &str)) {
-            if (L"1" == str) {
-                dev_mode = ResultSet::ENABLED;
-                (void)writeStatusLog(L"システムはデヴェロップメントモードで開始されます。", LogClass::LOG_LEVEL_OFF);
-            }
-        }
-        // Output DxLib log. Specify the output destination of the DxLib exclusive log before calling the DxLib function. 
-        if (RunMode::GENERAL_MODE == indicator) {
-            if (0 != SetOutApplicationLogValidFlag(FALSE)) { exceptions(0x000771ULL); }
-        }
-        else {
-            if (getParameter(L"$DXLIB_OUTPUT_LOG_PATH", &str)) {
-                if (0 != SetApplicationLogSaveDirectory(str.c_str())) { exceptions(0x000871ULL); }
-            }
-            else {
-                if (0 != SetOutApplicationLogValidFlag(FALSE)) { exceptions(0x000771ULL); }
-            }
-        }
-        // Active (or inactive) window always running application.
-        str.clear();
-        if (getParameter(L"$WINDOW_ALWAYS_RUN_ENABLED", &str)) {
-            if (L"1" == str) {
-                if (0 != SetAlwaysRunFlag(TRUE)) { exceptions(0x000951ULL); }
-            }
-            else {
-                if (0 != SetAlwaysRunFlag(FALSE)) { exceptions(0x000A51ULL); }
-            }
-        }
-        // Screen setup.
-        str.clear();
-        (void)getParameter(L"$WINDOW_MODE_ENABLED", &str);
-        if (L"0" == str) {
-            if (DX_CHANGESCREEN_OK != ChangeWindowMode(FALSE)) { exceptions(0x000BF1ULL); }
-            if (0 != SetUseMenuFlag(FALSE)) { exceptions(0x000C91ULL); }
-        }
-        else {
-            // Default route.
-            if (DX_CHANGESCREEN_OK != ChangeWindowMode(TRUE)) { exceptions(0x000DF1ULL); }
-            if (0 != SetWindowPosition(10, 10)) { exceptions(0x000E71ULL); }
-            str.clear();
-            if (getParameter(L"$WINDOW_EXTEND_RATE", &str)) {
-                double rate;
-                if (!str.empty() && util_conv::tryParseStrToDouble(&rate, str)) {
-                    if (0 != SetWindowSizeExtendRate(rate)) { exceptions(0x000F70ULL); }
-                }
-            }
-            auto size = 0, winsizex = 0, winsizey = 0, colorbit = 0;
-            str.clear();
-            (void)getParameter(L"$WINDOW_HORIZONAL_SIZE", &str);
-            if (!str.empty() && util_conv::tryParseStrToInt(&size, str)) winsizex = size;
-            str.clear();
-            (void)getParameter(L"$WINDOW_VERTICAL_SIZE", &str);
-            if (!str.empty() && util_conv::tryParseStrToInt(&size, str)) winsizey = size;
-            str.clear();
-            (void)getParameter(L"$WINDOW_COLOR_BITS", &str);
-            if (!str.empty() && util_conv::tryParseStrToInt(&size, str)) colorbit = size;
-            if (winsizex && winsizey && colorbit) {
-                if (DX_CHANGESCREEN_OK != SetGraphMode(winsizex, winsizey, colorbit)) {
-                    if (DX_CHANGESCREEN_OK != SetGraphMode(256, 240, 16)) { exceptions(0x0012F1ULL); }
-                }
-            }
-            else {
-                if (DX_CHANGESCREEN_OK != SetGraphMode(256, 240, 16)) { exceptions(0x0012F1ULL); }
-                if (0 != SetWindowSizeExtendRate(1.0)) { exceptions(0x000F70ULL); }
-            }
-            // NOTE : Edit resource files only in Visual Studio.
-            if (0 != LoadMenuResource(IDR_MENU1)) { exceptions(0x001AB1ULL); }
-            if (0 != SetUseMenuFlag(TRUE)) { exceptions(0x001B90ULL); }
-        }
-        // Specified application title.
-        str.clear();
-        if (getParameter(L"$WINDOW_TEXT", &str)) {
-            if (!str.empty()) {
-                if (0 != DxLib::SetWindowText(str.c_str())) { exceptions(0x0013A0ULL); }
-            }
-        }
+        if (!this->runmodeChoice(indicator, test_driver, dev_mode, exception_exit)) { return false; }
+
+        /* ******* Set up the application screen configuration. ******* */
+        if (!this->runInBackground(exception_exit)) { return false; }
+
+        /* ******* Window configurations. ******* */
+        if (!this->setWindowConfigs(exception_exit)) { return false; }
 
         /* ******* DxLib setup. ******* */
-        if (0 != SetDoubleStartValidFlag(FALSE)) { exceptions(0x001490ULL); }
+        if (0 != SetDoubleStartValidFlag(FALSE)) { exception_exit(0x001490ULL); }
         // Initialize the DX-Library.
-        if (0 != DxLib_Init()) { exceptions(0x0015F0ULL); }
+        if (0 != DxLib_Init()) { exception_exit(0x0015F0ULL); }
         // Reserve a callback so that the DxLib_End function is always called when an error occurs.
         if (std::atexit((void(_cdecl*)())DxLib_End)) {
             NATIVE_MSG(L"std::atexit((void(_cdecl*)())DxLib_End)が失敗。");
-            exceptions(0x0016F0ULL);
+            exception_exit(0x0016F0ULL);
         }
 
         if (DxLib_IsInit()) {
@@ -294,7 +216,7 @@ namespace terminal {
                 xg_DxLibWnd = (WNDPROC)GetWindowLongPtr(xg_hWnd, GWLP_WNDPROC);
                 xg_hInstance = GetTaskInstance();
                 if (!setAccelaratorCommand()) { return false; }
-                if (!SetWindowLongPtr(xg_hWnd, GWLP_WNDPROC, (LONG_PTR)DefinitiveProc)) { exceptions(0x001CD0ULL); }
+                if (!SetWindowLongPtr(xg_hWnd, GWLP_WNDPROC, (LONG_PTR)DefinitiveProc)) { exception_exit(0x001CD0ULL); }
             }
             else {
                 // NOTE : Automatically run the game program when in full screen mode. (because there is no menu bar)
