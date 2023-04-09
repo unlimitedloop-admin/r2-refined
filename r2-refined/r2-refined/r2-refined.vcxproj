@@ -195,6 +195,7 @@
     <ClCompile Include="src\forms\device\keyboards_in.cc" />
     <ClCompile Include="src\forms\terminal\app_engine.cc" />
     <ClCompile Include="src\forms\terminal\app_engine_setup_module.cc" />
+    <ClCompile Include="src\forms\terminal\myapp_window_procedure.cc" />
     <ClCompile Include="src\protocol\env_params.cc" />
     <ClCompile Include="src\protocol\message_box.cc" />
     <ClCompile Include="src\protocol\process_code_hard.cc" />

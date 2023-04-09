@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/09
 //
-//      File version    : 6
+//      File version    : 7
 //
 //
 /**************************************************************/
@@ -116,9 +116,6 @@ namespace exceptions {
             break;
         case 0x0015ULL:
             message << L"DxLib_Init関数が失敗しました。";
-            break;
-        case 0x0016ULL:
-            message << L"プログラム終了時にDxLib_Endをコールする登録処理ができませんでした。";
             break;
         case 0x0017ULL:
             message << L"DxLib_End関数が失敗しました。";

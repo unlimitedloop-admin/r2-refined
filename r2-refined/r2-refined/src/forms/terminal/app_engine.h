@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/08
+//      Last update     : 2023/04/09
 //
-//      File version    : 5 
+//      File version    : 6
 //
 //
 /**************************************************************/
@@ -39,6 +39,8 @@
 /* INCLUDES */
 // C++ SYSTEM HEADER
 #include <functional>
+// GENERAL USING HEADER
+#include <Windows.h>
 // PROJECT USING HEADER
 #include "src/protocol/evaluation.h"
 #include "src/app/models/cursor.h"
@@ -50,6 +52,16 @@ namespace terminal {
 
     /* using namespace */
     using namespace protocol;
+
+    /* using alias */
+    using GAMEPROC = bool;
+
+    /* external declare */
+    extern GAMEPROC apps_active;
+    extern Activator activator;
+    
+    /* prototype declare */
+    void setAppsActiveFlag(bool flag);
 
 
 
@@ -81,6 +93,10 @@ namespace terminal {
         bool runInBackground(std::function<bool(uint64_t)> func) const;
         // A child method of the Initialize method implemented in 'app_engine_setup_module.cc'. (Partial divided)
         bool setWindowConfigs(std::function<bool(uint64_t)> func);
+        // A child method of the Initialize method implemented in 'myapp_window_procedure.cc' (Partial divided)
+        bool setAccelaratorCommand(void) const;
+        // A child method of the Initialize method implemented in 'myapp_window_procedure.cc' (Partial divided)
+        bool registeredClientSystem(std::function<bool(uint64_t)> func);
 
     public:
         AppEngine() {}
@@ -107,6 +123,21 @@ namespace terminal {
         void Finalize(void);
 
     };
+
+
+    inline GAMEPROC getAppActiveParameter(void) {
+        return apps_active;
+    }
+
+
+    inline void setAppActiveParameter(GAMEPROC value) {
+        apps_active = value;
+    }
+
+
+    inline void setActivator(Activator value) {
+        activator = value;
+    }
 
 }  // namespace terminal
 

@@ -40,6 +40,7 @@
     <ClCompile Include="src\app\matter\sound\audio_equipment.cc" />
     <ClCompile Include="src\database\views\mst_apu_channels_view.cc" />
     <ClCompile Include="src\forms\terminal\app_engine_setup_module.cc" />
+    <ClCompile Include="src\forms\terminal\myapp_window_procedure.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />

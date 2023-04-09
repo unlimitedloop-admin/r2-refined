@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/08
+//      Last update     : 2023/04/09
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -38,15 +38,16 @@
 #include "app_engine.h"
 // C++ SYSTEM HEADER
 #include <string>
+#include <functional>
 // GENERAL USING HEADER
 #include <Windows.h>
 #include <DxLib.h>
 // PROJECT USING HEADER
+#include "resource.h"
 #include "src/protocol/evaluation.h"
 #include "src/protocol/env_params.h"
 #include "src/traceable/output_logs.h"
-#include "src/util/conv/converting.h"               /* UTILITY MODULES */
-#include "resource.h"
+#include "src/util/conv/converting.h"           /* UTILITY MODULES */
 
 
 
