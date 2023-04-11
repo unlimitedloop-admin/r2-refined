@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023-02-25
+//      Last update     : 2023/04/11
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -77,6 +77,15 @@ namespace protocol {
         , CHANGE_MAINPROC
         , CHANGE_DEVELOPPROC
         , CHANGE_DRIVER
+    };
+
+
+    enum class Simulator {
+        OFF = 0
+        , MAIN_PROGRAM
+        , DEVELOPER
+        , TEST_DRIVER
+        , EMPTY = 999
     };
 
 }  // namespace protocol

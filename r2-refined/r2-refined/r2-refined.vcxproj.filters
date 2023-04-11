@@ -41,6 +41,7 @@
     <ClCompile Include="src\database\views\mst_apu_channels_view.cc" />
     <ClCompile Include="src\forms\terminal\app_engine_setup_module.cc" />
     <ClCompile Include="src\forms\terminal\myapp_window_procedure.cc" />
+    <ClCompile Include="src\forms\terminal\app_engine_set_activation.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -103,6 +104,7 @@
     <ClInclude Include="src\database\views\MST_APU_CHANNELS_VIEW.h" />
     <ClInclude Include="src\database\tables\MST_XINPUT_TO_KEYBOARDS_DEFAULT_BINDER.h" />
     <ClInclude Include="src\protocol\configuration.h" />
+    <ClInclude Include="src\database\programmings\triggers\NEW_APPLICATION_START_UP.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />

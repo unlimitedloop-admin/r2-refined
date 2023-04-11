@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/09
+//      Last update     : 2023/04/11
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -60,20 +60,23 @@ namespace terminal {
 
 
 
-    bool AppEngine::runmodeChoice(const RunMode expr, ResultSet& outparameter1, ResultSet& outparameter2, std::function<bool(uint64_t)> func) {
+    bool AppEngine::runmodeChoice(const RunMode expr, Simulator& outparameter, std::function<bool(uint64_t)> func) {
         std::wstring str = L"";
         if (getParameter(L"$HIDDEN_DRIVER", &str)) {
             if (L"1" == str) {
-                outparameter1 = ResultSet::ENABLED;
+                outparameter = Simulator::TEST_DRIVER;
                 (void)writeStatusLog(L"テストモジュールを起動します。", LogClass::LOG_LEVEL_OFF);
             }
         }
         // Check for development mode flag. (For development, normally 0)
         else if (getParameter(L"$DEV_MODE", &str)) {
             if (L"1" == str) {
-                outparameter2 = ResultSet::ENABLED;
+                outparameter = Simulator::DEVELOPER;
                 (void)writeStatusLog(L"システムはデヴェロップメントモードで開始されます。", LogClass::LOG_LEVEL_OFF);
             }
+        }
+        else {
+            outparameter = Simulator::MAIN_PROGRAM;
         }
         // Output DxLib log. Specify the output destination of the DxLib exclusive log before calling the DxLib function. 
         if (RunMode::GENERAL_MODE == expr) {

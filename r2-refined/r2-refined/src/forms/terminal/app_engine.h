@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/09
+//      Last update     : 2023/04/11
 //
-//      File version    : 6
+//      File version    : 7
 //
 //
 /**************************************************************/
@@ -53,15 +53,28 @@ namespace terminal {
     /* using namespace */
     using namespace protocol;
 
-    /* using alias */
-    using GAMEPROC = bool;
-
     /* external declare */
-    extern GAMEPROC apps_active;
-    extern Activator activator;
+    extern Simulator programs;
     
     /* prototype declare */
+    /// <summary>
+    /// Change the foundation of the application by operating the Activator.
+    /// </summary>
+    /// <param name="flag">True or false</param>
     void setAppsActiveFlag(bool flag);
+    
+    /// <summary>
+    /// Set Activator key.
+    /// </summary>
+    /// <param name="value">Specify Activator's eval</param>
+    void setActivator(Activator value);
+    
+    /// <summary>
+    /// Get Activator key.
+    /// </summary>
+    /// <param name="">Void</param>
+    /// <returns>Activator key value</returns>
+    Activator getActivator(void);
 
 
 
@@ -88,7 +101,7 @@ namespace terminal {
         bool Receptions(RunMode ticket);
 
         // A child method of the Initialize method implemented in 'app_engine_setup_module.cc'. (Partial divided)
-        bool runmodeChoice(const RunMode expr, ResultSet& outparameter1, ResultSet& outparameter2, std::function<bool(uint64_t)> func);
+        bool runmodeChoice(const RunMode expr, Simulator& outparameter, std::function<bool(uint64_t)> func);
         // A child method of the Initialize method implemented in 'app_engine_setup_module.cc'. (Partial divided)
         bool runInBackground(std::function<bool(uint64_t)> func) const;
         // A child method of the Initialize method implemented in 'app_engine_setup_module.cc'. (Partial divided)
@@ -123,21 +136,6 @@ namespace terminal {
         void Finalize(void);
 
     };
-
-
-    inline GAMEPROC getAppActiveParameter(void) {
-        return apps_active;
-    }
-
-
-    inline void setAppActiveParameter(GAMEPROC value) {
-        apps_active = value;
-    }
-
-
-    inline void setActivator(Activator value) {
-        activator = value;
-    }
 
 }  // namespace terminal
 

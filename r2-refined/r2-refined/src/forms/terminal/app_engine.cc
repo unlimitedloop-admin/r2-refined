@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/09
+//      Last update     : 2023/04/11
 //
-//      File version    : 15
+//      File version    : 16
 //
 //
 /**************************************************************/
@@ -43,15 +43,11 @@
 #include <DxLib.h>
 // PROJECT USING HEADER
 #include "src/forms/device/keyboards_in.h"
-#include "src/exceptions/exception_handler.h"
 #include "src/protocol/evaluation.h"
 #include "src/protocol/process_code_hard.h"
 #include "src/traceable/output_logs.h"
 #include "src/app/input/key_binding.h"
-#include "src/app/sequence/cursor_pointer.h"
-#include "src/app/sequence/cursor_simulator.h"
-#include "src/app/sequence/cursor_driver.h"
-#include "src/database/tables/TRN_APU_CHANNEL_ENABLED.h"
+#include "src/database/programmings/triggers/NEW_APPLICATION_START_UP.h"
 
 
 
@@ -64,76 +60,8 @@ namespace terminal {
 
 
     /* local scopes */
-    ResultSet   dev_mode = ResultSet::DISABLED;     // Development running mode of applications
-    ResultSet   test_driver = ResultSet::DISABLED;  // Test driver running flag
-    GAMEPROC    apps_active = false;                // Activation supervisor
-    Activator   activator = Activator::DISABLED;    // Main program activator key
-
-
-
-    void setAppsActiveFlag(bool flag) {
-        if (flag != getAppActiveParameter()) {
-            setAppActiveParameter(flag);
-            if (getAppActiveParameter()) {
-                if (ResultSet::ENABLED == test_driver) { setActivator(Activator::CHANGE_DRIVER); }
-                else if (ResultSet::ENABLED == dev_mode) { setActivator(Activator::CHANGE_DEVELOPPROC); }
-                else { setActivator(Activator::CHANGE_MAINPROC); }
-
-                if (0 != DxLib::SetDrawScreen(DX_SCREEN_BACK)) {
-                    setStaticProcessCode(0x0005B0LL, STATIC_ERR_DOMINATOR);
-                    setStaticBindingFailureFlag(true);
-                }
-            }
-            else {
-                setActivator(Activator::NOT_ACTIVATION);
-                if (0 != DxLib::SetDrawScreen(DX_SCREEN_FRONT)) {
-                    setStaticProcessCode(0x0006B0LL, STATIC_ERR_DOMINATOR);
-                    setStaticBindingFailureFlag(true);
-                }
-            }
-        }
-    }
-
-
-    void setApplicationConfiguration(void) {
-        DB::TRN_APU_CHANNEL_ENABLED::Insert(5U);   // SQ1, SQ2, TRI, NOI, DPCM (5)
-    }
-
-
-    bool AppEngine::Receptions(RunMode ticket) {
-        switch (activator) {
-        case Activator::NOT_ACTIVATION:
-            if (nullptr != sequence_) {
-                delete sequence_;
-                sequence_ = nullptr;
-                (void)writeStatusLog(L"ゲームプログラムの運転を停止しました。");
-            }
-            break;
-        case Activator::CHANGE_MAINPROC:
-            if (nullptr == sequence_) {
-                sequence_ = new sequence::CursorPointer();
-            }
-            break;
-        case Activator::CHANGE_DEVELOPPROC:
-            if (nullptr == sequence_) {
-                sequence_ = new sequence::CursorSimulator();
-            }
-            break;
-        case Activator::CHANGE_DRIVER:
-            if (nullptr == sequence_) {
-                sequence_ = new sequence::CursorDriver();
-            }
-            break;
-        case Activator::DISABLED:
-            break;
-        default:
-            setStaticProcessCode(0x0011B1ULL, STATIC_ERR_DOMINATOR);
-            NATIVE_MSG(L"#Activator: %d", static_cast<int>(activator));
-            return false;
-        }
-        activator = Activator::DISABLED;
-        return true;
-    }
+    Activator activator = Activator::DISABLED;  // Main program activator key
+    Simulator programs = Simulator::OFF;        // Program routes
 
 
     bool AppEngine::Initialize(RunMode indicator) {
@@ -141,7 +69,7 @@ namespace terminal {
         auto exception_exit = [](unsigned __int64 code) { setStaticProcessCode(code, STATIC_ERR_DOMINATOR); return false; };
 
         /* ******* Pick up an environment variable and set up its value in this system. ******* */
-        if (!this->runmodeChoice(indicator, test_driver, dev_mode, exception_exit)) { return false; }
+        if (!this->runmodeChoice(indicator, programs, exception_exit)) { return false; }
 
         /* ******* Set up the application screen configuration. ******* */
         if (!this->runInBackground(exception_exit)) { return false; }
@@ -162,7 +90,7 @@ namespace terminal {
             // Apps default key set up.
             if (!input::defaultSetBindingSCon()) { return false; }
             // Set application config.
-            setApplicationConfiguration();
+            DB::programmings::newApplicationStartUpTrigger();
             (void)writeStatusLog(L"アプリエンジンの初期化処理を実行しました。");
             return true;
         }
@@ -190,9 +118,7 @@ namespace terminal {
                     setAppsActiveFlag(false);
                     break;
                 }
-                else {
-                    // Evaluate::PROC_SUCCEED; continue;
-                }
+                else {}
             }
         }
     }
@@ -209,6 +135,16 @@ namespace terminal {
             return;
         }
         (void)writeStatusLog(L"アプリエンジンの終了処理を実行しました。");
+    }
+
+
+    void setActivator(Activator value) {
+        activator = value;
+    }
+
+
+    Activator getActivator(void) {
+        return activator;
     }
 
 }  // namespace terminal
