@@ -50,6 +50,7 @@ namespace component {
         ~SampleComponent1();
 
         bool doComponentScene(implements::IRadar* object) override;
+        bool anomalyDetector(void) override;
 
     };
 
@@ -65,6 +66,7 @@ namespace component {
         ~SampleComponent2();
 
         bool doComponentScene(implements::IRadar* object) override;
+        bool anomalyDetector(void) override;
 
     };
 
@@ -83,6 +85,7 @@ namespace component {
         ~SampleComponent3();
 
         bool doComponentScene(implements::IRadar* object) override;
+        bool anomalyDetector(void) override;
 
     };
 

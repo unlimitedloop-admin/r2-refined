@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/11
+//      Last update     : 2023/04/15
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -62,18 +62,14 @@ namespace terminal {
 
     bool AppEngine::runmodeChoice(const RunMode expr, Simulator& outparameter, std::function<bool(uint64_t)> func) {
         std::wstring str = L"";
-        if (getParameter(L"$HIDDEN_DRIVER", &str)) {
-            if (L"1" == str) {
-                outparameter = Simulator::TEST_DRIVER;
-                (void)writeStatusLog(L"テストモジュールを起動します。", LogClass::LOG_LEVEL_OFF);
-            }
+        if (getParameter(L"$HIDDEN_DRIVER", &str); L"1" == str) {
+            outparameter = Simulator::TEST_DRIVER;
+            (void)writeStatusLog(L"テストモジュールを起動します。", LogClass::LOG_LEVEL_OFF);
         }
         // Check for development mode flag. (For development, normally 0)
-        else if (getParameter(L"$DEV_MODE", &str)) {
-            if (L"1" == str) {
-                outparameter = Simulator::DEVELOPER;
-                (void)writeStatusLog(L"システムはデヴェロップメントモードで開始されます。", LogClass::LOG_LEVEL_OFF);
-            }
+        else if (getParameter(L"$DEV_MODE", &str); L"1" == str) {
+            outparameter = Simulator::DEVELOPER;
+            (void)writeStatusLog(L"システムはデヴェロップメントモードで開始されます。", LogClass::LOG_LEVEL_OFF);
         }
         else {
             outparameter = Simulator::MAIN_PROGRAM;

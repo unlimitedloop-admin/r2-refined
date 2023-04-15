@@ -79,6 +79,9 @@ namespace component {
     }
 
 
+    bool SampleComponent1::anomalyDetector(void) { return false; }
+
+
     SampleComponent2::SampleComponent2() : abnormality_(false) {
         (void)writeStatusLog(L"サンプルコンポーネント2を開始します。");
         background_.loadStructure(L"assets/1_Mapdata/demostage_mapdata.bin", 2);
@@ -104,6 +107,9 @@ namespace component {
         }
         return true;
     }
+
+
+    bool SampleComponent2::anomalyDetector(void) { return false; }
 
 
     SampleComponent3::SampleComponent3() : abnormality_(false), track_(0i16) {
@@ -221,5 +227,9 @@ namespace component {
 
         return true;
     }
+
+
+    bool SampleComponent3::anomalyDetector(void) { return false; }
+
 
 }  // namespace component

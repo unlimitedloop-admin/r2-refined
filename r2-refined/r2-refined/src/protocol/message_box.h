@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/15
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -56,7 +56,7 @@ namespace protocol {
     /// Shows a message box.
     /// </summary>
     /// <param name="message">An array of fixed strings</param>
-    void showMessageBox(LPCSTR message);
+    void showMessageBox(LPTSTR message);
 
     /// <summary>
     /// Shows a message box.

@@ -42,6 +42,8 @@
     <ClCompile Include="src\forms\terminal\app_engine_setup_module.cc" />
     <ClCompile Include="src\forms\terminal\myapp_window_procedure.cc" />
     <ClCompile Include="src\forms\terminal\app_engine_set_activation.cc" />
+    <ClCompile Include="src\app\component\AX\A1_launch\state\resource_file_check.cc" />
+    <ClCompile Include="src\app\component\AX\A1_launch\state\initialize_DB_trigger.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -105,6 +107,11 @@
     <ClInclude Include="src\database\tables\MST_XINPUT_TO_KEYBOARDS_DEFAULT_BINDER.h" />
     <ClInclude Include="src\protocol\configuration.h" />
     <ClInclude Include="src\database\programmings\triggers\NEW_APPLICATION_START_UP.h" />
+    <ClInclude Include="src\app\models\component_state_context.h" />
+    <ClInclude Include="src\app\models\component_state.h" />
+    <ClInclude Include="src\app\route\region\A1_launch_component.h" />
+    <ClInclude Include="src\app\component\AX\A1_launch\state\resource_file_check.h" />
+    <ClInclude Include="src\app\component\AX\A1_launch\state\initialize_DB_trigger.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />

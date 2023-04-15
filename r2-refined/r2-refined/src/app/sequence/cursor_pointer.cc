@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/15
 //
-//      File version    : 8
+//      File version    : 9
 //
 //
 /**************************************************************/
@@ -86,7 +86,10 @@ namespace sequence {
         }
         // ★ Please describe the sequencer controlling from here. >>>
         if (nullptr != container_) {
-            if (!container_->doComponentScene(this)) { return Evaluate::PROC_FAILED; }
+            if (!container_->doComponentScene(this)) { return Evaluate::PROC_QUIT; }
+        }
+        if (nullptr != container_) {
+            if (container_->anomalyDetector()) { return Evaluate::PROC_FAILED; }
         }
 
 

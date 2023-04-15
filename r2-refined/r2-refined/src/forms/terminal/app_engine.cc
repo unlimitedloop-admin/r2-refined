@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/11
+//      Last update     : 2023/04/15
 //
-//      File version    : 16
+//      File version    : 17
 //
 //
 /**************************************************************/
@@ -112,10 +112,10 @@ namespace terminal {
                  */
                 period_ = sequence_->Service(period_);
                 if (Evaluate::PROC_QUIT == period_) {
-                    setAppsActiveFlag(false);
+                    setAppsActiveFlag(false);   // Stop the main program.
                 }
                 else if (Evaluate::PROC_FAILED == period_) {
-                    setAppsActiveFlag(false);
+                    setAppsActiveFlag(false);   // Stop the main program and force the system to terminate (ie, abort).
                     break;
                 }
                 else {}

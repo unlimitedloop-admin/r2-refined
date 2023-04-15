@@ -13,11 +13,11 @@
 //
 //      r2-refined project
 //
-//      File name       : components.h
+//      File name       : component_state.h
 //
 //      Author          : u7
 //
-//      Last update     : 2023-03-05
+//      Last update     : 2023/04/15
 //
 //      File version    : 1
 //
@@ -28,17 +28,17 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * Component's interface as changes in every scene.
+ * A state interface that represents the state inside a component.
 **/
 
 
 
-#ifndef _R2R_APP_MODELS_COMPONENTS_H_
-#define _R2R_APP_MODELS_COMPONENTS_H_
+#ifndef _R2R_APP_MODELS_COMPONENT_STATE_H_
+#define _R2R_APP_MODELS_COMPONENT_STATE_H_
 
 /* INCLUDES */
 // PRIMARY HEADER
-#include "radar.h"
+#include "component_state_context.h"
 
 
 
@@ -47,18 +47,20 @@ namespace models {
 
     namespace implements {
 
-        class IRadar;
+        /// <summary>
+        /// State context interface for mutating state.
+        /// </summary>
+        class IComponentStateContext;
 
 
         /// <summary>
-        /// Component interface.
+        /// An interface that holds the state of a component.
         /// </summary>
-        class IComponents {
+        class IComponentState {
 
         public:
-            virtual ~IComponents() {}
-            virtual bool doComponentScene(IRadar* object) = 0;
-            virtual bool anomalyDetector(void) = 0;
+            virtual ~IComponentState() {}
+            virtual bool doAction(IComponentStateContext* context) = 0;
 
         };
 
@@ -66,4 +68,4 @@ namespace models {
 
 }  // namespace models
 
-#endif // !_R2R_APP_MODELS_COMPONENTS_H_
+#endif // !_R2R_APP_MODELS_COMPONENT_STATE_H_
