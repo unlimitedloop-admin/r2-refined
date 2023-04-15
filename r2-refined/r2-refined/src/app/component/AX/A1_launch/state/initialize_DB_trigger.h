@@ -19,7 +19,7 @@
 //
 //      Last update     : 2023/04/15
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -52,6 +52,9 @@ namespace component {
 
         namespace state {
 
+            /// <summary>
+            /// A class that ready the DB table used in the application.
+            /// </summary>
             class InitializeDBTriggerState final : public models::implements::IComponentState {
 
             public:

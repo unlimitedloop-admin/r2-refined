@@ -19,7 +19,7 @@
 //
 //      Last update     : 2023/04/15
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -60,6 +60,15 @@ namespace component {
         LaunchingComponent::LaunchingComponent() : status_(Evaluate::PROC_SUCCEED) {
             phase_ = route::region::A1LaunchComponent().getStates(phase_);
             (void)writeStatusLog(L"LaunchingComponentクラスの実行を開始しました。");
+        }
+
+
+        LaunchingComponent::~LaunchingComponent() {
+            if (nullptr != phase_) {
+                delete phase_;
+                phase_ = nullptr;
+            }
+            (void)writeStatusLog(L"LaunchingComponentクラスの実行を終了しました。");
         }
 
 

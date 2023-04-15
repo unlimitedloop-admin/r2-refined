@@ -19,7 +19,7 @@
 //
 //      Last update     : 2023/04/15
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -76,7 +76,7 @@ namespace component {
         public:
             LaunchingComponent();
             LaunchingComponent(const LaunchingComponent&) = delete;
-            ~LaunchingComponent() {}
+            ~LaunchingComponent();
 
             /// <summary>
             /// Execute the contents of the component.

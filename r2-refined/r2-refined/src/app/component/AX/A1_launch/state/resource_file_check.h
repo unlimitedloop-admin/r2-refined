@@ -19,7 +19,7 @@
 //
 //      Last update     : 2023/04/15
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -52,6 +52,9 @@ namespace component {
 
         namespace state {
 
+            /// <summary>
+            /// A class that checks the existence of resource data used in the application.
+            /// </summary>
             class ResourceFileCheckState final : public models::implements::IComponentState {
 
             public:
