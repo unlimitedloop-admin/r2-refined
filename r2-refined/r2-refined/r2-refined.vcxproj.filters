@@ -106,7 +106,7 @@
     <ClInclude Include="src\database\views\MST_APU_CHANNELS_VIEW.h" />
     <ClInclude Include="src\database\tables\MST_XINPUT_TO_KEYBOARDS_DEFAULT_BINDER.h" />
     <ClInclude Include="src\protocol\configuration.h" />
-    <ClInclude Include="src\database\programmings\triggers\NEW_APPLICATION_START_UP.h" />
+    <ClInclude Include="src\database\triggers\NEW_APPLICATION_STARTUP.h" />
     <ClInclude Include="src\app\models\component_state_context.h" />
     <ClInclude Include="src\app\models\component_state.h" />
     <ClInclude Include="src\app\route\region\A1_launch_component.h" />

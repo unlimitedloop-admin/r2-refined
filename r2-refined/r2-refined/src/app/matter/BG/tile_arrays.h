@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/19
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -62,7 +62,14 @@ namespace matter {
         class TileArrays {
 
         private:
+            /// <summary>
+            /// A loader class that owns the background tile map structure.
+            /// </summary>
             MapstructLoader structure_;
+
+            /// <summary>
+            /// An interface pointer that holds a graphic texture.
+            /// </summary>
             implements::IMatBenefits* texture_;
 
         public:

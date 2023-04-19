@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/15
+//      Last update     : 2023/04/19
 //
-//      File version    : 17
+//      File version    : 18
 //
 //
 /**************************************************************/
@@ -47,7 +47,7 @@
 #include "src/protocol/process_code_hard.h"
 #include "src/traceable/output_logs.h"
 #include "src/app/input/key_binding.h"
-#include "src/database/programmings/triggers/NEW_APPLICATION_START_UP.h"
+#include "src/database/triggers/NEW_APPLICATION_STARTUP.h"
 
 
 
@@ -90,7 +90,7 @@ namespace terminal {
             // Apps default key set up.
             if (!input::defaultSetBindingSCon()) { return false; }
             // Set application config.
-            DB::programmings::newApplicationStartUpTrigger();
+            DB::TRIGGER::NEW_APPLICATION_STARTUP();
             (void)writeStatusLog(L"アプリエンジンの初期化処理を実行しました。");
             return true;
         }

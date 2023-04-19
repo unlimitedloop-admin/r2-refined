@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : NEW_APPLICATION_START_UP.h
+//      File name       : NEW_APPLICATION_STARTUP.h
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/11
+//      Last update     : 2023/04/19
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -33,8 +33,8 @@
 
 
 
-#ifndef _R2R_DATABASE_PROGRAMMINGS_TRIGGERS_NEW_APPLICATION_START_UP_H_
-#define _R2R_DATABASE_PROGRAMMINGS_TRIGGERS_NEW_APPLICATION_START_UP_H_
+#ifndef _R2R_DATABASE_TRIGGERS_NEW_APPLICATION_STARTUP_H_
+#define _R2R_DATABASE_TRIGGERS_NEW_APPLICATION_STARTUP_H_
 
 /* INCLUDES */
 // PROJECT USING HEADER
@@ -45,14 +45,14 @@
 /* SOURCES */
 namespace DB {
 
-    namespace programmings {
+    namespace TRIGGER {
 
-        inline void newApplicationStartUpTrigger(void) {
+        inline void NEW_APPLICATION_STARTUP(void) {
             DB::TRN_APU_CHANNEL_ENABLED::Insert(5U);   // SQ1, SQ2, TRI, NOI, DPCM (5)
         }
 
-    }  // namespace programmings
+    }  // namespace TRIGGER
 
 }  // namespace DB
 
-#endif // !_R2R_DATABASE_PROGRAMMINGS_TRIGGERS_NEW_APPLICATION_START_UP_H_
+#endif // !_R2R_DATABASE_TRIGGERS_NEW_APPLICATION_STARTUP_H_

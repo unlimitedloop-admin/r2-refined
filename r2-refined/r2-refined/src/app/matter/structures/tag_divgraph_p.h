@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/01
+//      Last update     : 2023/04/19
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -39,13 +39,16 @@
 /* SOURCES */
 namespace matter {
 
+    /// <summary>
+    /// Dedicated parameter list for DxLib's LoadDivGraph function.
+    /// </summary>
     typedef struct tagDivGraphParam {
     public:
-        size_t all_num;
-        size_t x_num;
-        size_t y_num;
-        size_t x_size;
-        size_t y_size;
+        size_t all_num;         // Number of divisions of image data
+        size_t x_num;           // Horizontal number of tiles of image data
+        size_t y_num;           // Vertical number of tiles of image data
+        size_t x_size;          // Width of single tile
+        size_t y_size;          // Height of single tile
     } DivGraphParam, * LPDivGraphParam;
 
 }  // namespace matter

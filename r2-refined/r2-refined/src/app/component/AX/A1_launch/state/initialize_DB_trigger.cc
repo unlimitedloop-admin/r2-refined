@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : resource_file_check.cc
+//      File name       : initialize_DB_trigger.cc
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/15
+//      Last update     : 2023/04/19
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/

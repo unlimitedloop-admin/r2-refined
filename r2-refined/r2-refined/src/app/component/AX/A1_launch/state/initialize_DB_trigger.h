@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : initialize_run_DB_trigger.h
+//      File name       : initialize_DB_trigger.h
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/15
+//      Last update     : 2023/04/19
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -28,7 +28,7 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * initialize run DB trigger.header
+ * initialize DB trigger.header
 **/
 
 

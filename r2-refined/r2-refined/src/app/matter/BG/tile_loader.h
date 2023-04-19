@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/19
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -58,7 +58,7 @@ namespace matter {
 
         private:
             /// <summary>
-            /// Sprite data handler.
+            /// BG data handler.
             /// </summary>
             std::vector<int> graphics_;
 

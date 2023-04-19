@@ -246,7 +246,7 @@
     <ClInclude Include="src\app\sequence\cursor_driver.h" />
     <ClInclude Include="src\app\sequence\cursor_pointer.h" />
     <ClInclude Include="src\app\sequence\cursor_simulator.h" />
-    <ClInclude Include="src\database\programmings\triggers\NEW_APPLICATION_START_UP.h" />
+    <ClInclude Include="src\database\triggers\NEW_APPLICATION_STARTUP.h" />
     <ClInclude Include="src\database\tables\MST_APU_CHANNELS.h" />
     <ClInclude Include="src\database\tables\MST_MAP_STRUCTURES.h" />
     <ClInclude Include="src\database\tables\MST_NES_PALETTE.h" />
