@@ -13,13 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : A1_launch_component.h
+//      File name       : C1_sample2_component.h
 //
 //      Author          : u7
 //
 //      Last update     : 2023/04/29
 //
-//      File version    : 2
+//      File version    : 1
 //
 //
 /**************************************************************/
@@ -28,13 +28,13 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * Set the state transition path of A1_launch.
+ * Set the state transition path of C1_sample2.
 **/
 
 
 
-#ifndef _R2R_APP_ROUTE_REGION_A1_LAUNCH_COMPONENT_H_
-#define _R2R_APP_ROUTE_REGION_A1_LAUNCH_COMPONENT_H_
+#ifndef _R2R_APP_ROUTE_REGION_C1_SAMPLE2_COMPONENT_H_
+#define _R2R_APP_ROUTE_REGION_C1_SAMPLE2_COMPONENT_H_
 
 /* INCLUDES */
 // C++ SYSTEM HEADER
@@ -42,9 +42,8 @@
 #include <string>
 // PROJECT USING HEADER
 #include "src/app/models/component_state.h"
-#include "src/app/component/AX/A1_launch/launching_component.h"
-#include "src/app/component/AX/A1_launch/state/resource_file_check.h"
-#include "src/app/component/AX/A1_launch/state/initialize_DB_trigger.h"
+#include "src/app/component/CX/C1_sample2/actionscene_proof_component.h"
+#include "src/app/component/CX/C1_sample2/state/setup_instance.h"
 
 
 
@@ -55,16 +54,16 @@ namespace route {
 
         /* using namespace */
         using namespace models;
-        using namespace component::A1_launch;
+        using namespace component::C1_sample2;
 
 
 
-        class A1LaunchComponent final {
+        class C1Sample2Component final {
 
         public:
-            A1LaunchComponent() {}
-            A1LaunchComponent(const A1LaunchComponent&) = delete;
-            ~A1LaunchComponent() {}
+            C1Sample2Component() {}
+            C1Sample2Component(const C1Sample2Component&) = delete;
+            ~C1Sample2Component() {}
 
             /// <summary>
             /// Get the state instance of A1_launch.
@@ -76,29 +75,30 @@ namespace route {
         };
 
 
-        inline implements::IComponentState* A1LaunchComponent::getStates(implements::IComponentState* instance) const {
+        inline implements::IComponentState* C1Sample2Component::getStates(implements::IComponentState* instance) const {
             using namespace state;
 
             if (nullptr == instance) {
-                return new ResourceFileCheckState();
+                return new SetupInstanceState();
             }
             else {
-                const std::type_info& type = typeid(*instance);
-                const std::wstring type_name = std::wstring(type.name(), type.name() + std::strlen(type.name()));
-                const std::wstring namespace_tag = L"class component::A1_launch::state::";
-                if (namespace_tag + L"ResourceFileCheckState" == type_name) {
-                    return new InitializeDBTriggerState();
-                }
-                else {
-                    return nullptr;
-                }
+                //const std::type_info& type = typeid(*instance);
+                //const std::wstring type_name = std::wstring(type.name(), type.name() + std::strlen(type.name()));
+                //const std::wstring namespace_tag = L"class component::A1_launch::state::";
+                //if (namespace_tag + L"ResourceFileCheckState" == type_name) {
+                //    return new InitializeDBTriggerState();
+                //}
+                //else {
+                //    return nullptr;
+                //}
             }
+            return nullptr;
         }
 
 
         /*
          * Routes:
-         * ResourceFileCheckState => InitializeDBTriggerState => @next component
+         * SetupInstanceState => ???? => ???? => @next component
          */
 
 
@@ -106,4 +106,4 @@ namespace route {
 
 }  // namespace route
 
-#endif // !_R2R_APP_ROUTE_REGION_A1_LAUNCH_COMPONENT_H_
+#endif // !_R2R_APP_ROUTE_REGION_C1_SAMPLE2_COMPONENT_H_

@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/09
+//      Last update     : 2023/04/29
 //
-//      File version    : 2
+//      File version    : 3
 //
 //
 /**************************************************************/
@@ -105,7 +105,7 @@ namespace terminal {
         else {
             // NOTE : Automatically run the game program when in full screen mode. (because there is no menu bar)
             setAppsActiveFlag(true);
-            NATIVE_MSG(L"全画面モードでゲームを開始できませんでした。");
+            NATIVE_MSG(L"全画面モードでゲームを開始できませんでした。", 0);   // FIXME : Passing meaningless values, you may be able to use the __VA_OPT__ macro to avoid this (C++20 compliant)
             if (getStaticBindingFailureFlag()) { return false; }
         }
         return true;

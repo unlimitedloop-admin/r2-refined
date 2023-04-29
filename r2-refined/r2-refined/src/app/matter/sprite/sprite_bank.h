@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/29
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -43,6 +43,7 @@
 // PROJECT USING HEADER
 #include "src/app/models/mat_benefits.h"
 #include "src/app/matter/structures/tag_divgraph_p.h"
+#include "sprite_property.h"
 
 
 
@@ -74,6 +75,11 @@ namespace matter {
             ~SpriteBank();
 
             /// <summary>
+            /// Sprite bank data option.
+            /// </summary>
+            std::map<std::wstring, SpriteProperty> status_;
+
+            /// <summary>
             /// Divides the specified sprite data and takes it into memory.
             /// </summary>
             /// <param name="name">Specify the title that identifies the sprites to import</param>
@@ -86,12 +92,8 @@ namespace matter {
             /// Draw the loaded sprite image to the screen.
             /// </summary>
             /// <param name="name">Sprite names</param>
-            /// <param name="tile_num">Specify the order of tiles to draw</param>
-            /// <param name="x">The X coordinate position of the screen to draw</param>
-            /// <param name="y">The Y coordinate position of the screen to draw</param>
-            /// <param name="transparent">Whether the rendered image should be transparent</param>
             /// <returns>True if successfully drawn to the window</returns>
-            bool Draw(const std::wstring name, const size_t tile_num, const __int16 x, const __int16 y, const bool transparent) const;
+            bool Draw(const std::wstring name);
 
         };
 

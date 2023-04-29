@@ -25,6 +25,7 @@
 
 #include "src/app/matter/sprite/sprite_bank.h"
 #include "src/app/matter/structures/tag_divgraph_p.h"
+#include "src/app/matter/sprite/sprite_property.h"
 
 #include "src/app/matter/structures/tag_track_channel_p.h"
 #include "src/database/tables/MST_APU_CHANNELS.h"
@@ -50,8 +51,16 @@ namespace component {
         (void)writeStatusLog(L"サンプルコンポーネント1を開始します。");
         DivGraphParam params = { 16, 4, 4, 32, 32 };
         sprite_.Push(L"Metall", L"assets/3_sprite/sample_graphic.png", &params);
+        sprite_.status_[L"Metall"].type = sprite::Assist::Automatic;
+        sprite_.status_[L"Metall"].chip = 0;
+        sprite_.status_[L"Metall"].axis.SetX(100i16);
+        sprite_.status_[L"Metall"].axis.SetY(100i16);
         params = { 200, 20, 10, 32, 32 };
         sprite_.Push(L"Rockman", L"assets/3_sprite/rockman_allsprite_01.png", &params);
+        sprite_.status_[L"Rockman"].type = sprite::Assist::Inferior;
+        sprite_.status_[L"Rockman"].chip = 0;
+        sprite_.status_[L"Rockman"].axis.SetX(97i16);
+        sprite_.status_[L"Rockman"].axis.SetY(72i16);
         MST_NES_PALETTE::tr_0x00();
     }
 
@@ -60,14 +69,15 @@ namespace component {
 
 
     bool SampleComponent1::doComponentScene(implements::IRadar* object) {
+        size_t* a = &sprite_.status_[L"Metall"].chip;
         if (1 == GetKey(JPBTN::RIGHT)) {
-            if (3 > t_num_) { ++t_num_; }
+            if (3 > *a) { ++(*a); }
         }
         else if (1 == GetKey(JPBTN::LEFT)) {
-            if (0 < t_num_) { --t_num_; }
+            if (0 < *a) { --(*a); }
         }
-        sprite_.Draw(L"Metall", t_num_, 100, 100, true);
-        sprite_.Draw(L"Rockman", t_num_, 97, 72, true);
+        sprite_.Draw(L"Metall");
+        sprite_.Draw(L"Rockman");
 
 
         if (1 == GetKey(JPBTN::START)) {

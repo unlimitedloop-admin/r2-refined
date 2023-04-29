@@ -48,6 +48,7 @@
 #include "src/database/tables/MST_NES_PALETTE.h"
 
 #include "src/app/component/CX/C0_sample1/sample_component.h"
+#include "src/app/component/CX/C1_sample2/actionscene_proof_component.h"
 
 
 
@@ -66,6 +67,7 @@ namespace sequence {
 
     CursorDriver::CursorDriver() {
         container_ = new SampleComponent1();
+        //container_ = new C1_sample2::ActionsceneProofComponent();
     }
 
 
@@ -86,11 +88,15 @@ namespace sequence {
         }
 
         // ■ BEGIN TEST CODE >>>
-        if (!container_->doComponentScene(this)) {
-            return Evaluate::PROC_FAILED;
-        }
-        if (nullptr == container_) {
-            return Evaluate::PROC_QUIT;
+        if (nullptr != container_) {
+            if (!container_->doComponentScene(this)) { return Evaluate::PROC_FAILED; }
+            if (nullptr != container_) {
+                if (container_->anomalyDetector()) { return Evaluate::PROC_FAILED; }
+            }
+            else {
+                // If the class of the container becomes empty after being executed once, it is considered that the program has been instructed to stop.
+                return Evaluate::PROC_QUIT;
+            }
         }
         // ■ END TEST CODE.
 

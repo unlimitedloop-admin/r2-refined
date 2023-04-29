@@ -44,6 +44,10 @@
     <ClCompile Include="src\forms\terminal\app_engine_set_activation.cc" />
     <ClCompile Include="src\app\component\AX\A1_launch\state\resource_file_check.cc" />
     <ClCompile Include="src\app\component\AX\A1_launch\state\initialize_DB_trigger.cc" />
+    <ClCompile Include="src\app\component\CX\C1_sample2\actionscene_proof_component.cc" />
+    <ClCompile Include="src\app\component\CX\C1_sample2\state\setup_instance.h" />
+    <ClCompile Include="src\app\component\CX\C1_sample2\state\setup_instance.cc" />
+    <ClCompile Include="src\app\matter\sprite\sprite_property.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -112,6 +116,11 @@
     <ClInclude Include="src\app\route\region\A1_launch_component.h" />
     <ClInclude Include="src\app\component\AX\A1_launch\state\resource_file_check.h" />
     <ClInclude Include="src\app\component\AX\A1_launch\state\initialize_DB_trigger.h" />
+    <ClInclude Include="src\app\component\CX\C1_sample2\actionscene_proof_component.h" />
+    <ClInclude Include="src\app\component\CX\C0_sample1\state\setup_instance.h" />
+    <ClInclude Include="src\app\route\region\C1_sample2_component.h" />
+    <ClInclude Include="src\app\matter\structures\tag_axisation.h" />
+    <ClInclude Include="src\app\matter\sprite\sprite_property.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />

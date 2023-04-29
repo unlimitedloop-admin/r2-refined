@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/15
+//      Last update     : 2023/04/29
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -39,6 +39,7 @@
 /* INCLUDES */
 // PRIMARY HEADER
 #include "src/app/models/components.h"
+#include "src/app/models/component_state_context.h"
 // PROJECT USING HEADER
 #include "src/app/models/radar.h"
 #include "src/app/models/component_state.h"

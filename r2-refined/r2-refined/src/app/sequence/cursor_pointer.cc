@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/15
+//      Last update     : 2023/04/29
 //
-//      File version    : 9
+//      File version    : 10
 //
 //
 /**************************************************************/
@@ -63,8 +63,7 @@ namespace sequence {
 
     CursorPointer::CursorPointer() {
         (void)writeStatusLog(L"ゲームプログラムの運転を開始しました。");
-        region::FoundingCursor obj_;
-        container_ = obj_.getComponents();
+        container_ = region::FoundingCursor().getComponents();
     }
 
 
@@ -86,15 +85,15 @@ namespace sequence {
         }
         // ★ Please describe the sequencer controlling from here. >>>
         if (nullptr != container_) {
-            if (!container_->doComponentScene(this)) { return Evaluate::PROC_QUIT; }
+            if (!container_->doComponentScene(this)) { return Evaluate::PROC_FAILED; }
+            if (nullptr != container_) {
+                if (container_->anomalyDetector()) { return Evaluate::PROC_FAILED; }
+            }
+            else {
+                // If the class of the container becomes empty after being executed once, it is considered that the program has been instructed to stop.
+                return Evaluate::PROC_QUIT;
+            }
         }
-        if (nullptr != container_) {
-            if (container_->anomalyDetector()) { return Evaluate::PROC_FAILED; }
-        }
-
-
-
-
 
 
         return Evaluate::PROC_SUCCEED;

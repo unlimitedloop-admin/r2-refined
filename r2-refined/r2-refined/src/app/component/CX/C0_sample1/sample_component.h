@@ -42,7 +42,6 @@ namespace component {
 
     private:
         bool abnormality_;
-        size_t t_num_ = 0;
         matter::sprite::SpriteBank sprite_;
 
     public:

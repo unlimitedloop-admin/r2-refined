@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/03
+//      Last update     : 2023/04/29
 //
-//      File version    : 3
+//      File version    : 4
 //
 //
 /**************************************************************/
@@ -38,6 +38,7 @@
 #include "sprite_bank.h"
 // C++ SYSTEM HEADER
 #include <string>
+#include <map>
 // PROJECT USING HEADER
 #include "src/app/matter/sprite/diecast.h"
 #include "src/app/matter/sprite/clay_diecast.h"
@@ -78,9 +79,11 @@ namespace matter {
         }
 
 
-        bool SpriteBank::Draw(const std::wstring name, const size_t tile_num, const __int16 x, const __int16 y, const bool transparent) const {
+        bool SpriteBank::Draw(const std::wstring name) {
             if (auto itr = objects_.find(name); itr != end(objects_)) {
-                return itr->second->Use(x, y, tile_num, transparent);
+                if (auto opt_itr = status_.find(name); opt_itr != end(status_)) {
+                    return itr->second->Use(status_[name].axis.GetX(), status_[name].axis.GetY(), status_[name].chip, status_[name].transparent);
+                }
             }
         }
 

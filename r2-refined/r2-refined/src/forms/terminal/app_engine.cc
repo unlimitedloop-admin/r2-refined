@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/19
+//      Last update     : 2023/04/29
 //
-//      File version    : 18
+//      File version    : 19
 //
 //
 /**************************************************************/
@@ -58,10 +58,10 @@ namespace terminal {
     using namespace protocol;
     using namespace traceable;
 
-
     /* local scopes */
     Activator activator = Activator::DISABLED;  // Main program activator key
     Simulator programs = Simulator::OFF;        // Program routes
+
 
 
     bool AppEngine::Initialize(RunMode indicator) {
@@ -109,6 +109,7 @@ namespace terminal {
                  * >>> sequence_ = CursorPointer defaults to the main program when executed.
                  * >>> sequence_ = CursorSimulator provides a backdoor menu for development.
                  * >>> sequence_ = CursorDriver are not normally used. It's a laboratory table when you do temporary program testing.
+                 * The value of sequence_ is set by the activator key, and the process is controlled by the 'AppEngine::Receptions' method.
                  */
                 period_ = sequence_->Service(period_);
                 if (Evaluate::PROC_QUIT == period_) {
