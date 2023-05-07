@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/29
+//      Last update     : 2023/05/07
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -38,8 +38,11 @@
 #include "actionscene_proof_component.h"
 // PROJECT USING HEADER
 #include "src/protocol/evaluation.h"
-#include "state/setup_instance.h"
+#include "src/app/models/radar.h"
+#include "src/app/models/component_state.h"
 #include "src/app/route/region/C1_sample2_component.h"
+#include "src/app/matter/blending/dealer.h"
+#include "state/setup_instance.h"
 
 
 
@@ -55,11 +58,16 @@ namespace component {
 
         ActionsceneProofComponent::ActionsceneProofComponent() {
             status_ = Evaluate::PROC_SUCCEED;
-            phase_ = route::region::C1Sample2Component().getStates(phase_);
+            mat_ = new matter::blending::Dealer();
+            phase_ = route::region::C1Sample2Component().getStates(phase_, mat_);
         }
 
 
         ActionsceneProofComponent::~ActionsceneProofComponent() {
+            if (nullptr != mat_) {
+                delete mat_;
+                mat_ = nullptr;
+            }
             if (nullptr != phase_) {
                 delete phase_;
                 phase_ = nullptr;

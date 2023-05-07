@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/19
+//      Last update     : 2023/05/07
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -38,11 +38,15 @@
 
 /* INCLUDES */
 // C++ SYSTEM HEADER
+#include <cstdint>
 #include <string>
+#include <array>
 // PROJECT USING HEADER
 #include "mapstruct_loader.h"
 #include "src/app/models/mat_benefits.h"
+#include "src/app/matter/BG/BG_property.h"
 #include "src/app/matter/structures/tag_divgraph_p.h"
+#include "src/app/matter/structures/tag_axisation.h"
 
 
 
@@ -72,9 +76,19 @@ namespace matter {
             /// </summary>
             implements::IMatBenefits* texture_;
 
+            /// <summary>
+            /// Drawing information of the map to be placed.
+            /// </summary>
+            std::array<BGProperty, 4ui64> blueprint_;
+
         public:
             TileArrays();
             TileArrays(const TileArrays& cc);
+            /// <summary>
+            /// 
+            /// </summary>
+            /// <param name="p">Specifies the page position number of the initial array</param>
+            TileArrays(const diorama p);
             ~TileArrays();
 
             /// <summary>
@@ -96,11 +110,22 @@ namespace matter {
             /// <summary>
             /// BG data read in memory is mapped to VRAM and loaded.
             /// </summary>
-            /// <param name="map_no">Capacity number to load</param>
-            /// <param name="axis_x">X starting point of the map to start drawing</param>
-            /// <param name="axis_y">Y starting point of the map to start drawing</param>
+            /// <param name="">Void</param>
             /// <returns>True if the drawing was successful</returns>
-            bool mappingOn(const size_t map_no, const __int16 axis_x, const __int16 axis_y) const;
+            bool mappingOn(void);
+
+
+            /// [blueprint_] Getter, Setter
+            inline diorama getGrids(size_t n) { return blueprint_[n].grids; }
+            inline void setGrids(size_t n, diorama v) { blueprint_[n].grids = v; }
+            inline LPAxisation getVertex(size_t n) { return &blueprint_[n].vertex; }
+            inline void setVertex(size_t n, LPAxisation p) { blueprint_[n].vertex = *p; }
+            inline int16_t getVertexX(size_t n) { return blueprint_[n].vertex.GetX(); }
+            inline void setVertexX(size_t n, int16_t v) { blueprint_[n].vertex.SetX(v); }
+            inline int16_t getVertexY(size_t n) { return blueprint_[n].vertex.GetY(); }
+            inline void setVertexY(size_t n, int16_t v) { blueprint_[n].vertex.SetY(v); }
+            inline int16_t getVertexZ(size_t n) { return blueprint_[n].vertex.GetZ(); }
+            inline void setVertexZ(size_t n, int16_t v) { blueprint_[n].vertex.SetZ(v); }
 
         };
 

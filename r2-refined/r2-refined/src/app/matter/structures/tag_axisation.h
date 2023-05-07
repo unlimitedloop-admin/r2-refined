@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/29
+//      Last update     : 2023/05/07
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -80,7 +80,7 @@ namespace matter {
             return z;
         }
 
-    } Axisation;
+    } Axisation, *LPAxisation;
 
 }  // namespace matter
 

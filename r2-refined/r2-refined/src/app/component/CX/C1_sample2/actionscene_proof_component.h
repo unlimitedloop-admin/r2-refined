@@ -17,7 +17,7 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/29
+//      Last update     : 2023/05/07
 //
 //      File version    : 1
 //
@@ -44,6 +44,7 @@
 #include "src/app/models/radar.h"
 #include "src/app/models/component_state.h"
 #include "src/protocol/evaluation.h"
+#include "src/app/matter/blending/dealer.h"
 
 
 
@@ -66,6 +67,7 @@ namespace component {
         private:
             implements::IComponentState* phase_ = nullptr;
             Evaluate status_;
+            matter::blending::Dealer* mat_;         // materials pointer
 
         public:
             ActionsceneProofComponent();

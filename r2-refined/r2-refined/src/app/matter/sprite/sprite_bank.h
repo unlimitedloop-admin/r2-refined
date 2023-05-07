@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/29
+//      Last update     : 2023/05/07
 //
-//      File version    : 4
+//      File version    : 5
 //
 //
 /**************************************************************/
@@ -77,7 +77,7 @@ namespace matter {
             /// <summary>
             /// Sprite bank data option.
             /// </summary>
-            std::map<std::wstring, SpriteProperty> status_;
+            std::map<std::wstring, SpriteProperty> status_;     // TODO : It should be changed to a private parameter.
 
             /// <summary>
             /// Divides the specified sprite data and takes it into memory.

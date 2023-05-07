@@ -66,8 +66,8 @@ namespace sequence {
 
 
     CursorDriver::CursorDriver() {
-        container_ = new SampleComponent1();
-        //container_ = new C1_sample2::ActionsceneProofComponent();
+        //container_ = new SampleComponent1();
+        container_ = new C1_sample2::ActionsceneProofComponent();
     }
 
 

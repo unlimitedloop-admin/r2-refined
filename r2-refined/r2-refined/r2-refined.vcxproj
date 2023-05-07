@@ -173,19 +173,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\app\algorithm\action_system\BG\background_scrolling.cc" />
+    <ClCompile Include="src\app\algorithm\action_system\player\player_job.cc" />
+    <ClCompile Include="src\app\algorithm\action_system\unified_action.cc" />
     <ClCompile Include="src\app\component\AX\A1_launch\launching_component.cc" />
     <ClCompile Include="src\app\component\AX\A1_launch\state\initialize_DB_trigger.cc" />
     <ClCompile Include="src\app\component\AX\A1_launch\state\resource_file_check.cc" />
     <ClCompile Include="src\app\component\CX\C0_sample1\sample_component.cc" />
     <ClCompile Include="src\app\component\CX\C1_sample2\actionscene_proof_component.cc" />
+    <ClCompile Include="src\app\component\CX\C1_sample2\state\proof_stage_main.cc" />
     <ClCompile Include="src\app\component\CX\C1_sample2\state\setup_instance.cc" />
     <ClCompile Include="src\app\component\CX\C1_sample2\state\setup_instance.h" />
     <ClCompile Include="src\app\input\inputkey.cc" />
     <ClCompile Include="src\app\input\key_binding.cc" />
+    <ClCompile Include="src\app\matter\BG\BG_property.cc" />
     <ClCompile Include="src\app\matter\BG\board_sculpture.cc" />
     <ClCompile Include="src\app\matter\BG\mapstruct_loader.cc" />
     <ClCompile Include="src\app\matter\BG\tile_arrays.cc" />
     <ClCompile Include="src\app\matter\BG\tile_loader.cc" />
+    <ClCompile Include="src\app\matter\blending\dealer.cc" />
     <ClCompile Include="src\app\matter\sound\audio_equipment.cc" />
     <ClCompile Include="src\app\matter\sound\audio_loader.cc" />
     <ClCompile Include="src\app\matter\sound\vinyl_track.cc" />
@@ -223,19 +229,25 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
+    <ClInclude Include="src\app\algorithm\action_system\BG\background_scrolling.h" />
+    <ClInclude Include="src\app\algorithm\action_system\player\player_job.h" />
+    <ClInclude Include="src\app\algorithm\action_system\unified_action.h" />
     <ClInclude Include="src\app\component\AX\A1_launch\launching_component.h" />
     <ClInclude Include="src\app\component\AX\A1_launch\state\initialize_DB_trigger.h" />
     <ClInclude Include="src\app\component\AX\A1_launch\state\resource_file_check.h" />
     <ClInclude Include="src\app\component\CX\C0_sample1\sample_component.h" />
     <ClInclude Include="src\app\component\CX\C1_sample2\actionscene_proof_component.h" />
     <ClInclude Include="src\app\component\CX\C0_sample1\state\setup_instance.h" />
+    <ClInclude Include="src\app\component\CX\C1_sample2\state\proof_stage_main.h" />
     <ClInclude Include="src\app\input\inputkey.h" />
     <ClInclude Include="src\app\input\key_binding.h" />
+    <ClInclude Include="src\app\matter\BG\BG_property.h" />
     <ClInclude Include="src\app\matter\BG\board_sculpture.h" />
     <ClInclude Include="src\app\matter\BG\mapstruct_loader.h" />
     <ClInclude Include="src\app\matter\BG\sculpture.h" />
     <ClInclude Include="src\app\matter\BG\tile_arrays.h" />
     <ClInclude Include="src\app\matter\BG\tile_loader.h" />
+    <ClInclude Include="src\app\matter\blending\dealer.h" />
     <ClInclude Include="src\app\matter\sound\audio_equipment.h" />
     <ClInclude Include="src\app\matter\sound\audio_loader.h" />
     <ClInclude Include="src\app\matter\sound\vinyl_track.h" />
@@ -253,6 +265,7 @@
     <ClInclude Include="src\app\models\cursor.h" />
     <ClInclude Include="src\app\models\echo_benefits.h" />
     <ClInclude Include="src\app\models\component_state_context.h" />
+    <ClInclude Include="src\app\models\employee.h" />
     <ClInclude Include="src\app\models\loader.h" />
     <ClInclude Include="src\app\models\mat_benefits.h" />
     <ClInclude Include="src\app\models\radar.h" />

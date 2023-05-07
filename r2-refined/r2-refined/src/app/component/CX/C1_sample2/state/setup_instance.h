@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/29
+//      Last update     : 2023/05/07
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -41,6 +41,7 @@
 #include "src/app/models/component_state.h"
 // PROJECT USING HEADER
 #include "src/app/models/component_state_context.h"
+#include "src/app/matter/blending/dealer.h"
 
 
 
@@ -58,9 +59,12 @@ namespace component {
 
             class SetupInstanceState final : public implements::IComponentState {
 
+            private:
+                matter::blending::Dealer* mat_;     // materials pointer
+
             public:
-                SetupInstanceState() {}
-                ~SetupInstanceState() {}
+                SetupInstanceState(matter::blending::Dealer* mat_impl);
+                ~SetupInstanceState();
 
                 bool doAction(implements::IComponentStateContext* context) override;
 

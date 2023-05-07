@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/29
+//      Last update     : 2023/05/07
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -68,6 +68,9 @@ namespace matter {
             size_t chip;                // Object tile number.
             Axisation axis;             // Object position information.
             bool transparent;           // Whether the object is transparent.
+
+
+            // TODO : Getter, Setter.
 
         } SpriteProperty, *LPSpriteProperty;
 

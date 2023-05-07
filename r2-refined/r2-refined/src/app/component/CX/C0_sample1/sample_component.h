@@ -21,13 +21,14 @@
 
 
 #include <string>
-
+#include <cstdint>
 
 #include "src/app/models/components.h"
 #include "src/app/models/radar.h"
 
 #include "src/app/matter/sprite/sprite_bank.h"
 #include "src/app/matter/BG/tile_arrays.h"
+#include "src/app/matter/BG/BG_property.h"
 #include "src/app/matter/sound/audio_equipment.h"
 
 
@@ -58,7 +59,7 @@ namespace component {
 
     private:
         bool abnormality_;
-        matter::BG::TileArrays background_;
+        matter::BG::TileArrays background_ = matter::BG::TileArrays(static_cast<matter::BG::diorama>(1));
 
     public:
         SampleComponent2();

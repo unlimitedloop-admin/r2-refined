@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/08
+//      Last update     : 2023/05/07
 //
-//      File version    : 4
+//      File version    : 6
 //
 //
 /**************************************************************/
@@ -63,6 +63,12 @@ namespace matter {
         }
 
 
+        TileArrays::TileArrays(const diorama p) {
+            blueprint_[0] = tagBGProperty(p);
+            texture_ = nullptr;
+        }
+
+
         TileArrays::~TileArrays() {
             if (nullptr != texture_) {
                 delete texture_;
@@ -88,13 +94,16 @@ namespace matter {
         }
 
 
-        bool TileArrays::mappingOn(const size_t map_no, const __int16 axis_x, const __int16 axis_y) const {
+        bool TileArrays::mappingOn(void) {
             try {
                 size_t index = 0;
-                for (size_t i = 0; i < 15; ++i) {
-                    for (size_t j = 0; j < 16; ++j) {
-                        index = structure_.getMapData(map_no, i, j);
-                        texture_->Use((j * 16), (i * 16), index, false);
+                for (auto& a : blueprint_) {
+                    if (NULL == a.grids) { continue; }
+                    for (size_t i = 0; i < 15; ++i) {
+                        for (size_t j = 0; j < 16; ++j) {
+                            index = structure_.getMapData(a.grids, i, j);
+                            texture_->Use(a.vertex.GetX() + (j * 16), a.vertex.GetY() + (i * 16), index, false);
+                        }
                     }
                 }
             }

@@ -13,9 +13,13 @@
 //
 //      r2-refined project
 //
-//      File name       : setup_instance.h
+//      File name       : proof_stage_main.h
 //
 //      Author          : u7
+//
+//      Last update     : 2023/05/07
+//
+//      File version    : 1
 //
 //
 /**************************************************************/
@@ -24,27 +28,27 @@
  * =============================================================
  *  FILE DESCRIPTION
  * =============================================================
- * setup instance.header
+ * proof stage main.header
 **/
 
 
 
-#ifndef _R2R_APP_COMPONENT_CX_C0_SAMPLE1_STATE_SETUP_INSTANCE_H_
-#define _R2R_APP_COMPONENT_CX_C0_SAMPLE1_STATE_SETUP_INSTANCE_H_
+#ifndef _R2R_APP_COMPONENT_CX_C1_SAMPLE2_STATE_PROOF_STAGE_MAIN_H_
+#define _R2R_APP_COMPONENT_CX_C1_SAMPLE2_STATE_PROOF_STAGE_MAIN_H_
 
 /* INCLUDES */
 // PRIMARY HEADER
 #include "src/app/models/component_state.h"
 // PROJECT USING HEADER
 #include "src/app/models/component_state_context.h"
-#include "src/protocol/message_box.h"
+#include "src/app/matter/blending/dealer.h"
 
 
 
 /* SOURCES */
 namespace component {
 
-    namespace C0_sample1 {
+    namespace C1_sample2 {
 
         namespace state {
 
@@ -53,20 +57,30 @@ namespace component {
 
 
 
-            class SetupInstanceState final : public implements::IComponentState {
+            /// <summary>
+            /// Proof stage state.
+            /// </summary>
+            class ProofStageMainState final : public implements::IComponentState {
+
+            private:
+                matter::blending::Dealer* mat_;     // materials pointer
+
+                bool Update(void);
+
+                bool Draw(void);
 
             public:
-                SetupInstanceState() {}
-                ~SetupInstanceState() {}
+                ProofStageMainState(matter::blending::Dealer* mat_impl);
+                ~ProofStageMainState();
 
-                bool doAction(implements::IComponentStateContext* context) override {}
+                bool doAction(implements::IComponentStateContext* context) override;
 
             };
 
         }  // namespace state
 
-    }  // namespace C0_sample1
+    }  // namespace C1_sample2
 
 }  // namespace component
 
-#endif // !_R2R_APP_COMPONENT_CX_C0_SAMPLE1_STATE_SETUP_INSTANCE_H_
+#endif // !_R2R_APP_COMPONENT_CX_C1_SAMPLE2_STATE_PROOF_STAGE_MAIN_H_

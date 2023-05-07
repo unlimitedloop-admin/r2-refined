@@ -17,9 +17,9 @@
 //
 //      Author          : u7
 //
-//      Last update     : 2023/04/29
+//      Last update     : 2023/05/07
 //
-//      File version    : 1
+//      File version    : 2
 //
 //
 /**************************************************************/
@@ -44,6 +44,8 @@
 #include "src/app/models/component_state.h"
 #include "src/app/component/CX/C1_sample2/actionscene_proof_component.h"
 #include "src/app/component/CX/C1_sample2/state/setup_instance.h"
+#include "src/app/component/CX/C1_sample2/state/proof_stage_main.h"
+#include "src/app/matter/blending/dealer.h"
 
 
 
@@ -66,31 +68,35 @@ namespace route {
             ~C1Sample2Component() {}
 
             /// <summary>
-            /// Get the state instance of A1_launch.
+            /// Get the state instance of C1_sample2.
             /// </summary>
-            /// <param name="">Void</param>
+            /// <param name="instance">Latest state instance</param>
+            /// <param name="mat_impl">Material management object pointer</param>
             /// <returns>Next placeholder instance</returns>
-            implements::IComponentState* getStates(implements::IComponentState* instance) const;
+            implements::IComponentState* getStates(implements::IComponentState* instance, matter::blending::Dealer* mat_impl);
 
         };
 
 
-        inline implements::IComponentState* C1Sample2Component::getStates(implements::IComponentState* instance) const {
+        inline implements::IComponentState* C1Sample2Component::getStates(implements::IComponentState* instance, matter::blending::Dealer* mat_impl) {
             using namespace state;
 
             if (nullptr == instance) {
-                return new SetupInstanceState();
+                return new SetupInstanceState(mat_impl);
             }
             else {
-                //const std::type_info& type = typeid(*instance);
-                //const std::wstring type_name = std::wstring(type.name(), type.name() + std::strlen(type.name()));
-                //const std::wstring namespace_tag = L"class component::A1_launch::state::";
-                //if (namespace_tag + L"ResourceFileCheckState" == type_name) {
-                //    return new InitializeDBTriggerState();
+                const std::type_info& type = typeid(*instance);
+                const std::wstring type_name = std::wstring(type.name(), type.name() + std::strlen(type.name()));
+                const std::wstring namespace_tag = L"class component::C1_sample2::state::";
+                if (namespace_tag + L"SetupInstanceState" == type_name) {
+                    return new ProofStageMainState(mat_impl);
+                }
+                //else if (namespace_tag + L"ProofStageMainState" == type_name) {
+                //    return new ReleaseAllAllocState();
                 //}
-                //else {
-                //    return nullptr;
-                //}
+                else {
+                    return nullptr;
+                }
             }
             return nullptr;
         }
@@ -98,7 +104,7 @@ namespace route {
 
         /*
          * Routes:
-         * SetupInstanceState => ???? => ???? => @next component
+         * SetupInstanceState => ProofStageMainState => ReleaseAllAllocState => @next component
          */
 
 

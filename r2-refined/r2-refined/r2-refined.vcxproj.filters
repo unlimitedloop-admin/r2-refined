@@ -48,6 +48,12 @@
     <ClCompile Include="src\app\component\CX\C1_sample2\state\setup_instance.h" />
     <ClCompile Include="src\app\component\CX\C1_sample2\state\setup_instance.cc" />
     <ClCompile Include="src\app\matter\sprite\sprite_property.cc" />
+    <ClCompile Include="src\app\algorithm\action_system\player\player_job.cc" />
+    <ClCompile Include="src\app\algorithm\action_system\unified_action.cc" />
+    <ClCompile Include="src\app\algorithm\action_system\BG\background_scrolling.cc" />
+    <ClCompile Include="src\app\component\CX\C1_sample2\state\proof_stage_main.cc" />
+    <ClCompile Include="src\app\matter\blending\dealer.cc" />
+    <ClCompile Include="src\app\matter\BG\BG_property.cc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
@@ -121,6 +127,13 @@
     <ClInclude Include="src\app\route\region\C1_sample2_component.h" />
     <ClInclude Include="src\app\matter\structures\tag_axisation.h" />
     <ClInclude Include="src\app\matter\sprite\sprite_property.h" />
+    <ClInclude Include="src\app\algorithm\action_system\player\player_job.h" />
+    <ClInclude Include="src\app\algorithm\action_system\unified_action.h" />
+    <ClInclude Include="src\app\algorithm\action_system\BG\background_scrolling.h" />
+    <ClInclude Include="src\app\component\CX\C1_sample2\state\proof_stage_main.h" />
+    <ClInclude Include="src\app\matter\blending\dealer.h" />
+    <ClInclude Include="src\app\matter\BG\BG_property.h" />
+    <ClInclude Include="src\app\models\employee.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="r2-refined.rc" />
