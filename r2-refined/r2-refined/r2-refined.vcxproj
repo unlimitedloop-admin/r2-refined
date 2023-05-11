@@ -183,7 +183,6 @@
     <ClCompile Include="src\app\component\CX\C1_sample2\actionscene_proof_component.cc" />
     <ClCompile Include="src\app\component\CX\C1_sample2\state\proof_stage_main.cc" />
     <ClCompile Include="src\app\component\CX\C1_sample2\state\setup_instance.cc" />
-    <ClCompile Include="src\app\component\CX\C1_sample2\state\setup_instance.h" />
     <ClCompile Include="src\app\input\inputkey.cc" />
     <ClCompile Include="src\app\input\key_binding.cc" />
     <ClCompile Include="src\app\matter\BG\BG_property.cc" />
@@ -236,9 +235,10 @@
     <ClInclude Include="src\app\component\AX\A1_launch\state\initialize_DB_trigger.h" />
     <ClInclude Include="src\app\component\AX\A1_launch\state\resource_file_check.h" />
     <ClInclude Include="src\app\component\CX\C0_sample1\sample_component.h" />
-    <ClInclude Include="src\app\component\CX\C1_sample2\actionscene_proof_component.h" />
     <ClInclude Include="src\app\component\CX\C0_sample1\state\setup_instance.h" />
+    <ClInclude Include="src\app\component\CX\C1_sample2\actionscene_proof_component.h" />
     <ClInclude Include="src\app\component\CX\C1_sample2\state\proof_stage_main.h" />
+    <ClInclude Include="src\app\component\CX\C1_sample2\state\setup_instance.h" />
     <ClInclude Include="src\app\input\inputkey.h" />
     <ClInclude Include="src\app\input\key_binding.h" />
     <ClInclude Include="src\app\matter\BG\BG_property.h" />
